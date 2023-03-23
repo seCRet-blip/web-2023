@@ -1,172 +1,384 @@
-   <!-- svelte-ignore a11y-missing-attribute -->
-   
-    <script>
-      const game = document.querySelector(".game");
-// get this working in the weekend
-      function displaytoConsol(){
-        console.log("hope this works");
-      }
+<script>
+ function toggleDropdown(dropdownId) {
+    var dropdownMenu = document.getElementById(dropdownId);
+    if (dropdownMenu.style.display === "block") {
+      dropdownMenu.style.display = "none";
+    } else {  
+      dropdownMenu.style.display = "block";
+    }
+  }
 
-      
-    </script> 
-<nav>
-    <div class="menu-toggle">
-      <i class="fa fa-bars"></i>
-    </div>
-    <ul class="menu">
-      <li><a class="game" href={'#'}>Games </a>
-        <ul class="sub-menu">
-          <li><a href={'#'}>Blank</a></li>
-          <li><a href={'#'}>Blank</a></li>
-          <li><a href={'#'}>Blank</a></li>
+</script>
+<body>
+  <nav>
+    <ul>
+      <li class="dropdown">
+        <a href="/" on:click={() => toggleDropdown('dropdown-menu2')}>Games</a>
+        <ul class="dropdown-menu2" id="dropdown-menu2">
+          <li><a href="/">Service 1</a></li>
+          <li><a href="/">Service 2</a></li>
+          <li><a href="/">Service 3</a></li>
+        </ul>      
+      </li>
+  
+      <li class="dropdown">
+        <a href="/" on:click={() => toggleDropdown('dropdown-menu3')}>Hardware</a>
+        <ul class="dropdown-menu3" id="dropdown-menu3">
+          <li><a href="/">Service 1</a></li>
+          <li><a href="/">Service 2</a></li>
+          <li><a href="/">Service 3</a></li>
         </ul>
       </li>
-      <li><a href={'#'}>Hardware</a>
-        <ul class="sub-menu">
-          <li><a href={'#'}>Blank</a></li>
-          <li><a href={'#'}>Blank</a></li>
-          <li><a href={'#'}>Blank</a></li>
+      <li class="dropdown">
+        <a href="/" on:click={() => toggleDropdown('dropdown-menu')}>Services</a>
+        <ul class="dropdown-menu" id="dropdown-menu">
+          <li><a href="/">Service 1</a></li>
+          <li><a href="/">Service 2</a></li>
+          <li><a href="/">Service 3</a></li>
         </ul>
       </li>
-      <li><a href={'#'}>Services</a>
-        <ul class="sub-menu">
-          <li><a href={'#'}>Blank</a></li>
-          <li><a href={'#'}>Blank</a></li>
-          <li><a href={'#'}>Blank</a></li>
+      <li class="dropdown">
+        <a href="/" on:click={() => toggleDropdown('dropdown-menu4')}>News</a>
+        <ul class="dropdown-menu4" id="dropdown-menu4">
+          <li><a href="/">Service 1</a></li>
+          <li><a href="/">Service 2</a></li>
+          <li><a href="/">Service 3</a></li>
         </ul>
       </li>
-      <li><a href={'#'}>News</a>
-        <ul class="sub-menu">
-          <li><a href={'#'}>Blank</a></li>
-          <li><a href={'#'}>Blank</a></li>
-          <li><a href={'#'}>Blank</a></li>
-        </ul></li>
-      <li><a href={'#'}>Shop</a>
-        <ul class="sub-menu">
-          <li><a href={'#'}>Blank</a></li>
-          <li><a href={'#'}>Blank</a></li>
-          <li><a href={'#'}>Blank</a></li>
-        </ul></li>
-      <li><a href={'#'}>Support</a>
-        <ul class="sub-menu">
-        <li><a href={'#'}>Blank</a></li>
-        <li><a href={'#'}>Blank</a></li>
-        <li><a href={'#'}>Blank</a></li>
-      </ul></li>
+      <li class="dropdown">
+        <a href="/" on:click={() => toggleDropdown('dropdown-menu5')}>Shop</a>
+        <ul class="dropdown-menu5" id="dropdown-menu5">
+          <li><a href="/">Service 6</a></li>
+          <li><a href="/">Service 2</a></li>
+          <li><a href="/">Service 3</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="/" on:click={() => toggleDropdown('dropdown-menu6')}>Support</a>
+        <ul class="dropdown-menu6" id="dropdown-menu6">
+          <li><a href="/">Service 1</a></li>
+          <li><a href="/">Service 2</a></li>
+          <li><a href="/">Service 3</a></li>
+        </ul>
+      </li>
     </ul>
-</nav>
+  </nav>
+  
+
+  <div id="slider">
+    <ul id="slideWrap"> 
+      <li><img src="/images/playstation.jpg" alt=""></li>
+   
+    </ul>
+    <a id="prev" href="/">&#8810;</a>
+    <a id="next" href="/">&#8811;</a>
+  </div>
+
+  <footer>
+    <div class="grid-container">
+      <div class="grid-item">
+        <div class="grid-content">
+          <h3 >About</h3>
+          <p>Careers</p>
+          <p>Corporate Social Responsibility</p></div>
+        </div>
+      
+      <div class="grid-item">
+        <div class="grid-content">
+               <h3>Shop</h3>
+               <p>Games</p>
+               <p>Hardware</p>
+               <p>Merchandise</p>
+               <p>Sales & deals</p>
+               <p>Exclusives</p>
+               <p>Online service</p>
+               
+      </div>
+        </div>
+   
+      <div class="grid-item">
+        <div class="grid-content">
+           <h3>My store</h3>
+              <p>Order details</p>
+               <p>Shipping info</p>
+               <p>Returns & exchanges</p>
+               <p>FQA</p>
+      </div>
+        </div>
+       
+      <div class="grid-item">
+        <div class="grid-content">
+          <h3>Support</h3>
+          <p>Switch</p>
+          <p>Accounts</p>
+          <p>Other systems</p>
+          <p>Repairs</p>
+          <p>Nintendo product recycling</p>
+
+        </div>
+        </div>
+       
+      <div class="grid-item">
+        <div class="grid-content">
+              <h3>Parents</h3>
+              <p>Info for parents</p>
+              <p>Parental controls</p>
+              <h3>Privacy</h3>
+              <p>Privacy policy</p>
+      </div>
+        </div>
+    
+      <div class="grid-item">
+        <div class="grid-content">
+             <h3>Community</h3>
+             <p>Community guidelines</p>
+            <p>Online safety principles</p>
+      </div>
+        </div>
+        </div>
+        
+  </footer>
+  
+</body>
+
 <style>
-    nav{
-  background-color: #fff;
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-}
 
-.menu-toggle {
-  display: none;
-  padding: 10px;
-  cursor: pointer;
-}
 
-.menu {
-  display: flex;
-  justify-content: space-between;
-  margin: 0;
-  padding-right: 75%;
-  list-style: none;
-}
-
-.menu li {
+#slider {
   position: relative;
-  font-size: 20px;
+  width: 500px;
+  height: 265px;
+
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
 }
 
-.menu li a {
-  display: block;
-  padding: 10px;
-  color: #444;
+#slider ul {
+  position: relative;
+  list-style: none;
+  height: 100%;
+  width: 10000%;
+  padding: 0;
+  margin: 0;
+  transition: all 750ms ease;
+  left: 0;
+}
+#slider ul li {
+  position: relative;
+  height: 100%;
+
+  float: left;
+}
+
+#slider ul li img{
+  width: 500px;
+  height: 265px;
+}
+
+#slider #prev, #slider #next {
+  width: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: white;
   text-decoration: none;
+  position: absolute;
+  top: 50%;
+  border-radius: 50%;
+  font-size: 2rem;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  transform: translateY(-50%);
+  transition: all 150ms ease;
 }
 
-.menu li:hover > a {
-  color: #045dbb;
+#slider #prev {
+  left: 10px;
+}
+#slider #next {
+  right: 10px;
 }
 
-.sub-menu {
+#slider #prev:hover, #slider #next:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  text-shadow: 0;
+}
+body{
+    widows: 1000px;
+    margin: 0 auto;
+  }
+.grid-content{
+  text-align: left;
+}
+footer {
+  background-color: white;
+  padding: 20px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(1, 1fr); 
+  
+}
+/*this is formating the items that are in the grid*/
+.grid-item {
+  background-color: #fff;
+  padding: 10px;
+  height: 250px;
+  width: 100%;
+  text-align: center;
+  border-left: 1px solid #333;
+}
+/*this removes the border on the first child of the parent*/
+.grid-item:first-child{
+  border-left: none;
+}
+
+
+nav {
+  background-color: white;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li {
+  position: relative;
+}
+
+nav ul li a {
+  display: block;
+  color: #333;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+nav ul li .dropdown-menu {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 1;
-  background-color: white;
+  background-color: #333;
 }
 
-.sub-menu li {
-  display: block;
+nav ul li .dropdown-menu li {
+  width: 200px;
 }
 
-.sub-menu li a {
+nav ul li .dropdown-menu li a {
   display: block;
-  padding: 10px;
-  color: #444;
+  color: #fff;
   text-decoration: none;
+  padding: 0.5rem 1rem;
 }
 
-.menu li:hover > .sub-menu {
+/**strarr*/
+
+nav ul li .dropdown-menu2 {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #333;
+}
+
+nav ul li .dropdown-menu2 li {
+  width: 200px;
+}
+
+nav ul li .dropdown-menu2 li a {
   display: block;
-  animation: fadeInDown 0.5s ease;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
 }
 
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@media screen and (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-  
-  .menu {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #333;
-    margin: 0;
-  }
-  
-  .menu li {
-    display: block;
-    border-bottom: 1px solid #444;
-  }
-  
-  .menu li:last-child {
-    border-bottom: none;
-  }
-  
-  .menu li a {
-    display: block;
-    padding: 10px;
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  .menu li:hover > .sub-menu {
-    display: block;
-    position: static;
-    background-color: #444;
-  }
+
+/**strarr*/
+
+nav ul li .dropdown-menu3 {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #333;
 }
 
+nav ul li .dropdown-menu3 li {
+  width: 200px;
+}
+
+nav ul li .dropdown-menu3 li a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+
+
+/**strarr*/
+
+nav ul li .dropdown-menu4 {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #333;
+}
+
+nav ul li .dropdown-menu4 li {
+  width: 200px;
+}
+
+nav ul li .dropdown-menu4 li a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+/**strarr*/
+
+nav ul li .dropdown-menu5 {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #333;
+}
+
+nav ul li .dropdown-menu5 li {
+  width: 200px;
+}
+
+nav ul li .dropdown-menu5 li a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+/**strarr*/
+
+nav ul li .dropdown-menu6 {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #333;
+}
+
+nav ul li .dropdown-menu6 li {
+  width: 200px;
+}
+
+nav ul li .dropdown-menu6 li a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
 </style>
-  
