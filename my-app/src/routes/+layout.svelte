@@ -1,14 +1,15 @@
 <script>
- function toggleDropdown(dropdownId) {
-    var dropdownMenu = document.getElementById(dropdownId);
-    if (dropdownMenu.style.display === "block") {
-      dropdownMenu.style.display = "none";
-    } else {  
-      dropdownMenu.style.display = "block";
-    }
-  }
-
-</script>
+  function toggleDropdown(dropdownId) {
+     var dropdownMenu = document.getElementById(dropdownId);
+     if (dropdownMenu.style.display === "block") {
+       dropdownMenu.style.display = "none";
+     } else {  
+       dropdownMenu.style.display = "block";
+       dropdownMenu.style.zIndex = 9999; // set a high z-index value
+     }
+   }
+ </script>
+ 
 <body>
   <nav>
     <ul>
@@ -192,12 +193,17 @@ nav ul li a {
   padding: 0.5rem 1rem;
 }
 
+nav ul li a:hover {
+  color: navy;
+}
+
 nav ul li .dropdown-menu {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
   background-color: #333;
+  z-index: 1;
 }
 
 nav ul li .dropdown-menu li {
