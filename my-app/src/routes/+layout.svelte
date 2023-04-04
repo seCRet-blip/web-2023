@@ -1,4 +1,6 @@
 <script>
+    import Content from "./content.svelte";
+
   function toggleDropdown(dropdownId) {
      var dropdownMenu = document.getElementById(dropdownId);
      if (dropdownMenu.style.display === "block") {
@@ -65,6 +67,7 @@
     </ul>
   </nav>
   <slot />
+ <Content/>
   <footer>
     <div class="grid-container">
       <div class="grid-item">
