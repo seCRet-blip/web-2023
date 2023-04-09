@@ -13,37 +13,49 @@
       Quis vel eros donec ac odio tempor. Proin nibh nisl condimentum id venenatis.</p>
   </div>
   <div class="image-container">
-    <img src="src\lib\images\playstation.jpg" alt="">
+    <img class="first-image" src="src\lib\images\playstation.jpg" alt="">
   </div>
   <div class="image-container">
-    <img src="src\lib\images\playstation.jpg" alt="">
+    <img class="second-image" src="src\lib\images\playstation.jpg" alt="">
   </div>
 </div>
 
 <style>
-  .container {
-    display: flex;
-    align-items: center;
-  }
-
-  .text-container {
-    width: 30%;
-    padding-right: 20px;
-  }
-
-  .image-container {
-    flex: 1;
-    max-width: 200px;
-  }
-
-  .image-container img {
+  .container{
     width: 100%;
+    height: 700px;
+    padding-top: 50px;
+  }
+  
+  .text-container{
+    width: 600px;
+    height: 150px;
+    font-size: 20px;
+    display: inline-block;
+    vertical-align: top;
   }
 
-  .image-container:nth-child(2) {
-    margin-left: auto;
+  .image-container{
+    height: 200px;
+    width: 400px;
+    
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 80px;
   }
-
+  
+  .second-image{
+    height: 230px;
+    width: 400px;
+    position: absolute;
+  }
+  
+  .first-image{
+    height: 230px;
+    width: 400px;
+    position: absolute;
+  }
+  
   @media (max-width: 768px) {
     .container {
       flex-wrap: wrap;
