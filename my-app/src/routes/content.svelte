@@ -14,9 +14,25 @@
   </div>
   <div class="image-container">
     <img class="first-image" src="src\lib\images\playstation.jpg" alt="">
+    <div class="text-U-image">
+      Simulation&ensp;|&ensp;Anncouncement 
+      <div class="text">
+        <p>Dignissim sodales ut eu sem integer vitae. Nec feugiat in
+         fermentum posuere urna nec tincidunt praesent.
+         Quis vel eros donec ac odio tempor. Proin nibh nisl condimentum id venenatis</p> 
+       </div>
+    </div>
   </div>
   <div class="image-container">
     <img class="second-image" src="src\lib\images\playstation.jpg" alt="">
+    <div class="text-U-image">
+      Simulation&ensp;|&ensp;Anncouncement
+      <div class="text">
+       <p>Dignissim sodales ut eu sem integer vitae. Nec feugiat in
+        fermentum posuere urna nec tincidunt praesent.
+        Quis vel eros donec ac odio tempor. Proin nibh nisl condimentum id venenatis</p> 
+      </div>
+    </div>
   </div>
 </div>
 
@@ -28,11 +44,12 @@
   }
   
   .text-container{
-    width: 600px;
+    width: 500px;
     height: 150px;
     font-size: 20px;
     display: inline-block;
     vertical-align: top;
+    padding-left: 20px;
   }
 
   .image-container{
@@ -41,7 +58,7 @@
     
     display: inline-block;
     vertical-align: top;
-    padding-top: 80px;
+    padding-top: 70px;
   }
   
   .second-image{
@@ -55,6 +72,12 @@
     width: 400px;
     position: absolute;
   }
+  .text-U-image {
+  position: relative;
+  margin-top: 10px;
+  padding-top: 250px;
+  padding-left: 15px;
+}
   
   @media (max-width: 768px) {
     .container {

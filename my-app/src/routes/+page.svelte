@@ -67,9 +67,7 @@
   </div>
 
 <style>
- body {
-  margin: 10%;
-}
+
 
 #slider {
   position: relative;
