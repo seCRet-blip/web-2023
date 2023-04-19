@@ -1,8 +1,18 @@
 <script>
+
+
+    let slide;
       let URl = "src/lib/images/geforce.jpg";
-    let URl2 = "src/lib/images/playstation.jpg";
-  let URl3 = "src/lib/images/Best-mario-games-hp.webp";
+      let URl2 = "src/lib/images/playstation.jpg";
+      let URl3 = "src/lib/images/Best-mario-games-hp.webp";
     
+    let slideindex = 1;
+  function moveSlides(){
+    slide.style.transform = `translateX(-${slideindex
+      *100}%)`;
+  }
+
+
   </script>
   
   <main>
@@ -16,7 +26,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </button>
         </div>
-        <div class="slide">
+        <div class="slide" bind:this={slide}>
           <img src={URl} alt="nav-icon" />
           <img src={URl} alt="nav-icon" />
           <img src={URl} alt="nav-icon" />
@@ -68,6 +78,7 @@
   place-items: center;
   cursor: pointer;
   z-index: 55;
+  transition: all 200ms ease;
 }
 .slider_btn svg{
   pointer-events: none;
