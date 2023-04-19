@@ -1,127 +1,87 @@
 <script>
       let URl = "src/lib/images/geforce.jpg";
-  let URl2 = "src/lib/images/playstation.jpg";
+    let URl2 = "src/lib/images/playstation.jpg";
   let URl3 = "src/lib/images/Best-mario-games-hp.webp";
-    import { onMount } from 'svelte';
-  
-    onMount(() => {
-      var slider = document.getElementById("slider");
-      var sliderWidth = slider.offsetWidth;
-      var slideList = document.getElementById("slideWrap");
-      var count = 1;
-      var items = slideList.querySelectorAll("li").length;
-      var prev = document.getElementById("prev");
-      var next = document.getElementById("next");
-  
-      var prevSlide = function() {
-        if(count > 1) {
-          count = count - 2;
-          slideList.style.left = "-" + count * sliderWidth + "px";
-          count++;
-        }
-        else if(count = 1) {
-          count = items - 1;
-          slideList.style.left = "-" + count * sliderWidth + "px";
-          count++;
-        }
-      };
-  
-      var nextSlide = function() {
-        if(count < items) {
-          slideList.style.left = "-" + count * sliderWidth + "px";
-          count++;
-        }
-        else if(count = items) {
-          slideList.style.left = "0px";
-          count = 1;
-        }
-      };
-  
-      window.addEventListener('resize', function() {
-        sliderWidth = slider.offsetWidth;
-      });
-  
-      next.addEventListener("click", function() {
-        nextSlide();
-      });
-  
-      prev.addEventListener("click", function() {
-        prevSlide();
-      });
-  
-      setInterval(function() {
-        nextSlide()
-      }, 8000);
-    });
+    
   </script>
   
-  
-  <div id="slider">
-    <ul id="slideWrap">
-      <li><img class="image-slider" src={URl} alt="nav-icon" /></li>
-      <li><img class="image-slider" src={URl2} alt="playstation" /></li>
-      <li><img class="image-slider" src={URl3} alt="playstation" /></li>
-    </ul>
-    <a id="prev" href="/">&#8810;</a>
-    <a id="next" href="/">&#8811;</a>
-  </div>
-
+  <main>
+    <div class="container">
+      <div class="slider">
+        <div class="slider_btn-conatiner">
+          <button class="slider_btn slider_btn-left" aria-label="move to preivous slide">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          </button>
+          <button class="slider_btn slider_btn-right" aria-label="move to next slide">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+        </div>
+        <div class="slide">
+          <img src={URl} alt="nav-icon" />
+          <img src={URl} alt="nav-icon" />
+          <img src={URl} alt="nav-icon" />
+        </div>
+      </div>
+    </div>
+ 
+</main>
 <style>
-
-
-#slider {
-  position: relative;
-  width: 100%;
-  height: 500px;
-
-  overflow: hidden;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-}
-
-
-#slider ul {
-  position: relative;
-  list-style: none;
-  height: 100%;
-  width: 10000%;
-  padding: 0;
+*,::after,*::before{
+  border: 0;
   margin: 0;
-  transition: all 750ms ease;
-  left: 0;
-}
-#slider ul li {
-  position: relative;
-  height: 100%;
-  float: left;
-}
-#slider ul li img{
-  width: 1480px;
-  height: 500px;
-  z-index: -1;
-}
-#slider #prev, #slider #next {
-  width: 50px;
-  line-height: 50px;
-  text-align: center;
-  color: white;
-  text-decoration: none;
-  position: absolute;
-  top: 50%;
-  border-radius: 50%;
-  font-size: 2rem;
-  text-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-  transform: translateY(-50%);
-  transition: all 150ms ease;
-}
-#slider #prev {
-  left: 10px;
-}
-#slider #next {
-  right: 10px;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-#slider #prev:hover, #slider #next:hover {
-  background-color: rgba(0, 0, 0, 0.5);
-  text-shadow: 0;
+.container{
+  display: grid;
+  place-items: center;
+  padding: 2rem 0;
+  
+}
+.slider{
+  position: relative;
+  display: grid;
+  place-items: center;
+  /*overflow: hidden;*/
+  box-shadow: 
+  20px 20px 50px hsl(210, 50%, 40% .4),
+  -20px -20px 50px hsl(210, 50%, 80% .2);
+}
+.slide img {
+  width: 100%;
+  flex: 1 0 100%;
+}
+.slide{
+  width: 1500px;
+  height: 400px;
+  max-height: 100vh;
+  display: flex;
+}
+.slider_btn{
+  border-radius: 50%s;
+  position: absolute;
+  z-index: 2;
+  padding: .2rem;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 55;
+}
+.slider_btn svg{
+  pointer-events: none;
+}
+.slider_btn-left{
+  left: 0;
+  transform: translate(50%-50%);
+}
+.slider_btn-left:is:hover, :focus{
+  animation: 150ms forwards moveLeft;
+}
+@keyframes moveLeft{
+  50%{
+    left: -3px;
+  }
 }
 </style>
