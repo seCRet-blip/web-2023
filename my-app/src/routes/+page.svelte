@@ -1,9 +1,11 @@
 <script>
-  import { onMount } from 'svelte';
+
+  import { onMount, onDestroy } from 'svelte';
 
   const BASE_URL = `https://api.unsplash.com`;
 
   let images = [];
+  let interval;
 
   async function fetchImages() {
     const response = await fetch(
@@ -22,69 +24,39 @@
   let slideIndex = 0;
 
   function moveSlides() {
-    slide.style.transform = `translateX(-${slideIndex * 100}%)`;
-  }
+  slide.style.transform = `translateX(-${slideIndex * 100}%)`;
+  const images = slide.querySelectorAll('img');
+  images.forEach((image, index) => {
+    if (index === slideIndex) {
+      image.style.opacity = 1;
+    } else {
+      image.style.opacity = 0;
+    }
+  });
+}
+
+
 
   onMount(() => {
     fetchImages().then(() => {
       moveSlides();
+
+      // Start the automatic slideshow
+      interval = setInterval(() => {
+        slideIndex = (slideIndex + 1) % images.length;
+        moveSlides();
+      }, 5000);
     });
   });
+  onDestroy(() => {
+    // Stop the automatic slideshow when the component is destroyed
+    clearInterval(interval);
+  });
 </script>
-
 <main>
   <div class="container">
     <div class="slider">
-      <div class="slider_btn-conatiner">
-        <button
-          class="slider_btn slider_btn-left"
-          aria-label="move to preivous slide"
-          on:click={() => {
-            slideIndex = Math.max(0, slideIndex - 1);
-            moveSlides();
-          }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="feather feather-arrow-left"
-          >
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-        </button>
-        <button
-          class="slider_btn slider_btn-right"
-          aria-label="move to next slide"
-          on:click={() => {
-            slideIndex = Math.min(images.length - 1, slideIndex + 1);
-            moveSlides();
-          }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="feather feather-arrow-right"
-          >
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </button>
-      </div>
+      
       <div class="slide" bind:this={slide}>
         {#each images as image}
         <img src={image} alt="slide image" />
@@ -119,38 +91,17 @@
 .slide img {
   width: 100%;
   flex: 1 0 100%;
+  opacity: 0;
+  transition: opacity 3s ease;
+  
 }
 .slide{
   width: 1500px;
   height: 400px;
   max-height: 100vh;
   display: flex;
+  transition: opacity 400ms ease-out;
+  background-color: black;
 }
-.slider_btn{
-  border-radius: 50%s;
-  position: absolute;
-  z-index: 2;
-  padding: .2rem;
-  top: 50%;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  z-index: 55;
-  transition: all 200ms ease;
-}
-.slider_btn svg{
-  pointer-events: none;
-}
-.slider_btn-left{
-  left: 0;
-  transform: translate(50%-50%);
-}
-.slider_btn-left:is:hover, :focus{
-  animation: 150ms forwards moveLeft;
-}
-@keyframes moveLeft{
-  50%{
-    left: -3px;
-  }
-}
+
 </style>
