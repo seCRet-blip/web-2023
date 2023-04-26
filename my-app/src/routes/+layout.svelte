@@ -1,5 +1,5 @@
 <script>
-    import Content from "./content.svelte";
+    import Content from "./slider.svelte";
 
   function toggleDropdown(dropdownId) {
      var dropdownMenu = document.getElementById(dropdownId);
@@ -67,7 +67,7 @@
     </ul>
   </nav>
   <slot />
- <Content/>
+
   <footer>
     <div class="grid-container">
       <div class="grid-item">
