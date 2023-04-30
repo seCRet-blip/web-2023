@@ -1,68 +1,76 @@
 <section class="carousel" aria-label="Gallery">
-    <ol class="carousel__viewport">
-      <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-      <li id="carousel__slide1"
-          tabindex="0"
-          class="carousel__slide">
-        <div class="carousel__snapper">
-          <a href="#carousel__slide4"
-             class="carousel__prev">Go to last slide</a>
-          <a href="#carousel__slide2"
-             class="carousel__next">Go to next slide</a>
-        </div>
-      </li>
-      <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-      <li id="carousel__slide2"
-          tabindex="0"
-          class="carousel__slide">
-        <div class="carousel__snapper"></div>
-        <a href="#carousel__slide1"
-           class="carousel__prev">Go to previous slide</a>
-        <a href="#carousel__slide3"
-           class="carousel__next">Go to next slide</a>
-      </li>
-      <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-      <li id="carousel__slide3"
-          tabindex="0"
-          class="carousel__slide">
-        <div class="carousel__snapper"></div>
-        <a href="#carousel__slide2"
-           class="carousel__prev">Go to previous slide</a>
+  <ol class="carousel__viewport">
+    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+    <li id="carousel__slide1"
+        tabindex="0"
+        class="carousel__slide">
+      <div class="carousel__snapper">
+        <h2>First Slide</h2>
+        <p>This is some text that describes the first slide.</p>
+        <!-- svelte-ignore a11y-img-redundant-alt -->
+        <img class="img" src="src\lib\images\playstation.jpg" alt="Image 1">
+        <!-- svelte-ignore a11y-img-redundant-alt -->
+        <img class="img" src="src\lib\images\playstation.jpg" alt="Image 2">
+        <p class="text">this is an image</p>
         <a href="#carousel__slide4"
+           class="carousel__prev">Go to last slide</a>
+        <a href="#carousel__slide2"
            class="carousel__next">Go to next slide</a>
-      </li>
-      <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-      <li id="carousel__slide4"
-          tabindex="0"
-          class="carousel__slide">
-        <div class="carousel__snapper"></div>
-        <a href="#carousel__slide3"
-           class="carousel__prev">Go to previous slide</a>
+      </div>
+    </li>
+    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+    <li id="carousel__slide2"
+        tabindex="0"
+        class="carousel__slide">
+      <div class="carousel__snapper"></div>
+      <a href="#carousel__slide1"
+         class="carousel__prev">Go to previous slide</a>
+      <a href="#carousel__slide3"
+         class="carousel__next">Go to next slide</a>
+    </li>
+    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+    <li id="carousel__slide3"
+        tabindex="0"
+        class="carousel__slide">
+      <div class="carousel__snapper"></div>
+      <a href="#carousel__slide2"
+         class="carousel__prev">Go to previous slide</a>
+      <a href="#carousel__slide4"
+         class="carousel__next">Go to next slide</a>
+    </li>
+    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+    <li id="carousel__slide4"
+        tabindex="0"
+        class="carousel__slide">
+      <div class="carousel__snapper"></div>
+      <a href="#carousel__slide3"
+         class="carousel__prev">Go to previous slide</a>
+      <a href="#carousel__slide1"
+         class="carousel__next">Go to first slide</a>
+    </li>
+  </ol>
+  <aside class="carousel__navigation">
+    <ol class="carousel__navigation-list">
+      <li class="carousel__navigation-item">
         <a href="#carousel__slide1"
-           class="carousel__next">Go to first slide</a>
+           class="carousel__navigation-button">Go to slide 1</a>
+      </li>
+      <li class="carousel__navigation-item">
+        <a href="#carousel__slide2"
+           class="carousel__navigation-button">Go to slide 2</a>
+      </li>
+      <li class="carousel__navigation-item">
+        <a href="#carousel__slide3"
+           class="carousel__navigation-button">Go to slide 3</a>
+      </li>
+      <li class="carousel__navigation-item">
+        <a href="#carousel__slide4"
+           class="carousel__navigation-button">Go to slide 4</a>
       </li>
     </ol>
-    <aside class="carousel__navigation">
-      <ol class="carousel__navigation-list">
-        <li class="carousel__navigation-item">
-          <a href="#carousel__slide1"
-             class="carousel__navigation-button">Go to slide 1</a>
-        </li>
-        <li class="carousel__navigation-item">
-          <a href="#carousel__slide2"
-             class="carousel__navigation-button">Go to slide 2</a>
-        </li>
-        <li class="carousel__navigation-item">
-          <a href="#carousel__slide3"
-             class="carousel__navigation-button">Go to slide 3</a>
-        </li>
-        <li class="carousel__navigation-item">
-          <a href="#carousel__slide4"
-             class="carousel__navigation-button">Go to slide 4</a>
-        </li>
-      </ol>
-    </aside>
-  </section>
+  </aside>
+</section>
+
   <style>
     @keyframes tonext {
   75% {
@@ -164,7 +172,14 @@ ol, li {
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
 }
-
+.img{
+  height: 200px;
+  width: 350px;
+  transform: translateX(750px);
+}
+.text{
+  transform: translateX(750px);
+}
 .carousel__slide {
   position: relative;
   flex: 0 0 100%;
