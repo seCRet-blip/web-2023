@@ -76,15 +76,16 @@
   padding: 2rem 0;
   
 }
-.slider{
+.slider {
   position: relative;
   display: grid;
   place-items: center;
-  /*overflow: hidden;*/
+  overflow: hidden;
   box-shadow: 
-  20px 20px 50px hsl(210, 50%, 40% .4),
-  -20px -20px 50px hsl(210, 50%, 80% .2);
+    20px 20px 50px hsl(210, 50%, 40% .4),
+    -20px -20px 50px hsl(210, 50%, 80% .2);
 }
+
 .slide img {
   width: 100%;
   flex: 1 0 100%;
@@ -93,7 +94,7 @@
   
 }
 .slide{
-  width: 1500px;
+  width: 100%;
   height: 400px;
   max-height: 100vh;
   display: flex;
