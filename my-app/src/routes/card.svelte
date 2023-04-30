@@ -111,14 +111,15 @@
 }
 
 .text-container {
-  width: 25%;
+  width: 30%;
+  height: 50%;
   float: left;
-  left: 50px;  
+  left: 100px;  
   position: relative;
 }
 .txt {
   margin-top: 0;
-  font-size: 20px;
+  font-size: 28px;
   font-family: 'Open Sans', sans-serif;
 }
 body {
@@ -168,8 +169,9 @@ ol, li {
 }
 .img{
   height: 200px;
-  width: 350px;
-  transform: translateX(300px);
+  width: 400px;
+  margin-top: 50px;
+  transform: translateX(200px);
 }
 .text{
   transform: translateX(750px);
@@ -198,26 +200,7 @@ ol, li {
   width: 100%;
   height: 100%;
 }
-@media (hover: hover) {
-  .carousel__snapper {
-    animation-name: tonext;
-    animation-timing-function: ease;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-  }
-  .carousel__slide:last-child .carousel__snapper {
-    animation-name: tostart;
-  }
-}
-.carousel:hover .carousel__snapper,
-.carousel:focus-within .carousel__snapper {
-  animation-name: none;
-}
 
-.carousel:hover .carousel__snapper,
-.carousel:focus-within .carousel__snapper {
-  animation-name: none;
-}
 .carousel__navigation {
   position: absolute;
   right: 0;
@@ -236,10 +219,11 @@ ol, li {
   background-color: #333;
   background-clip: content-box;
   border: 0.25rem solid transparent;
-  border-radius: 50%;
+  border-radius: 0;
   font-size: 0;
   transition: transform 0.1s;
 }
+
 .carousel::before,
 .carousel::after,
 .carousel__prev,
@@ -247,8 +231,8 @@ ol, li {
   position: absolute;
   top: 0;
   margin-top: 37.5%;
-  width: 4rem;
-  height: 4rem;
+  width: 2rem;
+  height: 2rem;
   transform: translateY(-50%);
   border-radius: 50%;
   font-size: 0;
@@ -256,25 +240,46 @@ ol, li {
 }
 .carousel::before,
 .carousel__prev {
-  left: -1rem;
+  position: absolute;
+  top: 30px;
+  margin-top: -2rem;
+  right: 4rem;
+  transform: translateY(-50%);
 }
+
 .carousel::after,
 .carousel__next {
-  right: -1rem;
+  position: absolute;
+  top: 30px;
+  margin-top: -2rem;
+  right: 1rem;
+  transform: translateY(-50%);
 }
+
 .carousel::before,
 .carousel::after {
   content: '';
   z-index: 1;
   background-color: #333;
-  background-size: 1.5rem 1.5rem;
+  background-size: 1rem 1rem;
   background-repeat: no-repeat;
   background-position: center center;
   color: #fff;
-  font-size: 2.5rem;
+  font-size: 1rem;
   line-height: 4rem;
   text-align: center;
   pointer-events: none;
+}
+.carousel::before,
+.carousel__prev {
+  /* remove the circular shape */
+  border-radius: 0;
+}
+
+.carousel::after,
+.carousel__next {
+  /* remove the circular shape */
+  border-radius: 0;
 }
 .carousel::before {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,50 80,100 80,0' fill='%23fff'/%3E%3C/svg%3E");
