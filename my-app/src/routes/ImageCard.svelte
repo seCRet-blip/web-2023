@@ -14,11 +14,12 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-right: 10px;
     }
     
     .card__image {
       height: 200px;
-      width: 400px;
+      width: 300px;
       margin-top: 50px;
 
     }
