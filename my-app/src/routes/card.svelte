@@ -40,34 +40,48 @@
 
   import TextCard from './TextCard.svelte';
   
+  let currentCard = 0;
+  let imageContainer;
 
+  function prevCard() {
+    currentCard = Math.max(currentCard - 1, 0);
+    const cardWidth = imageContainer.scrollWidth / cards.length;
+    imageContainer.scrollTo(currentCard * cardWidth, 0);
+  }
+
+  function nextCard() {
+    currentCard = Math.min(currentCard + 1, cards.length - 1);
+    const cardWidth = imageContainer.scrollWidth / cards.length;
+    imageContainer.scrollTo(currentCard * cardWidth, 0);
+  }
 </script>
 
 <div class="carousel-container">
   <div class="cards-container">
-
-
-    
-      
-      <div class="image-container">
-        <div class="text-container">
-          <TextCard title="Design and Simulation" text="NVIDIA RTX™ and NVIDIA Omniverse™
-           deliver the performance to help professionals, creators, developers,
-            and students worldwide enhance creative workflows and build, operate,
-             and connect metaverse applications." />
-        </div>
-        {#each cards as card}
-          <ImageCard
-            imageSrc={card.imageSrc}
-            imageAlt={card.imageAlt}
-            announcement={card.announcement}
-            title={card.title}
-            caption={card.caption}
-          />
-        {/each}
+    <div class="image-container" bind:this={imageContainer}>
+      <div class="text-container">
+        <TextCard title="Design and Simulation" text="NVIDIA RTX™ and NVIDIA Omniverse™
+          deliver the performance to help professionals, creators, developers,
+          and students worldwide enhance creative workflows and build, operate,
+          and connect metaverse applications." />
       </div>
+      {#each cards as card}
+        <ImageCard
+          imageSrc={card.imageSrc}
+          imageAlt={card.imageAlt}
+          announcement={card.announcement}
+          title={card.title}
+          caption={card.caption}
+        />
+      {/each}
+    </div>
+    <div class="nav-buttons">
+      <button on:click={prevCard}>Prev</button>
+      <button on:click={nextCard}>Next</button>
     </div>
   </div>
+</div>
+
 
 
 <style>
