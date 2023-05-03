@@ -1,25 +1,65 @@
 <script>
+  
+
   import ImageCard from './ImageCard.svelte';
+  
+  const cards = [
+    {
+      imageSrc: "src/lib/images/playstation.jpg",
+      imageAlt: "Image",
+      title: "PlayStation",
+      caption: "This is a PlayStation."
+    },
+    {
+      imageSrc: "src/lib/images/playstation.jpg",
+      imageAlt: "Image",
+      title: "PlayStation",
+      caption: "This is an Xbox."
+    },
+    {
+      imageSrc: "src/lib/images/playstation.jpg",
+      imageAlt: "Image",
+      title: "PlayStation",
+      caption: "This is an Xbox."
+    },
+    {
+      imageSrc: "src/lib/images/playstation.jpg",
+      imageAlt: "Image",
+      title: "PlayStation",
+      caption: "This is an Xbox."
+    },
+    {
+      imageSrc: "src/lib/images/playstation.jpg",
+      imageAlt: "Image",
+      title: "PlayStation",
+      caption: "This is a Nintendo Switch."
+    }
+  ];
+
   import TextCard from './TextCard.svelte';
   
-  const imageSrc = "src/lib/images/playstation.jpg";
-  const imageAlt = 'Image';
-  const text = 'This is an image';
+
 </script>
 
 <div class="carousel-container">
   <div class="cards-container">
 
     <div class="image-container">
-      <div class="text-container">
-        <TextCard title="Title 1" text="This is some text." />
+    
+      
+      <div class="image-container">
+        <div class="text-container">
+          <TextCard title="Title 1" text="NVIDIA RTX™ and NVIDIA Omniverse™ deliver the performance to help professionals, creators, developers, and students worldwide enhance creative workflows and build, operate, and connect metaverse applications." />
+        </div>
+        {#each cards as card}
+          <ImageCard
+            imageSrc={card.imageSrc}
+            imageAlt={card.imageAlt}
+            title="{card.title}"
+            caption={card.caption}
+          />
+        {/each}
       </div>
-      <ImageCard imageSrc="{imageSrc}" imageAlt="{imageAlt}" text="{text}" />
-      <ImageCard imageSrc="{imageSrc}" imageAlt="{imageAlt}" text="{text}" />
-      <ImageCard imageSrc="{imageSrc}" imageAlt="{imageAlt}" text="{text}" />
-      <ImageCard imageSrc="{imageSrc}" imageAlt="{imageAlt}" text="{text}" />
-      <ImageCard imageSrc="{imageSrc}" imageAlt="{imageAlt}" text="{text}" />
-      <ImageCard imageSrc="{imageSrc}" imageAlt="{imageAlt}" text="{text}" />
     </div>
   </div>
 </div>
@@ -43,8 +83,9 @@
   }
   
   .image-container {
-    width: 80%;
+    width: 100%;
     height: 100%;
+    margin-left: 50px; 
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -56,7 +97,6 @@
   .image-container::-webkit-scrollbar {
     display: none;
   }
-  
 
   
   .text-container {
@@ -67,6 +107,8 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
+    padding-right: 90px;
+    transform: translateY(-80px); /* move up by 20px */
   }
   
 

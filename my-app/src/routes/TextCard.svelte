@@ -12,19 +12,22 @@
   </script>
   
   <style>
-    .text-card {
-      width: 300px;
-      height: 400px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background-color: #f5f5f5;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-      border-radius: 8px;
-      padding: 20px;
-      margin-right: 20px;
-    }
+.text-card {
+  width: 350px;
+  height: 400px;
+  
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 20px;
+  
+  text-align: left; /* align the text to the left */
+  margin-left: 50px; /* move the element to the right by 10px */
+}
+
   
     h2 {
       font-size: 24px;
@@ -34,9 +37,9 @@
     }
   
     p {
-      font-size: 18px;
+      font-size: 25px;
       margin: 0;
-      text-align: center;
+      text-align: left;
     }
   </style>
   
