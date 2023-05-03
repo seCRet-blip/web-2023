@@ -1,38 +1,40 @@
 <script>
-  
-
   import ImageCard from './ImageCard.svelte';
-  
   const cards = [
     {
       imageSrc: "src/lib/images/playstation.jpg",
       imageAlt: "Image",
-      title: "PlayStation",
-      caption: "This is a PlayStation."
+      announcement:"ethay | eckwray",
+      title: "Everyyay ordway",
+      caption: "ethay inksay isyay ethay ingthay inyay ichwhay eway ilepay ishesday . ethay orsehay alkedbay andyay ewthray ethay alltay iderray . "
     },
     {
       imageSrc: "src/lib/images/playstation.jpg",
       imageAlt: "Image",
-      title: "PlayStation",
-      caption: "This is an Xbox."
+      announcement:"ethay | eckwray",
+      title: "Ethay upcay ackedcray",
+      caption: "ayay eepstay ailtray isyay ainfulpay orfay ouryay eetfay . ethay apmay adhay anyay x atthay eantmay othingnay."
     },
     {
       imageSrc: "src/lib/images/playstation.jpg",
       imageAlt: "Image",
-      title: "PlayStation",
-      caption: "This is an Xbox."
+      announcement:"ethay | eckwray",
+      title: "Ethay eckwray ",
+      caption: "ethay assbray ubetay ircledcay ethay ighhay allway . ayay eaplay orfay undsfay eemssay otay omecay againyay . "
     },
     {
       imageSrc: "src/lib/images/playstation.jpg",
       imageAlt: "Image",
-      title: "PlayStation",
-      caption: "This is an Xbox."
+      announcement:"ethay | eckwray",
+      title: "Endsay ethay",
+      caption: "oodway isyay estbay orfay akingmay oystay andyay ocksblay . ethay itekay ippedday andyay ayedsway , utbay ayedstay aloftyay . "
     },
     {
       imageSrc: "src/lib/images/playstation.jpg",
       imageAlt: "Image",
-      title: "PlayStation",
-      caption: "This is a Nintendo Switch."
+      announcement:"ethay | eckwray",
+      title: "Ickthay aperpay",
+      caption: "atscay andyay ogsday eachyay atehay ethay otheryay . ethay eachbay isyay ydray andyay allowshay atyay owlay idetay ."
     }
   ];
 
@@ -44,25 +46,29 @@
 <div class="carousel-container">
   <div class="cards-container">
 
-    <div class="image-container">
+
     
       
       <div class="image-container">
         <div class="text-container">
-          <TextCard title="Title 1" text="NVIDIA RTX™ and NVIDIA Omniverse™ deliver the performance to help professionals, creators, developers, and students worldwide enhance creative workflows and build, operate, and connect metaverse applications." />
+          <TextCard title="Design and Simulation" text="NVIDIA RTX™ and NVIDIA Omniverse™
+           deliver the performance to help professionals, creators, developers,
+            and students worldwide enhance creative workflows and build, operate,
+             and connect metaverse applications." />
         </div>
         {#each cards as card}
           <ImageCard
             imageSrc={card.imageSrc}
             imageAlt={card.imageAlt}
-            title="{card.title}"
+            announcement={card.announcement}
+            title={card.title}
             caption={card.caption}
           />
         {/each}
       </div>
     </div>
   </div>
-</div>
+
 
 <style>
  .carousel-container {
@@ -85,7 +91,7 @@
   .image-container {
     width: 100%;
     height: 100%;
-    margin-left: 50px; 
+    margin-left: 30px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -105,10 +111,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    padding: 20px;
     padding-right: 90px;
-    transform: translateY(-80px); /* move up by 20px */
+    transform: translateY(-80px); 
   }
   
 
