@@ -21,16 +21,15 @@
       align-items: center;
       margin-right: 10px;
       transform: translateX(100px);
-      border: 1px solid rgba(0, 0, 0, 0.3); /* use rgba to set the border color with alpha transparency */
-      border-radius: 10px; /* add a border radius */
+      box-shadow: 
+    0 0 0 4px rgba(255, 255, 255, 0.3), /* inner white border */
+    0 4px 6px rgba(0, 0, 0, 0.1), /* shadow */
+    0 8px 20px rgba(0, 0, 0, 0.1); /* shadow */
     }
     
     .card__image {
       height: 250px;
-      width: 400px;
-      
-      align-self: flex-start !important;
-      
+      width: 400px;      
     }
     
     .card__title { /* add style for the title */
@@ -39,9 +38,11 @@
     text-align: center;
   }
     .card__text {
-      margin-top: 20px;
+      margin-top: 10px;
+      margin-left: 5%;
+      margin-right: 5%;
       font-size: 16px;
-      text-align: center;
+      text-align: left;
     }
   </style>
   

@@ -5,7 +5,7 @@
   const BASE_URL = `https://api.unsplash.com`;
 
   let images = [];
-  let interval;
+   let interval;
 
   async function fetchImages() {
     const response = await fetch(
@@ -49,6 +49,7 @@
     // Stop the automatic slideshow when the component is destroyed
     clearInterval(interval);
   });
+
 </script>
 <main>
   <div class="container">
@@ -74,7 +75,7 @@
   display: grid;
   place-items: center;
   padding: 2rem 0;
-  
+  height: 400px;
 }
 .slider {
   position: relative;

@@ -1,5 +1,8 @@
 <script>
+
+
   import ImageCard from './ImageCard.svelte';
+
   const cards = [
     {
       imageSrc: "src/lib/images/playstation.jpg",
@@ -39,6 +42,7 @@
   ];
 
   import TextCard from './TextCard.svelte';
+    import Slider from './slider.svelte';
   
   let currentCard = 0;
   let imageContainer;
@@ -57,6 +61,29 @@
 </script>
 
 <div class="carousel-container">
+  <div class="nav-buttons">
+    <button class="Prev" on:click={prevCard}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" 
+      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       class="feather feather-arrow-left">
+       <line x1="19" y1="12" x2="5" y2="12">
+       </line>
+        <polyline points="12 19 5 12 12 5">
+        </polyline>
+      </svg>
+      
+    </button>
+    <button class="Next" on:click={nextCard}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" 
+      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+      class="feather feather-arrow-right">
+      <line x1="5" y1="12" x2="19" y2="12">
+      </line>
+      <polyline points="12 5 19 12 12 19">
+      </polyline>
+    </svg>
+    </button>
+  </div>
   <div class="cards-container">
     <div class="image-container" bind:this={imageContainer}>
       <div class="text-container">
@@ -75,18 +102,33 @@
         />
       {/each}
     </div>
-    <div class="nav-buttons">
-      <button on:click={prevCard}>Prev</button>
-      <button on:click={nextCard}>Next</button>
-    </div>
   </div>
 </div>
 
 
 
+
+
 <style>
+.nav-buttons {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: flex-end;
+}
+.Prev ,.Next{
+  margin-top: 15px;
+  height: 30px;
+  width: 30px;
+  margin-left: 10px;
+}
+
  .carousel-container {
   width: 100%;
+  position: relative;
   height: 600px;
   display: flex;
   flex-direction: row;
@@ -94,6 +136,7 @@
   overflow: hidden;
   padding: 0;
   margin: 0;
+  padding-top: 60px;
 }
   .cards-container {
     display: flex;
@@ -115,8 +158,22 @@
   }
 
   .image-container::-webkit-scrollbar {
-    display: none;
-  }
+  width: 8px; /* adjust as needed */
+  height: 8px; /* adjust as needed */
+}
+
+.image-container::-webkit-scrollbar-track {
+  background: #f1f1f1; /* adjust as needed */
+}
+
+.image-container::-webkit-scrollbar-thumb {
+  background: #888; /* adjust as needed */
+  border-radius: 4px; /* adjust as needed */
+}
+
+.image-container::-webkit-scrollbar-button {
+  display: none; /* hide the scrollbar buttons */
+}
 
   
   .text-container {
