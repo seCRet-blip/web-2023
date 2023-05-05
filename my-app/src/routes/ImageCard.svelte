@@ -20,16 +20,19 @@
       flex-direction: column;
       align-items: center;
       margin-right: 10px;
-      transform: translateX(100px);
+      transform: translateX(238px);
+      margin-top: 50px;
       box-shadow: 
     0 0 0 4px rgba(255, 255, 255, 0.3), /* inner white border */
     0 4px 6px rgba(0, 0, 0, 0.1), /* shadow */
     0 8px 20px rgba(0, 0, 0, 0.1); /* shadow */
+    height: 400px;
     }
     
     .card__image {
       height: 250px;
-      width: 400px;      
+      width: 400px;  
+       
     }
     
     .card__title { /* add style for the title */

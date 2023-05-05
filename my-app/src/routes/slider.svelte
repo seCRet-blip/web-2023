@@ -92,6 +92,7 @@
   flex: 1 0 100%;
   opacity: 0;
   transition: opacity 3s ease;
+  object-fit: cover;
   
 }
 .slide{

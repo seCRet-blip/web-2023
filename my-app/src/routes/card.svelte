@@ -1,8 +1,11 @@
 <script>
 
-
+  //importing the ImageCard component
   import ImageCard from './ImageCard.svelte';
+    // Import the TextCard  components
+  import TextCard from './TextCard.svelte';
 
+// Define an array of objects to represent the cards
   const cards = [
     {
       imageSrc: "src/lib/images/playstation.jpg",
@@ -41,24 +44,27 @@
     }
   ];
 
-  import TextCard from './TextCard.svelte';
-    import Slider from './slider.svelte';
+
   
-  let currentCard = 0;
+   // Initialize variables to keep track of the current card and the image container
+   let currentCard = 0;
   let imageContainer;
 
+  // Function to display the previous card in the slider
   function prevCard() {
     currentCard = Math.max(currentCard - 1, 0);
     const cardWidth = imageContainer.scrollWidth / cards.length;
     imageContainer.scrollTo(currentCard * cardWidth, 0);
   }
 
+  // Function to display the next card in the slider
   function nextCard() {
     currentCard = Math.min(currentCard + 1, cards.length - 1);
     const cardWidth = imageContainer.scrollWidth / cards.length;
     imageContainer.scrollTo(currentCard * cardWidth, 0);
   }
 </script>
+
 
 <div class="carousel-container">
   <div class="nav-buttons">
@@ -114,8 +120,9 @@
   position: absolute;
   top: 0;
   right: 0;
+  margin-right: 40px;
   width: 100%;
-  height: 60px;
+  height: 40px;
   display: flex;
   justify-content: flex-end;
 }
@@ -124,25 +131,28 @@
   height: 30px;
   width: 30px;
   margin-left: 10px;
+  background-color: #6ca404;
+  border: none;
 }
 
  .carousel-container {
   width: 100%;
   position: relative;
-  height: 600px;
+  height: 550px;
   display: flex;
   flex-direction: row;
   align-items: center;
   overflow: hidden;
   padding: 0;
   margin: 0;
-  padding-top: 60px;
+  padding-top: 40px;
 }
   .cards-container {
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 100%;
+    
   }
   
   .image-container {
@@ -155,6 +165,7 @@
     overflow-x: auto;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
+    
   }
 
   .image-container::-webkit-scrollbar {
