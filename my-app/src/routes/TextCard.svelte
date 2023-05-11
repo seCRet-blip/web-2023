@@ -2,8 +2,6 @@
   <h2>{title}</h2>
   <p>{text}</p>
   <div class="dropdown">
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <!-- svelte-ignore a11y-missing-attribute -->
     <a on:click={toggleDropdown}>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -13,7 +11,13 @@
         <polyline points="19 12 12 19 5 12"></polyline>
       </svg>
       Links
-    </a>  
+    </a>
+    <div id="mydropDown" class="dropDownContent {show ? 'show' : ''}" on:clickoutside={hideDropdown}>
+      <a href="/">link1</a>
+      <a href="/">link2</a>
+      <a href="/">link3</a>
+      <a href="/">link4</a>
+    </div>  
   </div>
 </div>
 
@@ -22,12 +26,25 @@
   export let text;
 
   let rotated = false;
+  let show = false;
 
   function toggleDropdown() {
     rotated = !rotated;
+    show = !show;
   }
 
+  function hideDropdown() {
+    show = false;
+  }
+
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".dropdown")) {
+      hideDropdown();
+    }
+  });
 </script>
+
+
   
   <style>
 .text-card {
@@ -64,5 +81,15 @@
 .dropdown-icon.rotated {
   transform: rotate(180deg);
 }
+.dropDownContent {
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.show {
+  display: block;
+}
+
 </style>
   
