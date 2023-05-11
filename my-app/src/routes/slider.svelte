@@ -5,7 +5,7 @@
   const BASE_URL = `https://api.unsplash.com`;
 
   let images = [];
-  let interval;
+   let interval;
 
   async function fetchImages() {
     const response = await fetch(
@@ -49,6 +49,7 @@
     // Stop the automatic slideshow when the component is destroyed
     clearInterval(interval);
   });
+
 </script>
 <main>
   <div class="container">
@@ -74,26 +75,28 @@
   display: grid;
   place-items: center;
   padding: 2rem 0;
-  
+  height: 400px;
 }
-.slider{
+.slider {
   position: relative;
   display: grid;
   place-items: center;
-  /*overflow: hidden;*/
+  overflow: hidden;
   box-shadow: 
-  20px 20px 50px hsl(210, 50%, 40% .4),
-  -20px -20px 50px hsl(210, 50%, 80% .2);
+    20px 20px 50px hsl(210, 50%, 40% .4),
+    -20px -20px 50px hsl(210, 50%, 80% .2);
 }
+
 .slide img {
   width: 100%;
   flex: 1 0 100%;
   opacity: 0;
   transition: opacity 3s ease;
+  object-fit: cover;
   
 }
 .slide{
-  width: 1500px;
+  width: 100%;
   height: 400px;
   max-height: 100vh;
   display: flex;

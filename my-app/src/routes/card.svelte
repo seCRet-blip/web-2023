@@ -1,306 +1,197 @@
-<section class="carousel" aria-label="Gallery">
-  <ol class="carousel__viewport">
-    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-    <li id="carousel__slide1"
-        tabindex="0"
-        class="carousel__slide">
-      <div class="carousel__snapper">
-        <h2>First Slide</h2>
-        <p>This is some text that describes the first slide.</p>
-        <!-- svelte-ignore a11y-img-redundant-alt -->
-        <img class="img" src="src\lib\images\playstation.jpg" alt="Image 1">
-        <!-- svelte-ignore a11y-img-redundant-alt -->
-        <img class="img" src="src\lib\images\playstation.jpg" alt="Image 2">
-        <p class="text">this is an image</p>
-        <a href="#carousel__slide4"
-           class="carousel__prev">Go to last slide</a>
-        <a href="#carousel__slide2"
-           class="carousel__next">Go to next slide</a>
+
+<script>
+
+  //importing the ImageCard component
+  import ImageCard from './ImageCard.svelte';
+    // Import the TextCard  components
+  import TextCard from './TextCard.svelte';
+
+// Define an array of objects to represent the cards
+  const cards = [
+    {
+      imageSrc: "src/lib/images/playstation.jpg",
+      imageAlt: "Image",
+      announcement:"ethay | eckwray",
+      title: "Everyyay ordway",
+      caption: "ethay inksay isyay ethay ingthay inyay ichwhay eway ilepay ishesday . ethay orsehay alkedbay andyay ewthray ethay alltay iderray . "
+    },
+    {
+      imageSrc: "src/lib/images/playstation.jpg",
+      imageAlt: "Image",
+      announcement:"ethay | eckwray",
+      title: "Ethay upcay ackedcray",
+      caption: "ayay eepstay ailtray isyay ainfulpay orfay ouryay eetfay . ethay apmay adhay anyay x atthay eantmay othingnay."
+    },
+    {
+      imageSrc: "src/lib/images/playstation.jpg",
+      imageAlt: "Image",
+      announcement:"ethay | eckwray",
+      title: "Ethay eckwray ",
+      caption: "ethay assbray ubetay ircledcay ethay ighhay allway . ayay eaplay orfay undsfay eemssay otay omecay againyay . "
+    },
+    {
+      imageSrc: "src/lib/images/playstation.jpg",
+      imageAlt: "Image",
+      announcement:"ethay | eckwray",
+      title: "Endsay ethay",
+      caption: "oodway isyay estbay orfay akingmay oystay andyay ocksblay . ethay itekay ippedday andyay ayedsway , utbay ayedstay aloftyay . "
+    },
+    {
+      imageSrc: "src/lib/images/playstation.jpg",
+      imageAlt: "Image",
+      announcement:"ethay | eckwray",
+      title: "Ickthay aperpay",
+      caption: "atscay andyay ogsday eachyay atehay ethay otheryay . ethay eachbay isyay ydray andyay allowshay atyay owlay idetay ."
+    }
+  ];
+
+   // Initialize variables to keep track of the current card and the image container
+   let currentCard = 0;
+  let imageContainer;
+
+  // Function to display the previous card in the slider
+  function prevCard() {
+    currentCard = Math.max(currentCard - 1, 0);
+    const cardWidth = imageContainer.scrollWidth / cards.length;
+    imageContainer.scrollTo(currentCard * cardWidth, 0);
+  }
+
+  // Function to display the next card in the slider
+  function nextCard() {
+    currentCard = Math.min(currentCard + 1, cards.length - 1);
+    const cardWidth = imageContainer.scrollWidth / cards.length;
+    imageContainer.scrollTo(currentCard * cardWidth, 0);
+  }
+</script>
+
+
+<div class="carousel-container">
+  <div class="nav-buttons">
+    <button class="Prev" on:click={prevCard}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" 
+      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       class="feather feather-arrow-left">
+       <line x1="19" y1="12" x2="5" y2="12">
+       </line>
+        <polyline points="12 19 5 12 12 5">
+        </polyline>
+      </svg>
+      
+    </button>
+    <button class="Next" on:click={nextCard}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" 
+      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+      class="feather feather-arrow-right">
+      <line x1="5" y1="12" x2="19" y2="12">
+      </line>
+      <polyline points="12 5 19 12 12 19">
+      </polyline>
+    </svg>
+    </button>
+  </div>
+  <div class="cards-container">
+    <div class="image-container" bind:this={imageContainer}>
+      <div class="text-container">
+        <TextCard title="Design and Simulation" text="NVIDIA RTX™ and NVIDIA Omniverse™
+          deliver the performance to help professionals, creators, developers,
+          and students worldwide enhance creative workflows and build, operate,
+          and connect metaverse applications." />
       </div>
-    </li>
-    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-    <li id="carousel__slide2"
-        tabindex="0"
-        class="carousel__slide">
-      <div class="carousel__snapper"></div>
-      <a href="#carousel__slide1"
-         class="carousel__prev">Go to previous slide</a>
-      <a href="#carousel__slide3"
-         class="carousel__next">Go to next slide</a>
-    </li>
-    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-    <li id="carousel__slide3"
-        tabindex="0"
-        class="carousel__slide">
-      <div class="carousel__snapper"></div>
-      <a href="#carousel__slide2"
-         class="carousel__prev">Go to previous slide</a>
-      <a href="#carousel__slide4"
-         class="carousel__next">Go to next slide</a>
-    </li>
-    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-    <li id="carousel__slide4"
-        tabindex="0"
-        class="carousel__slide">
-      <div class="carousel__snapper"></div>
-      <a href="#carousel__slide3"
-         class="carousel__prev">Go to previous slide</a>
-      <a href="#carousel__slide1"
-         class="carousel__next">Go to first slide</a>
-    </li>
-  </ol>
-  <aside class="carousel__navigation">
-    <ol class="carousel__navigation-list">
-      <li class="carousel__navigation-item">
-        <a href="#carousel__slide1"
-           class="carousel__navigation-button">Go to slide 1</a>
-      </li>
-      <li class="carousel__navigation-item">
-        <a href="#carousel__slide2"
-           class="carousel__navigation-button">Go to slide 2</a>
-      </li>
-      <li class="carousel__navigation-item">
-        <a href="#carousel__slide3"
-           class="carousel__navigation-button">Go to slide 3</a>
-      </li>
-      <li class="carousel__navigation-item">
-        <a href="#carousel__slide4"
-           class="carousel__navigation-button">Go to slide 4</a>
-      </li>
-    </ol>
-  </aside>
-</section>
+      {#each cards as card}
+        <ImageCard
+          imageSrc={card.imageSrc}
+          imageAlt={card.imageAlt}
+          announcement={card.announcement}
+          title={card.title}
+          caption={card.caption}
+        />
+      {/each}
+    </div>
+  </div>
+</div>
 
-  <style>
-    @keyframes tonext {
-  75% {
-    left: 0;
-  }
-  95% {
-    left: 100%;
-  }
-  98% {
-    left: 100%;
-  }
-  99% {
-    left: 0;
-  }
-}
+<style>
+.nav-buttons {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 40px;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: flex-end;
 
-@keyframes tostart {
-  75% {
-    left: 0;
-  }
-  95% {
-    left: -300%;
-  }
-  98% {
-    left: -300%;
-  }
-  99% {
-    left: 0;
-  }
-}
 
-@keyframes snap {
-  96% {
-    scroll-snap-align: center;
-  }
-  97% {
-    scroll-snap-align: none;
-  }
-  99% {
-    scroll-snap-align: none;
-  }
-  100% {
-    scroll-snap-align: center;
-  }
-}
 
-body {
-  max-width: 37.5rem;
-  margin: 0 auto;
-  padding: 0 1.25rem;
-  font-family: 'Lato', sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-  scrollbar-color: transparent transparent; /* thumb and track color */
-  scrollbar-width: 0px;
-}
-
-*::-webkit-scrollbar {
-  width: 0;
-}
-
-*::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-*::-webkit-scrollbar-thumb {
-  background: transparent;
+.Prev ,.Next{
+  margin-top: 15px;
+  height: 30px;
+  width: 30px;
+  margin-left: 10px;
+  background-color: #6ca404;
   border: none;
 }
 
-* {
-  -ms-overflow-style: none;
-}
-
-ol, li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.carousel {
+ .carousel-container {
+  width: 100%;
   position: relative;
-  padding-top: 75%;
-  filter: drop-shadow(0 0 10px #0003);
-  perspective: 100px;
-}
-
-.carousel__viewport {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  height: 550px;
   display: flex;
-  overflow-x: scroll;
-  counter-reset: item;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  padding-top: 40px;
 }
-.img{
-  height: 200px;
-  width: 350px;
-  transform: translateX(750px);
-}
-.text{
-  transform: translateX(750px);
-}
-.carousel__slide {
-  position: relative;
-  flex: 0 0 100%;
-  width: 100%;
-  background-color: #f99;
-  counter-increment: item;
-}
-
-.carousel__slide:nth-child(even) {
-  background-color: #99f;
-}
-
-.carousel__slide:before {
-  content: counter(item); /**this adds the number to the card*/
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%,-40%,70px);
-  color: #fff;
-  font-size: 2em;
-}
-
-.carousel__snapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  scroll-snap-align: center;
-}
-
-@media (hover: hover) {
-  .carousel__snapper {
-    animation-name: tonext, snap;
-    animation-timing-function: ease;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
+  .cards-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%; 
+  }
+  
+  .image-container {
+    width: 100%;
+    height: 100%;
+    margin-left: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    
   }
 
-  .carousel__slide:last-child .carousel__snapper {
-    animation-name: tostart, snap;
+  .image-container::-webkit-scrollbar {
+  width: 8px; /* adjust as needed */
+  height: 8px; /* adjust as needed */
+}
+
+.image-container::-webkit-scrollbar-track {
+  background: #f1f1f1; /* adjust as needed */
+}
+
+.image-container::-webkit-scrollbar-thumb {
+  background: #888; /* adjust as needed */
+  border-radius: 4px; /* adjust as needed */
+}
+
+.image-container::-webkit-scrollbar-button {
+  display: none; /* hide the scrollbar buttons */
+}
+
+  
+  .text-container {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 90px;
+    transform: translateY(-80px); 
   }
-}
+  
 
-
-
-.carousel:hover .carousel__snapper,
-.carousel:focus-within .carousel__snapper {
-  animation-name: none;
-}
-
-.carousel__navigation {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  text-align: center;
-}
-
-.carousel__navigation-list,
-.carousel__navigation-item {
-  display: inline-block;
-}
-
-.carousel__navigation-button {
-  display: inline-block;
-  width: 1.5rem;
-  height: 1.5rem;
-  background-color: #333;
-  background-clip: content-box;
-  border: 0.25rem solid transparent;
-  border-radius: 50%;
-  font-size: 0;
-  transition: transform 0.1s;
-}
-
-.carousel::before,
-.carousel::after,
-.carousel__prev,
-.carousel__next {
-  position: absolute;
-  top: 0;
-  margin-top: 37.5%;
-  width: 4rem;
-  height: 4rem;
-  transform: translateY(-50%);
-  border-radius: 50%;
-  font-size: 0;
-  outline: 0;
-}
-
-.carousel::before,
-.carousel__prev {
-  left: -1rem;
-}
-
-.carousel::after,
-.carousel__next {
-  right: -1rem;
-}
-
-.carousel::before,
-.carousel::after {
-  content: '';
-  z-index: 1;
-  background-color: #333;
-  background-size: 1.5rem 1.5rem;
-  background-repeat: no-repeat;
-  background-position: center center;
-  color: #fff;
-  font-size: 2.5rem;
-  line-height: 4rem;
-  text-align: center;
-  pointer-events: none;
-}
-
-.carousel::before {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,50 80,100 80,0' fill='%23fff'/%3E%3C/svg%3E");
-}
-
-.carousel::after {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,50 20,100 20,0' fill='%23fff'/%3E%3C/svg%3E");
-}
-  </style>
+</style>
