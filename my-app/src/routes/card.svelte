@@ -1,3 +1,4 @@
+
 <script>
 
   //importing the ImageCard component
@@ -44,8 +45,6 @@
     }
   ];
 
-
-  
    // Initialize variables to keep track of the current card and the image container
    let currentCard = 0;
   let imageContainer;
@@ -111,10 +110,6 @@
   </div>
 </div>
 
-
-
-
-
 <style>
 .nav-buttons {
   position: absolute;
@@ -125,7 +120,9 @@
   height: 40px;
   display: flex;
   justify-content: flex-end;
-}
+
+
+
 .Prev ,.Next{
   margin-top: 15px;
   height: 30px;
@@ -151,8 +148,7 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 100%;
-    
+    height: 100%; 
   }
   
   .image-container {
