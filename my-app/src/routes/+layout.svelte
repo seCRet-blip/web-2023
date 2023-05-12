@@ -1,8 +1,21 @@
 <script>
-    import Content from "./slider.svelte";
+    
+    import { tweened } from 'svelte/motion';
+    import { cubicOut } from 'svelte/easing';
+  
+    let moveDiv = false;
+    const marginTop = tweened(20, { duration: 500, easing: cubicOut });
+  
+    function moveDivDown() {
+      moveDiv = !moveDiv;
+      marginTop.set(moveDiv ? 40 : 20);
+    }
 
   function toggleDropdown(dropdownId) {
-     var dropdownMenu = document.getElementById(dropdownId);
+     
+    var dropdownMenu = document.getElementById(dropdownId);
+    moveDiv = !moveDiv;
+      marginTop.set(moveDiv ? 40 : 20);
      if (dropdownMenu.style.display === "block") {
        dropdownMenu.style.display = "none";
      } else {  
@@ -17,7 +30,7 @@
     <ul>
       <li class="dropdown">
         <a href="/" on:click={() => toggleDropdown('dropdown-menu2')}>Games</a>
-        <ul class="dropdown-menu2" id="dropdown-menu2">
+        <ul class="dropdown-menu2" id="dropdown-menu2" style="margin-top: {$marginTop}px" >
           <li><a href="/">Service 1</a></li>
           <li><a href="/">Service 2</a></li>
           <li><a href="/">Service 3</a></li>
@@ -173,7 +186,6 @@ footer {
   border-left: none;
 }
 
-
 nav {
   background-color: white;
 }
@@ -200,130 +212,24 @@ nav ul li a:hover {
   color: navy;
 }
 
-nav ul li .dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #333;
-  z-index: 1;
-}
-
-nav ul li .dropdown-menu li {
-  width: 200px;
-}
-
-nav ul li .dropdown-menu li a {
-  display: block;
-  color: #fff;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-}
-
-/**strarr*/
-
-nav ul li .dropdown-menu2 {
+/* Select all classes that start with "dropdown-menu" */
+nav ul li [class^="dropdown-menu"] {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
   background-color: #333;
 }
-
-nav ul li .dropdown-menu2 li {
+nav ul li [class^="dropdown-menu"] li {
   width: 200px;
 }
 
-nav ul li .dropdown-menu2 li a {
+nav ul li [class^="dropdown-menu"] li a {
   display: block;
   color: #fff;
+  
   text-decoration: none;
   padding: 0.5rem 1rem;
 }
 
-
-/**strarr*/
-
-nav ul li .dropdown-menu3 {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #333;
-}
-
-nav ul li .dropdown-menu3 li {
-  width: 200px;
-}
-
-nav ul li .dropdown-menu3 li a {
-  display: block;
-  color: #fff;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-}
-
-
-
-/**strarr*/
-
-nav ul li .dropdown-menu4 {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #333;
-}
-
-nav ul li .dropdown-menu4 li {
-  width: 200px;
-}
-
-nav ul li .dropdown-menu4 li a {
-  display: block;
-  color: #fff;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-}
-
-/**strarr*/
-
-nav ul li .dropdown-menu5 {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #333;
-}
-
-nav ul li .dropdown-menu5 li {
-  width: 200px;
-}
-
-nav ul li .dropdown-menu5 li a {
-  display: block;
-  color: #fff;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-}
-/**strarr*/
-
-nav ul li .dropdown-menu6 {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #333;
-}
-
-nav ul li .dropdown-menu6 li {
-  width: 200px;
-}
-
-nav ul li .dropdown-menu6 li a {
-  display: block;
-  color: #fff;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-}
 </style>
