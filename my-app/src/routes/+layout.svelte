@@ -1,28 +1,35 @@
 <script>
     
     import { tweened } from 'svelte/motion';
-    import { cubicOut } from 'svelte/easing';
-  
-    let moveDiv = false;
-    const marginTop = tweened(20, { duration: 500, easing: cubicOut });
-  
-    function moveDivDown() {
-      moveDiv = !moveDiv;
-      marginTop.set(moveDiv ? 40 : 20);
-    }
+  import { cubicOut } from 'svelte/easing';
+
+  let contentContainer;
+  let moveDiv = false;
+  const marginTop = tweened(20, { duration: 500, easing: cubicOut });
+
+  function moveDivDown() {
+    moveDiv = !moveDiv;
+    marginTop.set(moveDiv ? 10 : 20);
+  }
 
   function toggleDropdown(dropdownId) {
-     
     var dropdownMenu = document.getElementById(dropdownId);
     moveDiv = !moveDiv;
-      marginTop.set(moveDiv ? 40 : 20);
-     if (dropdownMenu.style.display === "block") {
-       dropdownMenu.style.display = "none";
-     } else {  
-       dropdownMenu.style.display = "block";
-       dropdownMenu.style.zIndex = 9999; // set a high z-index value
-     }
-   }
+
+    if (dropdownMenu.style.display === "block") {
+      dropdownMenu.style.display = "none";
+      dropdownMenu.style.marginTop = "0";
+    } else {
+      dropdownMenu.style.display = "block";
+      dropdownMenu.style.zIndex = 9999; // set a high z-index value
+
+      const contentContainer = document.querySelector('.content-container');
+      const contentContainerRect = contentContainer.getBoundingClientRect();
+      dropdownMenu.style.marginTop = `${contentContainerRect.height}px`;
+    }
+  }
+
+
  </script>
  
 <body>
@@ -72,6 +79,7 @@
       <li class="dropdown">
         <a href="/" on:click={() => toggleDropdown('dropdown-menu6')}>Support</a>
         <ul class="dropdown-menu6" id="dropdown-menu6">
+
           <li><a href="/">Service 1</a></li>
           <li><a href="/">Service 2</a></li>
           <li><a href="/">Service 3</a></li>
@@ -79,7 +87,10 @@
       </li>
     </ul>
   </nav>
-  <slot />
+  <div class="content-container" bind:this={contentContainer}>
+    <slot />
+  </div>
+  
 
   <footer>
     <div class="grid-container">
@@ -218,18 +229,25 @@ nav ul li [class^="dropdown-menu"] {
   position: absolute;
   top: 100%;
   left: 0;
+  width: 100vw; /* Set width to 100% of the viewport width */
   background-color: #333;
+  padding: 0;
+  margin: 0;
 }
+
 nav ul li [class^="dropdown-menu"] li {
-  width: 200px;
+  width: 100%; /* Set width to 100% */
 }
 
 nav ul li [class^="dropdown-menu"] li a {
   display: block;
   color: #fff;
-  
   text-decoration: none;
   padding: 0.5rem 1rem;
+}
+
+.content-container {
+  margin-top: 20px; /* Replace with the desired value, such as 20px */
 }
 
 </style>
