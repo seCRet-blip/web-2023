@@ -5,7 +5,8 @@
 
   let dropdownItems = [
     {id: 1, title: 'Games', links: ['News', 'Testing', 'PS plus']},
-    {id: 2, title: 'Support', links: ['Support', 'IT Support', 'PS Status']},
+    {id: 2, title: 'Support', links: ['Support', 'IT Support', 'PS Status']}, 
+    {id: 3, title: 'Support', links: ['Support', 'IT Support', 'PS Status']}, 
     // Add more items as needed
   ];
 

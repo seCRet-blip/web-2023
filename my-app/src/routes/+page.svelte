@@ -3,9 +3,10 @@
   import Card from "./card.svelte";
   import Test from "./test.svelte";
 </script>
+<Test />
 <Slider />
 <Card />
-<Test />
+
 
 
 
