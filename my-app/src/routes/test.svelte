@@ -31,6 +31,25 @@
   }
 </script>
 
+
+
+<div class="links">
+  {#each dropdownItems as item, index (item.id)}
+    <a href="/" on:click|preventDefault={() => moveDivDown(item.id, index)}>{item.title}</a>
+  {/each}
+</div>
+
+{#each dropdownItems as item, index (item.id)}
+  <div class="box" bind:this={x[index]} style="margin-top: {$marginTop}px">
+    <div class="dropDownContent">
+      {#each item.links as link}
+        <a href="/">{link}</a>
+      {/each}
+    </div>
+  </div>
+{/each}
+
+
 <style>
   .box {
     display: none;
@@ -45,14 +64,3 @@
     padding-left: 15px;
   }
 </style>
-
-{#each dropdownItems as item, index (item.id)}
-  <a href="/" on:click|preventDefault={() => moveDivDown(item.id, index)}>{item.title}</a>
-  <div class="box" bind:this={x[index]} style="margin-top: {$marginTop}px">
-    <div class="dropDownContent">
-      {#each item.links as link}
-        <a href="/">{link}</a>
-      {/each}
-    </div>
-  </div>
-{/each}
