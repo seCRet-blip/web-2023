@@ -13,13 +13,15 @@
      
     // Add more items as needed
   ];
-
+  let rotated = false;
   const dropdownStates = writable({});
   const marginTop = tweened(20, { duration: 200, easing: cubicOut });
 
+  
   let x = [];
 
   function moveDivDown(id) {
+    rotated = !rotated;
     dropdownStates.update(states => {
       // Close all other dropdowns
       for (let key in states) {
@@ -47,7 +49,13 @@
 
 <div class="links">
   {#each dropdownItems as item (item.id)}
-    <a class="MainLinks" href="/" on:click|preventDefault={() => moveDivDown(item.id)}>{item.title}</a>
+    <a class="MainLinks" href="/" on:click|preventDefault={() => moveDivDown(item.id)}>   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+           class:rotated={rotated} class="feather feather-arrow-down dropdown-icon"
+           id="dropdown-icon">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <polyline points="19 12 12 19 5 12"></polyline>
+      </svg>{item.title}</a>
   {/each}
 </div>
 
@@ -62,6 +70,14 @@
 {/each}
 
 <style>
+  .dropdown-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.dropdown-icon.rotated {
+  transform: rotate(180deg);
+}
+
 .MainLinks{
   color: black;
   text-decoration: none;

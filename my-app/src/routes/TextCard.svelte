@@ -34,9 +34,11 @@
 <div class="text-card">
   <h2>{title}</h2>
   <p>{text}</p>
+  <!-- svelte-ignore a11y-missing-attribute -->
   <div class="dropdown">
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
     <a on:click={toggleDropdown}>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
            class:rotated={rotated} class="feather feather-arrow-down dropdown-icon"
            id="dropdown-icon">
