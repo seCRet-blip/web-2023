@@ -75,14 +75,18 @@ points="6 9 12 15 18 9"></polyline
 </div>
 
 {#each dropdownItems as item, index (item.id)}
-  <div class="box" bind:this={x[index]} >
-    <div class="dropDownContent">
-      {#each item.links as link}
-        <a href="/">{link}</a>
-      {/each}
+  <div class="box" bind:this={x[index]}>
+    <div class="linksContainer">
+      <div class="dropDownContent">
+        <!-- Links -->
+        {#each item.links as link}
+          <a href="/">{link}</a>
+        {/each}
+      </div>
     </div>
   </div>
 {/each}
+
 
 
 <style>
@@ -117,14 +121,17 @@ points="6 9 12 15 18 9"></polyline
       0 16px 16px hsl(0deg 0% 0% / 0.075)
     ;
 }
-
 .dropDownContent {
-  display: inline-block;
+  display: inline;
   margin-left: 40%;
   margin-right: 25%;
-  padding-top: 40px; 
+}
+
+.linksContainer {
+  margin-top: 60px; /* Adjust this value to move the border down without affecting the links */
   border-bottom: 5px solid black;
 }
+
 
 .dropDownContent a {
   padding-left: 15px;
