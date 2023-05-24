@@ -3,12 +3,12 @@
   import { tweened } from 'svelte/motion';
   import { cubicOut } from 'svelte/easing';
   let dropdownItems = [
-  {id: 1, title: 'Games', links: ['News', 'Testing', 'PS plus']},
-  {id: 2, title: 'Hardware', links: ['PS5', 'PS4', 'PS VR2']}, 
-  {id: 3, title: 'Services', links: ['PS Plus', 'PS Stars']}, 
-  {id: 4, title: 'News', links: ['PS Blog', 'This month on Playstation']}, 
-  {id: 5, title: 'Shop', links: ['Support', 'IT Support', 'PS Status']}, 
-  {id: 6, title: 'Support', links: ['Support', 'IT Support', 'PS Status']}
+  {id: 1, title: 'Games', links: ['PS5', 'PS4','PS VR' , 'PS Plus' , 'Buy Games'],secondLinks: ['News', 'Testing', 'PS plus']},
+  {id: 2, title: 'Hardware', links: ['PS5', 'PS4', 'PS VR2'],secondLinks: ['News', 'Testing', 'PS plus']}, 
+  {id: 3, title: 'Services', links: ['PS Plus', 'PS Stars'],secondLinks: ['News', 'Testing', 'PS plus']}, 
+  {id: 4, title: 'News', links: ['PS Blog', 'This month on Playstation'],secondLinks: ['News', 'Testing', 'PS plus']}, 
+  {id: 5, title: 'Shop', links: ['Support', 'IT Support', 'PS Status'],secondLinks: ['News', 'Testing', 'PS plus']}, 
+  {id: 6, title: 'Support', links: ['Support', 'IT Support', 'PS Status'],secondLinks: ['News', 'Testing', 'PS plus']}
   // Add more items as needed
 ];
 
@@ -24,37 +24,43 @@ rotationStates.subscribe(val => rotationStatesVal = val);
 
 function moveDivDown(id) {
   dropdownStates.update(states => {
-  
+    const isDropdownOpen = states[id];
+    
+    // Close all other dropdowns
+    Object.keys(states).forEach(key => {
+      if (key !== id) {
+        x[key - 1].style.display = 'none';
+        x[key - 1].style.zIndex = '0';
+        states[key] = false;
+        rotationStates.update(rs => {
+          rs[key - 1] = false;
+          return rs;
+        });
+      }
+    });
+
     // Toggle the current dropdown
-    if (states[id]) {
-      x[id-1].style.display = 'none'; // ids start from 1
-      x[id-1].style.zIndex = '0'; // Reset zIndex when hidden
+    if (isDropdownOpen) {
+      x[id - 1].style.display = 'none';
+      x[id - 1].style.zIndex = '0';
       marginTop.set(20);
-      states[id] = false;
-      rotationStates.update(rs => {
-        rs[id-1] = false;
-        return rs;
-      });
     } else {
-      x[id-1].style.display = 'block'; // ids start from 1
-      x[id-1].style.zIndex = '1'; // Increase zIndex when displayed
+      x[id - 1].style.display = 'block';
+      x[id - 1].style.zIndex = '1';
       marginTop.set(40);
-      states[id] = true;
-      rotationStates.update(rs => {
-        rs[id-1] = true;
-        return rs;
-      });
     }
+
+    states[id] = !isDropdownOpen;
+    rotationStates.update(rs => {
+      rs[id - 1] = !isDropdownOpen;
+      return rs;
+    });
 
     return states;
   });
 }
 
-
   let dataArray = [];
-
-
-
 
 </script>
 
@@ -67,13 +73,11 @@ class:rotated={rotationStatesVal[index]} class="feather feather-arrow-down dropd
 id="dropdown-icon">
 <polyline 
 points="6 9 12 15 18 9"></polyline
-></svg>{item.title}
+></svg> {item.title}
   </a>
 {/each}
 
-
 </div>
-
 {#each dropdownItems as item, index (item.id)}
   <div class="box" bind:this={x[index]}>
     <div class="linksContainer">
@@ -83,14 +87,17 @@ points="6 9 12 15 18 9"></polyline
           <a href="/">{link}</a>
         {/each}
       </div>
+      <div class="dropDownContent secondLinksContainer">
+        <!-- Second Links -->
+        {#each item.secondLinks as secondLink}
+          <a href="/">{secondLink}</a>
+        {/each}
+      </div>
     </div>
   </div>
 {/each}
 
-
-
 <style>
-
 
   .dropdown-icon {
   transition: transform 0.3s ease-in-out;
@@ -109,7 +116,7 @@ points="6 9 12 15 18 9"></polyline
 .box {
   position: absolute; /* Add this line */
   width: 100%;
-  height: 100px;
+  height: 150px;
   background-color: white;
   display: none;
   z-index: 1; /* Add this line */
@@ -122,20 +129,38 @@ points="6 9 12 15 18 9"></polyline
     ;
 }
 .dropDownContent {
-  display: inline;
-  margin-left: 40%;
+  display: inline-block;
+  margin-left: 30%;
   margin-right: 25%;
 }
 
 .linksContainer {
-  margin-top: 60px; /* Adjust this value to move the border down without affecting the links */
-  border-bottom: 5px solid black;
+  position: relative;
+  margin-top: 40px; /* Adjust this value to create a gap between links and the border */
+}
+.linksContainer::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px; 
+  background-color: #797777; 
+  transform: translateY(40px);
 }
 
+.secondLinksContainer {
+  position: absolute;
+  top: 100%; /* Position the second links below the border */
+  left: 0;
+  right: 0;
+  padding-top: 50px; /* Adjust this value to create a gap between the border and second links */
+}
 
 .dropDownContent a {
-  padding-left: 15px;
+  padding-left: 80px;
   color: black;
+  text-decoration: none;
 }
 
 
