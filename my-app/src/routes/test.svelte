@@ -59,25 +59,46 @@ function moveDivDown(id) {
     return states;
   });
 }
+function changeColour(clickedItem) {
+  // Iterate over all items
+  dropdownItems.forEach(item => {
+    // If the item is the clicked item and is already 'clicked', unclick it
+    // If it's not 'clicked', click it
+    if (item === clickedItem) {
+      item.clicked = !item.clicked;
+    } else {
+      // All other items should be 'unclicked'
+      item.clicked = false;
+    }
+  });
 
-  let dataArray = [];
+  
+
+  // This line is to make Svelte reactivity work
+  dropdownItems = dropdownItems;
+}
+
 
 </script>
 
 <div class="links">
   {#each dropdownItems as item, index (item.id)}
-  <a class="MainLinks" href="/" on:click|preventDefault={() => moveDivDown(item.id)}>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
-stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"   
-class:rotated={rotationStatesVal[index]} class="feather feather-arrow-down dropdown-icon"
-id="dropdown-icon">
-<polyline 
-points="6 9 12 15 18 9"></polyline
-></svg> {item.title}
-  </a>
-{/each}
-
+    <a class="MainLinks" href="/" 
+       style:color={item.clicked ? 'red' : 'initial'} 
+       on:click|preventDefault={() => {changeColour(item); moveDivDown(item.id);}}
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class:rotated={rotationStatesVal[index]} class="feather feather-arrow-down dropdown-icon"
+        id="dropdown-icon">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+      {item.title}
+    </a>
+  {/each}
 </div>
+
+
 {#each dropdownItems as item, index (item.id)}
   <div class="box" bind:this={x[index]}>
     <div class="linksContainer">
