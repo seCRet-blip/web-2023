@@ -13,7 +13,7 @@
   }
 
   function toggleDropdown(dropdownId) {
-    var dropdownMenu = document.getElementById(dropdownId);
+    var dropdownMenu = document.querySelector(dropdownId);
     moveDiv = !moveDiv;
 
     if (dropdownMenu.style.display === "block") {

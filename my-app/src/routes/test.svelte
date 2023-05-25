@@ -3,8 +3,9 @@
   import { tweened } from 'svelte/motion';
   import { cubicOut } from 'svelte/easing';
   let dropdownItems = [
-  {id: 1, title: 'Games', links: ['PS5', 'PS4','PS VR' , 'PS Plus' , 'Buy Games'],secondLinks: ['News', 'Testing', 'PS plus']},
-  {id: 2, title: 'Hardware', links: ['PS5', 'PS4', 'PS VR2'],secondLinks: ['News', 'Testing', 'PS plus']}, 
+  {id: 1, title: 'Games', links: ['PS5', 'PS4','PS VR' , 'PS Plus' , 'Buy Games'],secondLinks: ['PLaystation indies', 'PS4 games on PS5', 'Free to play' ,
+  'Playstation games on pc' ,'Deals & offers']},
+  {id: 2, title: 'Hardware', links: ['PS5', 'PS4', 'PS VR2'],secondLinks: ['DualSense wireless controller', 'PULSE 3D wireless headset', 'PS plus']}, 
   {id: 3, title: 'Services', links: ['PS Plus', 'PS Stars'],secondLinks: ['News', 'Testing', 'PS plus']}, 
   {id: 4, title: 'News', links: ['PS Blog', 'This month on Playstation'],secondLinks: ['News', 'Testing', 'PS plus']}, 
   {id: 5, title: 'Shop', links: ['Support', 'IT Support', 'PS Status'],secondLinks: ['News', 'Testing', 'PS plus']}, 
@@ -84,7 +85,7 @@ function changeColour(clickedItem) {
 <div class="links">
   {#each dropdownItems as item, index (item.id)}
     <a class="MainLinks" href="/" 
-       style:color={item.clicked ? 'red' : 'initial'} 
+       style:color={item.clicked ? '#2608eb' : 'initial'} 
        on:click|preventDefault={() => {changeColour(item); moveDivDown(item.id);}}
     >
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
@@ -97,12 +98,10 @@ function changeColour(clickedItem) {
     </a>
   {/each}
 </div>
-
-
 {#each dropdownItems as item, index (item.id)}
   <div class="box" bind:this={x[index]}>
     <div class="linksContainer">
-      <div class="dropDownContent">
+      <div class="dropDownContent firstDrop">
         <!-- Links -->
         {#each item.links as link}
           <a href="/">{link}</a>
@@ -111,7 +110,7 @@ function changeColour(clickedItem) {
       <div class="dropDownContent secondLinksContainer">
         <!-- Second Links -->
         {#each item.secondLinks as secondLink}
-          <a href="/">{secondLink}</a>
+            <a href="/"> <span class="dot"></span> {secondLink}</a>
         {/each}
       </div>
     </div>
@@ -119,6 +118,9 @@ function changeColour(clickedItem) {
 {/each}
 
 <style>
+
+
+
 
   .dropdown-icon {
   transition: transform 0.3s ease-in-out;
@@ -131,38 +133,14 @@ function changeColour(clickedItem) {
 .MainLinks{
   color: black;
   text-decoration: none;
-  margin-left: 15px;
 }
 
-.box {
-  position: absolute; /* Add this line */
-  width: 100%;
-  height: 150px;
-  background-color: white;
-  display: none;
-  z-index: 1; /* Add this line */
-  box-shadow:
-      0 1px 1px hsl(0deg 0% 0% / 0.075),
-      0 2px 2px hsl(0deg 0% 0% / 0.075),
-      0 4px 4px hsl(0deg 0% 0% / 0.075),
-      0 8px 8px hsl(0deg 0% 0% / 0.075),
-      0 16px 16px hsl(0deg 0% 0% / 0.075)
-    ;
-}
-.dropDownContent {
-  display: inline-block;
-  margin-left: 30%;
-  margin-right: 25%;
-}
 
-.linksContainer {
-  position: relative;
-  margin-top: 40px; /* Adjust this value to create a gap between links and the border */
-}
+
 .linksContainer::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: 90px;
   left: 0;
   right: 0;
   height: 1px; 
@@ -175,15 +153,67 @@ function changeColour(clickedItem) {
   top: 100%; /* Position the second links below the border */
   left: 0;
   right: 0;
-  padding-top: 50px; /* Adjust this value to create a gap between the border and second links */
+  transform: translateY(-50px); /* Adjust this value to create a gap between the border and second links */
 }
 
+/* start*/
 .dropDownContent a {
-  padding-left: 80px;
+
   color: black;
   text-decoration: none;
+  
 }
 
+
+.firstDrop a:nth-child(n+2){
+  padding-left: 30px;
+}
+.secondLinksContainer a:nth-child(n+2)
+{
+  padding-left: 30px; 
+  
+}
+
+.dot {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 10px;
+    width: 10px;
+    background-color: #2608eb;
+    border-radius: 50%;
+    
+  }
+  .box {
+    position: absolute;
+    width: 100%;
+    height: 150px;
+    background-color: white;
+    display: none;
+    z-index: 1;
+    box-shadow:
+      0 1px 1px hsl(0deg 0% 0% / 0.075),
+      0 2px 2px hsl(0deg 0% 0% / 0.075),
+      0 4px 4px hsl(0deg 0% 0% / 0.075),
+      0 8px 8px hsl(0deg 0% 0% / 0.075),
+      0 16px 16px hsl(0deg 0% 0% / 0.075);
+  }
+
+  .linksContainer {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.dropDownContent {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 
 
 </style>
