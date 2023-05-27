@@ -118,10 +118,6 @@ function changeColour(clickedItem) {
 {/each}
 
 <style>
-
-
-
-
   .dropdown-icon {
   transition: transform 0.3s ease-in-out;
   transform: translateY(5px);
@@ -173,13 +169,14 @@ function changeColour(clickedItem) {
 
 
 .firstDrop a:nth-child(n+2){
-  padding-left: 30px;
+  padding-left: 90px;
 }
 .secondLinksContainer a:nth-child(n+2)
 {
   padding-left: 30px; 
   
 }
+
 
 .dot {
     display: inline-flex;
