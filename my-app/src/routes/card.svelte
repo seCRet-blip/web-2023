@@ -122,6 +122,7 @@
   justify-content: flex-end;
 }
 
+
 .Prev ,.Next{
   margin-top: 15px;
   height: 30px;
