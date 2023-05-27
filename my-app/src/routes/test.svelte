@@ -3,13 +3,13 @@
   import { tweened } from 'svelte/motion';
   import { cubicOut } from 'svelte/easing';
   let dropdownItems = [
-  {id: 1, title: 'Games', links: ['PS5', 'PS4','PS VR' , 'PS Plus' , 'Buy Games'],secondLinks: ['PLaystation indies', 'PS4 games on PS5', 'Free to play' ,
+  {id: 1, title: 'Games', links: ['PS5', 'PS4','PS VR' , 'PS Plus' , 'Buy Games'],secondLinks: ['Playstation indies', 'PS4 games on PS5', 'Free to play' ,
   'Playstation games on pc' ,'Deals & offers']},
-  {id: 2, title: 'Hardware', links: ['PS5', 'PS4', 'PS VR2'],secondLinks: ['DualSense wireless controller', 'PULSE 3D wireless headset', 'PS plus']}, 
-  {id: 3, title: 'Services', links: ['PS Plus', 'PS Stars'],secondLinks: ['News', 'Testing', 'PS plus']}, 
-  {id: 4, title: 'News', links: ['PS Blog', 'This month on Playstation'],secondLinks: ['News', 'Testing', 'PS plus']}, 
-  {id: 5, title: 'Shop', links: ['Support', 'IT Support', 'PS Status'],secondLinks: ['News', 'Testing', 'PS plus']}, 
-  {id: 6, title: 'Support', links: ['Support', 'IT Support', 'PS Status'],secondLinks: ['News', 'Testing', 'PS plus']}
+  {id: 2, title: 'Hardware', links: ['PS5', 'PS4', 'PS VR2'],secondLinks: ['DualSense wireless controller', 'PULSE 3D wireless headset', 'DUALSHOCK 4 wireless controller','PS5 & PS4 accessories','PlayStation VR']}, 
+  {id: 3, title: 'Services', links: ['PS Plus', 'PS Stars'],secondLinks: ['PS5 entertainment', 'PS4 entertainment']}, 
+  {id: 4, title: 'News', links: ['PS Blog', 'This month on Playstation'],secondLinks: ['Accessibility', 'TestingPrivacy & Safety']}, 
+  {id: 5, title: 'Shop', links: ['Digital Games and Services'],secondLinks: ['New releases', 'Latest discounts', 'Collections','Buy gift card' ,'Subscribe to PS Plus']}, 
+  {id: 6, title: 'Support', links: ['Support', 'IT Support', 'PS Status'],secondLinks: ['Account', 'Store', 'Games' ,'Hardware']}
   // Add more items as needed
 ];
 
