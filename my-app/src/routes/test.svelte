@@ -2,7 +2,6 @@
   import { writable } from 'svelte/store';
   import { tweened } from 'svelte/motion';
   import { cubicOut } from 'svelte/easing';
-  import { fade } from 'svelte/animate';
   let dropdownItems = [
   {id: 1, title: 'Games', links: ['PS5', 'PS4','PS VR' , 'PS Plus' , 'Buy Games'],secondLinks: ['Playstation indies', 'PS4 games on PS5', 'Free to play' ,
   'Playstation games on pc' ,'Deals & offers']},
@@ -51,6 +50,7 @@ function moveDivDown(id) {
       x[id - 1].style.zIndex = '1';
       marginTop.set(40);
     }
+
     states[id] = !isDropdownOpen;
     rotationStates.update(rs => {
       rs[id - 1] = !isDropdownOpen;
@@ -81,14 +81,12 @@ function changeColour(clickedItem) {
 
 
 </script>
-
 <div class="links">
   {#each dropdownItems as item, index (item.id)}
     <a class="MainLinks" href="/" 
        style:color={item.clicked ? '#2608eb' : 'initial'} 
        on:click|preventDefault={() => {changeColour(item); moveDivDown(item.id);}}
     >
-      
       {item.title}
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -105,16 +103,14 @@ function changeColour(clickedItem) {
     <div class="linksContainer">
       <div class="dropDownContent firstDrop">
         <!-- Links -->
-        {#each item.links as link, i}
-          <a href="/" in:fade={{ duration: 1000, delay: i * 200 }}>{link}</a>
+        {#each item.links as link}
+          <a href="/">{link}</a>
         {/each}
       </div>
       <div class="dropDownContent secondLinksContainer">
         <!-- Second Links -->
-        {#each item.secondLinks as secondLink, i}
-            <a href="/" in:fade={{ duration: 1000, delay: i * 200 }}>
-              <span class="dot"></span> {secondLink}
-            </a>
+        {#each item.secondLinks as secondLink}
+            <a href="/"> <span class="dot"></span> {secondLink}</a>
         {/each}
       </div>
     </div>
@@ -122,6 +118,9 @@ function changeColour(clickedItem) {
 {/each}
 
 <style>
+
+
+
 
   .dropdown-icon {
   transition: transform 0.3s ease-in-out;
@@ -136,11 +135,14 @@ function changeColour(clickedItem) {
 }
 
 .MainLinks{
-  color: black;
+  color: initial;
   text-decoration: none;
 }
 
-
+.MainLinks:hover, .MainLinks:hover svg {
+  color: #2608eb !important;
+  
+}
 
 .linksContainer::after {
   content: '';
