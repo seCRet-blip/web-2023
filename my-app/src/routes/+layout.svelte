@@ -2,6 +2,7 @@
     
     import { tweened } from 'svelte/motion';
   import { cubicOut } from 'svelte/easing';
+  import Nav from './test.svelte';
 
   let contentContainer;
   let moveDiv = false;
@@ -31,62 +32,8 @@
 
 
  </script>
- 
+ <Nav />
 <body>
-  <nav>
-    <ul>
-      <li class="dropdown">
-        <a href="/" on:click={() => toggleDropdown('dropdown-menu2')}>Games</a>
-        <ul class="dropdown-menu2" id="dropdown-menu2" style="margin-top: {$marginTop}px" >
-          <li><a href="/">Service 1</a></li>
-          <li><a href="/">Service 2</a></li>
-          <li><a href="/">Service 3</a></li>
-        </ul>      
-      </li>
-  
-      <li class="dropdown">
-        <a href="/" on:click={() => toggleDropdown('dropdown-menu3')}>Hardware</a>
-        <ul class="dropdown-menu3" id="dropdown-menu3">
-          <li><a href="/">Service 1</a></li>
-          <li><a href="/">Service 2</a></li>
-          <li><a href="/">Service 3</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="/" on:click={() => toggleDropdown('dropdown-menu')}>Services</a>
-        <ul class="dropdown-menu" id="dropdown-menu">
-          <li><a href="/">Service 1</a></li>
-          <li><a href="/">Service 2</a></li>
-          <li><a href="/">Service 3</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="/" on:click={() => toggleDropdown('dropdown-menu4')}>News</a>
-        <ul class="dropdown-menu4" id="dropdown-menu4">
-          <li><a href="/">Service 1</a></li>
-          <li><a href="/">Service 2</a></li>
-          <li><a href="/">Service 3</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="/" on:click={() => toggleDropdown('dropdown-menu5')}>Shop</a>
-        <ul class="dropdown-menu5" id="dropdown-menu5">
-          <li><a href="/">Service 6</a></li>
-          <li><a href="/">Service 2</a></li>
-          <li><a href="/">Service 3</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="/" on:click={() => toggleDropdown('dropdown-menu6')}>Support</a>
-        <ul class="dropdown-menu6" id="dropdown-menu6">
-
-          <li><a href="/">Service 1</a></li>
-          <li><a href="/">Service 2</a></li>
-          <li><a href="/">Service 3</a></li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
   <div class="content-container" bind:this={contentContainer}>
     <slot />
   </div>
@@ -160,11 +107,6 @@
 </body>
 
 <style>
-
-
-
-
-
 body{
     widows: 1000px;
     margin: 0 auto;
@@ -197,57 +139,19 @@ footer {
   border-left: none;
 }
 
-nav {
-  background-color: white;
-}
 
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
 
-nav ul li {
-  position: relative;
-}
 
-nav ul li a {
-  display: block;
-  color: #333;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-}
 
-nav ul li a:hover {
-  color: navy;
-}
 
-/* Select all classes that start with "dropdown-menu" */
-nav ul li [class^="dropdown-menu"] {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100vw; /* Set width to 100% of the viewport width */
-  background-color: #333;
-  padding: 0;
-  margin: 0;
-}
 
-nav ul li [class^="dropdown-menu"] li {
-  width: 100%; /* Set width to 100% */
-}
 
-nav ul li [class^="dropdown-menu"] li a {
-  display: block;
-  color: #fff;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-}
+
+
+
 
 .content-container {
-  margin-top: 20px; /* Replace with the desired value, such as 20px */
+  margin-top: 50px; /* Replace with the desired value, such as 20px */
 }
 
 </style>
