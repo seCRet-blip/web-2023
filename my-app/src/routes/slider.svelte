@@ -24,17 +24,16 @@
   let slideIndex = 0;
 
   function moveSlides() {
-  const slideItems = slide.querySelectorAll('.slide-item');
-  slideItems.forEach((slideItem, index) => {
+  slide.style.transform = `translateX(-${slideIndex * 100}%)`;
+  const images = slide.querySelectorAll('img');
+  images.forEach((image, index) => {
     if (index === slideIndex) {
-      slideItem.style.opacity = 1;
+      image.style.opacity = 1;
     } else {
-      slideItem.style.opacity = 0;
+      image.style.opacity = 0;
     }
   });
 }
-
-
   onMount(() => {
     fetchImages().then(() => {
       moveSlides();
@@ -50,61 +49,22 @@
     // Stop the automatic slideshow when the component is destroyed
     clearInterval(interval);
   });
-  let arr;
+  let arr = ['test1','test2','test3','test4','test5','test6','test7','test8','test9','test10']
 
-onMount(() => {
-  arr = ['slide1','slide2','slide3','slide4','slide5','slide6','slide7','slide','slide9','slide10','slide11' ];
-});
 </script>
 <main>
   <div class="container">
     <div class="slider">
+      
       <div class="slide" bind:this={slide}>
-        {#each images as image, index (index)}
-          <div class="slide-item">
-            <img src={image} alt="slide image" />
-            {#if arr && arr[index]}
-              <div class="text">{arr[index]}</div>
-            {/if}
-          </div>
+        {#each images as image}
+        <img src={image} alt="slide image" />
         {/each}
       </div>
     </div>
   </div>
 </main>
-
-
-
-
 <style>
-.text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 10px;
-}
-.slide-item {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 3s ease;
-}
-
-.slide-item img {
-  width: 100%;
-  object-fit: cover;
-}
-
-.slide-item:first-child {
-  opacity: 1;
-}
-
 *,::after,*::before{
   border: 0;
   margin: 0;
