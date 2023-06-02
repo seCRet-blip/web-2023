@@ -119,7 +119,7 @@
     background-color: rgba(0, 0, 0, 0.6);
     height: 100%;
     width: 400px;
-  line-height: 30px;
+    line-height: 30px;
   }
   *,
   ::after,
@@ -135,6 +135,7 @@
     place-items: center;
     padding: 2rem 0;
     height: 400px;
+    width: 100%;
   }
 
   .slider {

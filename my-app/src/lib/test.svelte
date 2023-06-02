@@ -73,7 +73,7 @@ function changeColour(clickedItem) {
     }
   });
 
-  
+
 
   // This line is to make Svelte reactivity work
   dropdownItems = dropdownItems;
@@ -110,7 +110,7 @@ function changeColour(clickedItem) {
       <div class="dropDownContent secondLinksContainer">
         <!-- Second Links -->
         {#each item.secondLinks as secondLink}
-            <a href="/"> <span class="dot"></span> {secondLink}</a>
+            <a href='/about'> <span class="dot"></span> {secondLink}</a>
         {/each}
       </div>
     </div>
@@ -133,6 +133,7 @@ function changeColour(clickedItem) {
 .MainLinks{
   color: initial;
   text-decoration: none;
+  padding-left: 15px; 
 }
 
 .MainLinks:hover, .MainLinks:hover svg {
@@ -161,10 +162,8 @@ function changeColour(clickedItem) {
 
 /* start*/
 .dropDownContent a {
-
   color: black;
-  text-decoration: none;
-  
+  text-decoration: none; 
 }
 
 

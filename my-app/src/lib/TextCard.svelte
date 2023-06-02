@@ -4,17 +4,15 @@
   export let title;
   export let text;
 
-  let rotated = false;
-  let show = false;
+  let dropdownState = false;
 
-  function toggleDropdown() {
-    rotated = !rotated;
-    show = !show;
-  }
+function toggleDropdown() {
+  dropdownState = !dropdownState;
+}
 
-  function hideDropdown() {
-    show = false;
-  }
+function hideDropdown() {
+  dropdownState = false;
+}
 
   onMount(() => {
     document.addEventListener('click', handleClickOutside);
@@ -40,14 +38,14 @@
     <a on:click={toggleDropdown}>
       <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-           class:rotated={rotated} class="feather feather-arrow-down dropdown-icon"
+           class:rotated={dropdownState} class="feather feather-arrow-down dropdown-icon"
            id="dropdown-icon">
         <line x1="12" y1="5" x2="12" y2="19"></line>
         <polyline points="19 12 12 19 5 12"></polyline>
       </svg>
       Links
     </a>
-    <div class="dropDownContent {show ? 'show' : ''}" on:clickoutside={hideDropdown}>
+    <div class="dropDownContent {dropdownState ? 'show' : ''}" on:clickoutside={hideDropdown}>
       <a href="/">Shop</a>
       <a href="/">Newsroom</a>
       <a href="/">Professionals</a>
@@ -55,10 +53,9 @@
       <a href="/">Developers</a> 
       <a href="/">Researchers</a> 
       <a href="/">XR</a> 
-      
     </div>  
-  </div>
-</div>
+    </div>
+    </div>
 
  
  

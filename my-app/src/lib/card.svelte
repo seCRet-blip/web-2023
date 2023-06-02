@@ -2,11 +2,14 @@
 <script>
 
   //importing the ImageCard component
-  import ImageCard from './ImageCard.svelte';
+  import ImageCard from '$lib/ImageCard.svelte';
     // Import the TextCard  components
-  import TextCard from './TextCard.svelte';
+  import TextCard from '$lib/TextCard.svelte';
 
-// Define an array of objects to represent the cards
+  const BASE_URL = `https://api.unsplash.com`;
+  
+
+
   const cards = [
     {
       imageSrc: "src/lib/images/playstation.jpg",
@@ -42,8 +45,79 @@
       announcement:"ethay | eckwray",
       title: "Ickthay aperpay",
       caption: "atscay andyay ogsday eachyay atehay ethay otheryay . ethay eachbay isyay ydray andyay allowshay atyay owlay idetay ."
+    },
+
+    {
+      imageSrc: "src/lib/images/Best-mario-games-hp.webp",
+      imageAlt: "Image",
+      announcement:"ethay | eckwray",
+      title: "Everyyay ordway",
+      caption: "ethay inksay isyay ethay ingthay inyay ichwhay eway ilepay ishesday . ethay orsehay alkedbay andyay ewthray ethay alltay iderray . "
+    },
+    {
+      imageSrc: "src/lib/images/Best-mario-games-hp.webp",
+      imageAlt: "Image",
+      announcement:"ethay | eckwray",
+      title: "Ethay upcay ackedcray",
+      caption: "ayay eepstay ailtray isyay ainfulpay orfay ouryay eetfay . ethay apmay adhay anyay x atthay eantmay othingnay."
+    },
+    {
+      imageSrc: "src/lib/images/Best-mario-games-hp.webp",
+      imageAlt: "Image",
+      announcement:"ethay | eckwray",
+      title: "Ethay eckwray ",
+      caption: "ethay assbray ubetay ircledcay ethay ighhay allway . ayay eaplay orfay undsfay eemssay otay omecay againyay . "
+    },
+    {
+      imageSrc: "src/lib/images/Best-mario-games-hp.webp",
+      imageAlt: "Image",
+      announcement:"ethay | eckwray",
+      title: "Endsay ethay",
+      caption: "oodway isyay estbay orfay akingmay oystay andyay ocksblay . ethay itekay ippedday andyay ayedsway , utbay ayedstay aloftyay . "
+    },
+    {
+      imageSrc: "src/lib/images/Best-mario-games-hp.webp",
+      imageAlt: "Image",
+      announcement:"ethay | eckwray",
+      title: "Ickthay aperpay",
+      caption: "atscay andyay ogsday eachyay atehay ethay otheryay . ethay eachbay isyay ydray andyay allowshay atyay owlay idetay ."
     }
   ];
+
+
+
+
+  async function fetchImages() {
+    const response = await fetch(
+      `${BASE_URL}/search/photos?query=gaming&client_id=-N6JZHxqqovedx2eWCPPe5NbO2-r3h1SJE5_PnCWU7E&per_page=30&page=2`
+    );
+  
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+  
+    const { results } = await response.json();
+    return results.map((result) => result.urls.regular);
+  }
+
+  async function populateImageUrls() {
+    const images = await fetchImages();
+
+    for(let i = 0; i < Math.min(cards.length, images.length); i++) {
+      cards[i].imageSrc = images[i];
+    }
+    console.log(cards);
+  }
+
+  populateImageUrls();
+
+// Use the function for both card arrays
+
+
+// Define an array of objects to represent the cards
+
+
+
 
    // Initialize variables to keep track of the current card and the image container
    let currentCard = 0;
@@ -97,15 +171,59 @@
           and students worldwide enhance creative workflows and build, operate,
           and connect metaverse applications." />
       </div>
-      {#each cards as card}
-        <ImageCard
-          imageSrc={card.imageSrc}
-          imageAlt={card.imageAlt}
-          announcement={card.announcement}
-          title={card.title}
-          caption={card.caption}
-        />
-      {/each}
+      {#each cards.slice(0, 6) as card} <!-- first half -->
+      <ImageCard
+        imageSrc={card.imageSrc}
+        imageAlt={card.imageAlt}
+        announcement={card.announcement}
+        title={card.title}
+        caption={card.caption}
+      />
+    {/each}
+    </div>
+  </div>
+</div>
+<div class="carousel-container">
+  <div class="nav-buttons">
+    <button class="Prev" on:click={prevCard}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" 
+      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       class="feather feather-arrow-left">
+       <line x1="19" y1="12" x2="5" y2="12">
+       </line>
+        <polyline points="12 19 5 12 12 5">
+        </polyline>
+      </svg>
+      
+    </button>
+    <button class="Next" on:click={nextCard}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" 
+      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+      class="feather feather-arrow-right">
+      <line x1="5" y1="12" x2="19" y2="12">
+      </line>
+      <polyline points="12 5 19 12 12 19">
+      </polyline>
+    </svg>
+    </button>
+  </div>
+  <div class="cards-container">
+    <div class="image-container" bind:this={imageContainer}>
+      <div class="text-container">
+        <TextCard title="Design and Simulation" text="NVIDIA RTX™ and NVIDIA Omniverse™
+          deliver the performance to help professionals, creators, developers,
+          and students worldwide enhance creative workflows and build, operate,
+          and connect metaverse applications." />
+      </div>
+      {#each cards.slice(6) as card} <!-- second half -->
+      <ImageCard
+        imageSrc={card.imageSrc}
+        imageAlt={card.imageAlt}
+        announcement={card.announcement}
+        title={card.title}
+        caption={card.caption}
+      />
+    {/each}
     </div>
   </div>
 </div>
@@ -140,8 +258,7 @@
   flex-direction: row;
   align-items: center;
   overflow: hidden;
-  padding: 0;
-  margin: 0;
+
   padding-top: 40px;
 }
   .cards-container {

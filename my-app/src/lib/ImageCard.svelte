@@ -32,7 +32,7 @@
     .card__image {
       height: 250px;
       width: 400px;  
-       
+      object-fit: cover;
     }
     
     .card__title { /* add style for the title */
