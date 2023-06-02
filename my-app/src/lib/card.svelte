@@ -200,6 +200,7 @@
     </svg>
     </button>
   </div>
+
   <div class="cards-container">
     <div class="image-container" bind:this={imageContainer}>
       <div class="text-container">
@@ -222,6 +223,7 @@
 </div>
 
 <style>
+
 .nav-buttons {
   position: absolute;
   top: 0;
@@ -239,7 +241,8 @@
   height: 30px;
   width: 30px;
   margin-left: 10px;
-  background-color: #6ca404;
+  background-color: #2608eb;
+  color: white;
   border: none;
 }
 
@@ -303,5 +306,31 @@
     transform: translateY(-80px); 
   }
   
+@media only screen and (max-width: 800px) {
+  .nav-buttons{
+    display: none;
+  }
+  .cards-container{
+    width: 800px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+  height: 550px;
+  align-items: center;
+  overflow: hidden;
+  }
+  .carousel-container{
+    width: 800px;
+  }
+  .image-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+  }
+
+}
 
 </style>

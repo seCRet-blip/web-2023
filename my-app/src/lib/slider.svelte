@@ -109,6 +109,7 @@
 <style>
   /* CSS styles for the slider and slides */
 
+
  .text {
     position: absolute;
     z-index: 1;
@@ -118,8 +119,9 @@
     color: white;
     background-color: rgba(0, 0, 0, 0.6);
     height: 100%;
-    width: 400px;
+    width: 30%;
     line-height: 30px;
+    box-sizing: border-box;
   }
   *,
   ::after,
@@ -145,6 +147,7 @@
     overflow: hidden;
     box-shadow: 20px 20px 50px hsl(210, 50%, 40% .4),
       -20px -20px 50px hsl(210, 50%, 80% .2);
+      width: 100%;
   }
 
   .slide img {
@@ -165,4 +168,21 @@
     transition: opacity 400ms ease-out;
     background-color: black;
   }
+  @media screen and (max-width: 600px) {
+  .text {
+    width: 30%; /* Adjust as needed */
+  }
+
+  .container {
+    width: 800px;
+  }
+
+  .slider {
+    width: 100%;
+  }
+
+  .slide img {
+    width: 100%;
+  }
+}
 </style>

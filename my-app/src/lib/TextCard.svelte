@@ -6,13 +6,14 @@
 
   let dropdownState = false;
   let links = ["Shop", "Newsroom", "Professionals", "Creators", "Developers", "Researchers", "XR"];
-function toggleDropdown() {
-  dropdownState = !dropdownState;
-}
 
-function hideDropdown() {
-  dropdownState = false;
-}
+  function toggleDropdown() {
+    dropdownState = !dropdownState;
+  }
+
+  function hideDropdown() {
+    dropdownState = false;
+  }
 
   onMount(() => {
     document.addEventListener('click', handleClickOutside);
@@ -36,7 +37,7 @@ function hideDropdown() {
   <div class="dropdown">
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <a on:click={toggleDropdown}>
-      <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
            class:rotated={dropdownState} class="feather feather-arrow-down dropdown-icon"
            id="dropdown-icon">
@@ -50,10 +51,9 @@ function hideDropdown() {
         <a href="/">{link}</a>
       {/each}
     </div>
-    
-    </div>
-    </div>
- 
+  </div>
+</div>
+
 <style>
   .text-card {
     width: 450px;
@@ -108,7 +108,41 @@ function hideDropdown() {
   .dropDownContent a:hover {
     background-color: #eee;
   }
-  .show {
-    display: flex;
+  
+  /* Responsive styles */
+  @media only screen and (max-width: 800px) {
+    .text-card {
+      width: 100%;
+      height: auto;
+      margin-left: 0;
+      margin-right: 0;
+      transform: none;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-right: 0;
+    }
+
+    p {
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .dropdown {
+      text-align: center;
+    }
+
+    .dropDownContent {
+      width: 100%;
+      position: static;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .dropDownContent a {
+      padding: 5px 10px;
+    }
   }
 </style>

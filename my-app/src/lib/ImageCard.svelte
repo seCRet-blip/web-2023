@@ -1,4 +1,3 @@
-
 <script>
   export let imageSrc;
   export let imageAlt;
@@ -14,38 +13,65 @@
   <div class="card__text">{caption}</div>
 </div>
 
-  <style>
-    .card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-right: 10px;
-      transform: translateX(238px);
-      margin-top: 50px;
-      box-shadow: 
-    0 0 0 4px rgba(255, 255, 255, 0.3), /* inner white border */
-    0 4px 6px rgba(0, 0, 0, 0.1), /* shadow */
-    0 8px 20px rgba(0, 0, 0, 0.1); /* shadow */
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+    transform: translateX(238px);
+    margin-top: 50px;
+    box-shadow: 
+      0 0 0 4px rgba(255, 255, 255, 0.3), /* inner white border */
+      0 4px 6px rgba(0, 0, 0, 0.1), /* shadow */
+      0 8px 20px rgba(0, 0, 0, 0.1); /* shadow */
     height: 400px;
-    }
-    
-    .card__image {
-      height: 250px;
-      width: 400px;  
-      object-fit: cover;
-    }
-    
-    .card__title { /* add style for the title */
+  }
+
+  .card__image {
+    height: 250px;
+    width: 400px;
+    object-fit: cover;
+  }
+
+  .card__title {
     margin-top: 20px;
     font-size: 24px;
     text-align: center;
   }
+
+  .card__text {
+    margin-top: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 16px;
+    text-align: left;
+  }
+
+  /* Responsive styles for phone view */
+  @media only screen and (max-width: 800px) {
+    .card {
+      transform: none;
+      margin-top: 20px;
+      height: 100px;
+      box-shadow: none;
+    }
+
+    .card__image {
+      height: 200px;
+      width: 100%;
+    }
+
+    .card__title {
+      margin-top: 10px;
+      font-size: 20px;
+    }
+
     .card__text {
       margin-top: 10px;
-      margin-left: 5%;
-      margin-right: 5%;
-      font-size: 16px;
-      text-align: left;
+      margin-left: 10px;
+      margin-right: 10px;
+      font-size: 14px;
     }
-  </style>
-  
+  }
+</style>

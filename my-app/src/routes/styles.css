@@ -89,7 +89,6 @@ button:focus:not(:focus-visible) {
 }
 .container{
 	padding-bottom: 20px;
-
 }
 *{
 	box-sizing:border-box;
