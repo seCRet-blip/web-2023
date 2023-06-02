@@ -86,6 +86,7 @@ function changeColour(clickedItem) {
     <a class="MainLinks" href="/" 
        style:color={item.clicked ? '#2608eb' : 'initial'} 
        on:click|preventDefault={() => {changeColour(item); moveDivDown(item.id);}}
+
     >
       {item.title}
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 

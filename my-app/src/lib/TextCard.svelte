@@ -5,7 +5,7 @@
   export let text;
 
   let dropdownState = false;
-
+  let links = ["Shop", "Newsroom", "Professionals", "Creators", "Developers", "Researchers", "XR"];
 function toggleDropdown() {
   dropdownState = !dropdownState;
 }
@@ -45,24 +45,14 @@ function hideDropdown() {
       </svg>
       Links
     </a>
-    <div class="dropDownContent {dropdownState ? 'show' : ''}" on:clickoutside={hideDropdown}>
-      <a href="/">Shop</a>
-      <a href="/">Newsroom</a>
-      <a href="/">Professionals</a>
-      <a href="/">Creators</a> 
-      <a href="/">Developers</a> 
-      <a href="/">Researchers</a> 
-      <a href="/">XR</a> 
-    </div>  
+    <div class={dropdownState ? 'dropDownContent show' : 'dropDownContent'} on:clickoutside={hideDropdown}>
+      {#each links as link }
+        <a href="/">{link}</a>
+      {/each}
+    </div>
+    
     </div>
     </div>
-
- 
- 
- 
- 
- 
- 
  
 <style>
   .text-card {
@@ -71,7 +61,7 @@ function hideDropdown() {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-left: 100px;
+    margin-left: 20px;
     text-align: left;
     transform: translateY(-30px);
     line-height: 40px;
@@ -103,11 +93,13 @@ function hideDropdown() {
     display: none;
     position: absolute;
     z-index: 1;
+    width: 500px;
+    flex-wrap: wrap;
   }
 
   .dropDownContent a {
     display: inline;
-    padding: 10px;
+    padding: 5px;
     color: #333;
     text-decoration: none;
     transition: background-color 0.3s ease;
@@ -117,6 +109,6 @@ function hideDropdown() {
     background-color: #eee;
   }
   .show {
-    display: block;
+    display: flex;
   }
 </style>

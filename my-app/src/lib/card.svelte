@@ -12,35 +12,35 @@
 
   const cards = [
     {
-      imageSrc: "src/lib/images/playstation.jpg",
+      imageSrc: "",
       imageAlt: "Image",
       announcement:"ethay | eckwray",
       title: "Everyyay ordway",
       caption: "ethay inksay isyay ethay ingthay inyay ichwhay eway ilepay ishesday . ethay orsehay alkedbay andyay ewthray ethay alltay iderray . "
     },
     {
-      imageSrc: "src/lib/images/playstation.jpg",
+      imageSrc: "",
       imageAlt: "Image",
       announcement:"ethay | eckwray",
       title: "Ethay upcay ackedcray",
       caption: "ayay eepstay ailtray isyay ainfulpay orfay ouryay eetfay . ethay apmay adhay anyay x atthay eantmay othingnay."
     },
     {
-      imageSrc: "src/lib/images/playstation.jpg",
+      imageSrc: "",
       imageAlt: "Image",
       announcement:"ethay | eckwray",
       title: "Ethay eckwray ",
       caption: "ethay assbray ubetay ircledcay ethay ighhay allway . ayay eaplay orfay undsfay eemssay otay omecay againyay . "
     },
     {
-      imageSrc: "src/lib/images/playstation.jpg",
+      imageSrc: "",
       imageAlt: "Image",
       announcement:"ethay | eckwray",
       title: "Endsay ethay",
       caption: "oodway isyay estbay orfay akingmay oystay andyay ocksblay . ethay itekay ippedday andyay ayedsway , utbay ayedstay aloftyay . "
     },
     {
-      imageSrc: "src/lib/images/playstation.jpg",
+      imageSrc: "",
       imageAlt: "Image",
       announcement:"ethay | eckwray",
       title: "Ickthay aperpay",
@@ -48,35 +48,32 @@
     },
 
     {
-      imageSrc: "src/lib/images/Best-mario-games-hp.webp",
+      imageSrc: "",
       imageAlt: "Image",
       announcement:"ethay | eckwray",
       title: "Everyyay ordway",
-      caption: "ethay inksay isyay ethay ingthay inyay ichwhay eway ilepay ishesday . ethay orsehay alkedbay andyay ewthray ethay alltay iderray . "
-    },
-    {
-      imageSrc: "src/lib/images/Best-mario-games-hp.webp",
+      caption: "ethay inksay isyay ethay ingthay inyay ichwhay eway ilepay ishesday . ethay orsehay alkedbay andyay ewthray ethay alltay iderray .",
       imageAlt: "Image",
       announcement:"ethay | eckwray",
       title: "Ethay upcay ackedcray",
       caption: "ayay eepstay ailtray isyay ainfulpay orfay ouryay eetfay . ethay apmay adhay anyay x atthay eantmay othingnay."
     },
     {
-      imageSrc: "src/lib/images/Best-mario-games-hp.webp",
+      imageSrc: "",
       imageAlt: "Image",
       announcement:"ethay | eckwray",
       title: "Ethay eckwray ",
       caption: "ethay assbray ubetay ircledcay ethay ighhay allway . ayay eaplay orfay undsfay eemssay otay omecay againyay . "
     },
     {
-      imageSrc: "src/lib/images/Best-mario-games-hp.webp",
+      imageSrc: "",
       imageAlt: "Image",
       announcement:"ethay | eckwray",
       title: "Endsay ethay",
       caption: "oodway isyay estbay orfay akingmay oystay andyay ocksblay . ethay itekay ippedday andyay ayedsway , utbay ayedstay aloftyay . "
     },
     {
-      imageSrc: "src/lib/images/Best-mario-games-hp.webp",
+      imageSrc: "",
       imageAlt: "Image",
       announcement:"ethay | eckwray",
       title: "Ickthay aperpay",
