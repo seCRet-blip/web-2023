@@ -8,7 +8,7 @@
 
   const BASE_URL = `https://api.unsplash.com`;
   
-
+// Use the function for both card arrays
 
   const cards = [
     {
@@ -80,10 +80,6 @@
       caption: "atscay andyay ogsday eachyay atehay ethay otheryay . ethay eachbay isyay ydray andyay allowshay atyay owlay idetay ."
     }
   ];
-
-
-
-
   async function fetchImages() {
     const response = await fetch(
       `${BASE_URL}/search/photos?query=gaming&client_id=-N6JZHxqqovedx2eWCPPe5NbO2-r3h1SJE5_PnCWU7E&per_page=30&page=2`
@@ -108,7 +104,7 @@
 
   populateImageUrls();
 
-// Use the function for both card arrays
+
 
 
 // Define an array of objects to represent the cards

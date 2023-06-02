@@ -7,6 +7,10 @@
 
   // Array to store the fetched images from the API
   let images = [];
+    // Variables to hold the slider and the current slide index
+  let slide;
+  let slideIndex = 0;
+
   // Variable to hold the interval for automatic slideshow
   let interval;
   let arr = [
@@ -38,9 +42,6 @@
     images = results.map((result) => result.urls.regular);
   }
 
-  // Variables to hold the slider and the current slide index
-  let slide;
-  let slideIndex = 0;
 
   // Function to move the slides and update the opacity of the images
   function moveSlides() {
@@ -83,7 +84,6 @@
     clearInterval(interval);
   });
 
-  // Array containing some test values
 
 </script>
 

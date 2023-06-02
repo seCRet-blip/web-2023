@@ -10,16 +10,14 @@
   {id: 4, title: 'News', links: ['PS Blog', 'This month on Playstation'],secondLinks: ['Accessibility', 'TestingPrivacy & Safety']}, 
   {id: 5, title: 'Shop', links: ['Digital Games and Services'],secondLinks: ['New releases', 'Latest discounts', 'Collections','Buy gift card' ,'Subscribe to PS Plus']}, 
   {id: 6, title: 'Support', links: ['Support', 'IT Support', 'PS Status'],secondLinks: ['Account', 'Store', 'Games' ,'Hardware']}
-  // Add more items as needed
+  
 ];
+let x = [];
+
 
 const rotationStates = writable(dropdownItems.map(() => false));
   const dropdownStates = writable({});
   const marginTop = tweened(20, { duration: 200, easing: cubicOut });
-
-  
-  let x = [];
-
   let rotationStatesVal;
 rotationStates.subscribe(val => rotationStatesVal = val);
 
@@ -72,9 +70,6 @@ function changeColour(clickedItem) {
       item.clicked = false;
     }
   });
-
-
-
   // This line is to make Svelte reactivity work
   dropdownItems = dropdownItems;
 }
@@ -86,7 +81,6 @@ function changeColour(clickedItem) {
     <a class="MainLinks" href="/" 
        style:color={item.clicked ? '#2608eb' : 'initial'} 
        on:click|preventDefault={() => {changeColour(item); moveDivDown(item.id);}}
-
     >
       {item.title}
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
@@ -219,5 +213,9 @@ function changeColour(clickedItem) {
   align-items: center;
 }
 
-
+.links{
+  position: fixed;
+  z-index: 10;
+  background-color: white;
+}
 </style>
