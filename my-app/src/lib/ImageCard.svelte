@@ -25,7 +25,7 @@
       0 0 0 4px rgba(255, 255, 255, 0.3), /* inner white border */
       0 4px 6px rgba(0, 0, 0, 0.1), /* shadow */
       0 8px 20px rgba(0, 0, 0, 0.1); /* shadow */
-    height: 400px;
+    height: 450px;
   }
 
   .card__image {

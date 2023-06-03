@@ -135,7 +135,7 @@
 <div class="carousel-container">
   <div class="nav-buttons">
     <button class="Prev" on:click={prevCard}>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" 
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" 
       fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        class="feather feather-arrow-left">
        <line x1="19" y1="12" x2="5" y2="12">
@@ -146,7 +146,7 @@
       
     </button>
     <button class="Next" on:click={nextCard}>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" 
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" 
       fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
       class="feather feather-arrow-right">
       <line x1="5" y1="12" x2="19" y2="12">
@@ -179,7 +179,7 @@
 <div class="carousel-container">
   <div class="nav-buttons">
     <button class="Prev" on:click={prevCard}>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" 
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" 
       fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        class="feather feather-arrow-left">
        <line x1="19" y1="12" x2="5" y2="12">
@@ -190,7 +190,7 @@
       
     </button>
     <button class="Next" on:click={nextCard}>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" 
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" 
       fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
       class="feather feather-arrow-right">
       <line x1="5" y1="12" x2="19" y2="12">
@@ -235,6 +235,13 @@
   justify-content: flex-end;
 }
 
+.feather {
+  vertical-align: middle;
+  padding-top: 2px;
+}
+.Prev:hover ,.Next:hover{
+  background-color: black;
+}
 
 .Prev ,.Next{
   margin-top: 15px;

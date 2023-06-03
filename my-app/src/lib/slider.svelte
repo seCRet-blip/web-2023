@@ -14,33 +14,33 @@
   // Variable to hold the interval for automatic slideshow
   let interval;
   let arr = [
-  'ottlesbay oldhay ourfay indskay ofyay umray . ethay uickqay oxfay umpedjay onyay ethay eepingslay atcay ',
-  'odecay isyay usedyay enwhay ecretssay areyay entsay . ickkay ethay allbay aightstray andyay ollowfay oughthray.',
-  'ehay ooktay ethay eadlay andyay eptkay ityay ethay olewhay istanceday . ayay ongstray idbay aymay arescay ouryay artnerpay iffstay',
-  'ayay uisecray inyay armway atersway inyay ayay eekslay achtyay isyay unfay . ighhay eatssay areyay estbay orfay ootballfay ansfay',
-  'akefay &ones ineshay utbay ostcay ittlelay . ethay eetsstray areyay arrownay andyay ullfay ofyay arpshay urnstay . ',
-  'eythay ooktay eirthay idskay omfray ethay ublicpay oolschay . ethay irstfay artpay ofyay ethay anplay eedsnay angingchay',
-  'ehay usedyay ethay athelay otay akemay assbray objectsyay . ehay akestay ethay oathyay ofyay officeyay eachyay archmay . ',
-  'oatflay ethay oapsay onyay optay ofyay ethay athbay aterway . ethay oldgay asevay isyay othbay areray andyay ostlycay . ',
-  'ayay eakbray inyay ethay amday almostyay ausedcay ayay oodflay . eythay areyay enmay onhay alkway ethay iddlemay ofyay ethay oadray . ',
-  'ushlay ernfay owgray onyay ethay oftylay ocksray . adammay , isthay isyay ethay estbay andbray ofyay orncay . '
+  { title: 'Virtual Realms', text: 'Experience the world of Virtual Realms, where cutting-edge technology transports you to new and exciting game worlds. Dive deep into immersive gameplay and unleash your gaming prowess.' },
+  { title: 'Cyber Intrigue', text: 'In the realm of Cyber Intrigue, secrets are encrypted and battles take place in the digital domain. Crack the codes and navigate through virtual mazes to emerge victorious.' },
+  { title: 'Pixel Quest', text: 'Embark on the Pixel Quest, where retro graphics meet modern gameplay. Jump, dodge, and collect power-ups in this pixelated adventure to save the princess and restore peace to the gaming universe.' },
+  { title: 'Epic Showdowns', text: 'Prepare for Epic Showdowns on the battlefield, where intense gaming competitions unfold. Strategize, aim true, and outsmart your opponents to claim victory and become a gaming legend.' },
+  { title: 'Gadgets Galore', text: 'Discover Gadgets Galore, a world of cutting-edge technology and innovation. From augmented reality glasses to advanced gaming consoles, explore the latest gadgets that redefine the way we play.' },
+  { title: 'Game Masters', text: 'Unleash your inner Game Master and take charge of epic quests. Guide your team through treacherous dungeons, solve mind-bending puzzles, and triumph over formidable foes.' },
+  { title: 'Tech Titans', text: 'Step into the shoes of Tech Titans, visionary pioneers shaping the future of gaming and technology. Create groundbreaking inventions, revolutionize gameplay mechanics, and leave a lasting impact on the industry.' },
+  { title: 'Digital Voyages', text: 'Embark on Digital Voyages to uncharted virtual worlds. Explore breathtaking landscapes, engage in thrilling quests, and forge alliances with fellow gamers in this vast interconnected gaming universe.' },
+  { title: 'Console Conquerors', text: 'Rise as Console Conquerors and dominate the gaming realm. From epic RPGs to heart-pounding shooters, conquer new levels, unlock achievements, and etch your name in gaming history.' },
+  { title: 'Tech Revolution', text: 'Witness the Tech Revolution sweeping the gaming industry. Experience mind-blowing advancements, from realistic graphics to immersive virtual reality, as technology continues to redefine the way we play.' }
 ];
+
+
   // Function to fetch images from the Unsplash API
   async function fetchImages() {
-    const response = await fetch(
-      // Fetching images with "gaming" as the search query using the Unsplash API
-      `${BASE_URL}/search/photos?query=gaming&client_id=-N6JZHxqqovedx2eWCPPe5NbO2-r3h1SJE5_PnCWU7E`
-    );
+  const response = await fetch(
+    // I tried to only get images that have blue in them some images dont have that much blue in them/
+    `${BASE_URL}/search/photos?query=gaming&client_id=-N6JZHxqqovedx2eWCPPe5NbO2-r3h1SJE5_PnCWU7E&per_page=10&page=10`
+  );
 
-    if (!response.ok) {
-      // Throw an error if the network response is not okay
-      throw new Error('Network response was not ok');
-    }
-
-    const { results } = await response.json();
-    // Extracting the regular URLs of the images from the API response and storing them in the 'images' array
-    images = results.map((result) => result.urls.regular);
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
   }
+
+  const { results } = await response.json();
+  images = results.map((result) => result.urls.regular);
+}
 
 
   // Function to move the slides and update the opacity of the images
@@ -91,12 +91,14 @@
   <div class="container">
     <div class="slider">
       <div class="slide" bind:this={slide}>
-        {#each images as image , index}
+        {#each images as image, index}
         <!-- Display each image in the 'images' array -->
         <div class="text-container">
-          <div class="text">{arr[index]}</div>
+          <div class="text">
+            <h2>{arr[index].title}</h2>
+            <p>{arr[index].text}</p>
+          </div>
         </div>
-      
         <!-- svelte-ignore a11y-img-redundant-alt -->
         <img src={image} alt="slide image" />
         {/each}
@@ -104,6 +106,7 @@
     </div>
   </div>
 </main>
+
 
   
 <style>
