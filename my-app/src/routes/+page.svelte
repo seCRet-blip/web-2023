@@ -3,7 +3,7 @@
   import Card from "$lib/card.svelte";
   
 </script>
-  this is the root page 
+ <!-- this is the root page-->  
 <Slider />
 <Card />
 
