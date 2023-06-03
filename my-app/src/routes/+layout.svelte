@@ -10,9 +10,9 @@
 <div class="container">
   <Nav />
 </div>
-  <div class="container" >
+
     <slot />
-  </div>
+
   <div class="container" >
     <Footer />  
   </div>

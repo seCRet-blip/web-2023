@@ -164,7 +164,7 @@ function toggleLinks() {
 
 import { goto } from '$app/navigation';
 
-async function scrollToTest(event, targetClass) {
+async function scrollToTest(event, targetClass, id) {
     event.preventDefault();
 
     // Navigate to the new page
@@ -175,6 +175,7 @@ async function scrollToTest(event, targetClass) {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+    moveDivDown(id);
   }
 
 
@@ -209,13 +210,17 @@ async function scrollToTest(event, targetClass) {
         <div class="dropDownContent firstDrop">
           <!-- Links -->
           {#each item.links as link}
-            <a href="/" on:click|preventDefault={(e) => scrollToTest(e, link.class)}>{link.text}</a>
+          <a href="/" on:click|preventDefault={(e) => scrollToTest(e, link.class, item.id)}>{link.text}</a>
+
           {/each}
         </div>
         <div class="dropDownContent secondLinksContainer">
           <!-- Second Links -->
           {#each item.secondLinks as secondLink}
-            <a href="/about"> <span class="dot"></span> {secondLink}</a>
+          <a href="/about" on:click|preventDefault={async (e) => {
+            moveDivDown(item.id);
+            await goto('/about');
+          }}><span class="dot"></span> {secondLink}</a>
           {/each}
         </div>
       </div>
@@ -339,7 +344,7 @@ async function scrollToTest(event, targetClass) {
   }
 
   .linksContainer {
-    padding-top: 20px;
+    padding-top: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -359,6 +364,7 @@ async function scrollToTest(event, targetClass) {
   z-index: 10;
   background-color: white;
   width: 100%;
+  height: 50px;
 }
 
 .navBar .links.active {

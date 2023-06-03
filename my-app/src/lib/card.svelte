@@ -106,36 +106,31 @@ const cards = [
 
   populateImageUrls();
 
-
-
-
-// Define an array of objects to represent the cards
-
-
-
-
    // Initialize variables to keep track of the current card and the image container
-   let currentCard = 0;
-  let imageContainer;
+   let sliders = [
+    { currentCard: 0, imageContainer: null },
+    { currentCard: 0, imageContainer: null },
+  ];
 
-  // Function to display the previous card in the slider
-  function prevCard() {
-    currentCard = Math.max(currentCard - 1, 0);
-    const cardWidth = imageContainer.scrollWidth / cards.length;
-    imageContainer.scrollTo(currentCard * cardWidth, 0);
-  }
+  function prevCard(sliderIndex) {
+  let slider = sliders[sliderIndex];
+  slider.currentCard = Math.max(slider.currentCard - 1, 0);
+  const cardWidth = slider.imageContainer.children[0].offsetWidth;
+  slider.imageContainer.scrollTo(slider.currentCard * cardWidth, 0);
+}
 
-  // Function to display the next card in the slider
-  function nextCard() {
-    currentCard = Math.min(currentCard + 1, cards.length - 1);
-    const cardWidth = imageContainer.scrollWidth / cards.length;
-    imageContainer.scrollTo(currentCard * cardWidth, 0);
-  }
+function nextCard(sliderIndex) {
+  let slider = sliders[sliderIndex];
+  slider.currentCard = Math.min(slider.currentCard + 1, slider.imageContainer.children.length - 1);
+  const cardWidth = slider.imageContainer.children[0].offsetWidth;
+  slider.imageContainer.scrollTo(slider.currentCard * cardWidth, 0);
+}
+
 </script>
 
 <div class="carousel-container">
   <div class="nav-buttons">
-    <button class="Prev" on:click={prevCard}>
+    <button class="Prev" on:click={()=>prevCard(0)}>
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" 
       fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        class="feather feather-arrow-left">
@@ -146,7 +141,7 @@ const cards = [
       </svg>
       
     </button>
-    <button class="Next" on:click={nextCard}>
+    <button class="Next"  on:click={()=>nextCard(0)}>
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" 
       fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
       class="feather feather-arrow-right">
@@ -158,7 +153,7 @@ const cards = [
     </button>
   </div>
   <div class="cards-container">
-    <div class="image-container" bind:this={imageContainer}>
+    <div class="image-container" bind:this={sliders[0].imageContainer}>
       <div class="text-container test">
         <TextCard title="Design and Simulation" text="NVIDIA RTX™ and NVIDIA Omniverse™
   
@@ -181,7 +176,7 @@ const cards = [
 
 <div class="carousel-container">
   <div class="nav-buttons">
-    <button class="Prev" on:click={prevCard}>
+    <button class="Prev"  on:click={()=>prevCard(1)}>
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" 
       fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        class="feather feather-arrow-left">
@@ -192,7 +187,7 @@ const cards = [
       </svg>
       
     </button>
-    <button class="Next" on:click={nextCard}>
+    <button class="Next"  on:click={()=>nextCard(1)}>
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" 
       fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
       class="feather feather-arrow-right">
@@ -205,7 +200,7 @@ const cards = [
   </div>
 
   <div class="cards-container">
-    <div class="image-container" bind:this={imageContainer}>
+    <div class="image-container" bind:this={sliders[1].imageContainer}>
       <div class="text-container Gaming">
         <TextCard
           title="Gaming Redefined"
@@ -243,8 +238,10 @@ const cards = [
   vertical-align: middle;
   padding-top: 2px;
 }
-.Prev:hover ,.Next:hover{
-  background-color: black;
+.Prev:hover, .Next:hover {
+  background: linear-gradient(to right, #2608eb, #add8e6);
+  color: white;
+  cursor: pointer;
 }
 
 .Prev ,.Next{
@@ -252,7 +249,8 @@ const cards = [
   height: 30px;
   width: 30px;
   margin-left: 10px;
-  background-color: #2608eb;
+  background: #2608eb;
+  transition: background 0.5s ease;
   color: white;
   border: none;
 }
