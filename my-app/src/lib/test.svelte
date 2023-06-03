@@ -9,7 +9,7 @@
   {id: 3, title: 'Services', links: ['PS Plus', 'PS Stars'],secondLinks: ['PS5 entertainment', 'PS4 entertainment']}, 
   {id: 4, title: 'News', links: ['PS Blog', 'This month on Playstation'],secondLinks: ['Accessibility', 'TestingPrivacy & Safety']}, 
   {id: 5, title: 'Shop', links: ['Digital Games and Services'],secondLinks: ['New releases', 'Latest discounts', 'Collections','Buy gift card' ,'Subscribe to PS Plus']}, 
-  {id: 6, title: 'Support', links: ['Support', 'IT Support', 'PS Status'],secondLinks: ['Account', 'Store', 'Games' ,'Hardware']}
+  {id: 6, title: 'About', links: ['Support', 'IT Support', 'PS Status'],secondLinks: ['Account', 'Store', 'Games' ,'Hardware']}
   
 ];
 let x = [];
@@ -289,6 +289,9 @@ function toggleLinks() {
   
   .navBar .burger {
     display: flex;
+  }
+  .box{
+    visibility: hidden;
   }
 }
 

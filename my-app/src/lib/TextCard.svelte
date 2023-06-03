@@ -117,6 +117,7 @@
       margin-left: 0;
       margin-right: 0;
       transform: none;
+      height: 100px;
     }
 
     h2 {

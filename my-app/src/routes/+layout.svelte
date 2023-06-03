@@ -5,7 +5,8 @@
   import Footer from '$lib/Footer.svelte';
 
 
-  import './styles.css';
+  
+  import './Main.css'
 
 
 

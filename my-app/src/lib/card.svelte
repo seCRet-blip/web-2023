@@ -315,20 +315,28 @@
     display: flex;
     flex-direction: row;
     position: relative;
-  height: 550px;
+    height: 100vh;
   align-items: center;
   overflow: hidden;
+  padding-bottom: 50px;
   }
-  .carousel-container{
-    width: 800px;
+.carousel-container{
+    width: 100%;
+    height: 100vh; /* 100% of viewport height */
+    margin-bottom: 50px;
   }
+
   .image-container{
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
+      justify-content: flex-start;
+      align-items: flex-start;
+      overflow-x: auto;
+      overflow-y: hidden; /* Add this line */
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+  }
+  .text-container{
+    display: none;
   }
 
 }

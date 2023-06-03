@@ -49,29 +49,37 @@
   }
 
   /* Responsive styles for phone view */
-  @media only screen and (max-width: 800px) {
+  
+    @media only screen and (max-width: 800px) {
+
+
     .card {
-      transform: none;
-      margin-top: 20px;
-      height: 100px;
-      box-shadow: none;
+      scroll-snap-align: start; /* Snap cards to the start of the viewport */
+      flex: 0 0 auto;
+      width: 100%;
+      max-width: 650px; /* Limit the width of each card */
+      margin-right: 10px;
+      height: 100vh;
+
     }
 
     .card__image {
-      height: 200px;
+      height: 250px;
       width: 100%;
+      object-fit: cover;
     }
+
 
     .card__title {
       margin-top: 10px;
-      font-size: 20px;
+      font-size: 50px;
     }
 
     .card__text {
-      margin-top: 10px;
+      margin-top: 5px;
       margin-left: 10px;
       margin-right: 10px;
-      font-size: 14px;
+      font-size: 30px;
     }
   }
 </style>
