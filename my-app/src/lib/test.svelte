@@ -9,17 +9,15 @@
   {id: 3, title: 'Services', links: ['PS Plus', 'PS Stars'],secondLinks: ['PS5 entertainment', 'PS4 entertainment']}, 
   {id: 4, title: 'News', links: ['PS Blog', 'This month on Playstation'],secondLinks: ['Accessibility', 'TestingPrivacy & Safety']}, 
   {id: 5, title: 'Shop', links: ['Digital Games and Services'],secondLinks: ['New releases', 'Latest discounts', 'Collections','Buy gift card' ,'Subscribe to PS Plus']}, 
-  {id: 6, title: 'Support', links: ['Support', 'IT Support', 'PS Status'],secondLinks: ['Account', 'Store', 'Games' ,'Hardware']}
-  // Add more items as needed
+  {id: 6, title: 'About', links: ['Support', 'IT Support', 'PS Status'],secondLinks: ['Account', 'Store', 'Games' ,'Hardware']}
+  
 ];
+let x = [];
+
 
 const rotationStates = writable(dropdownItems.map(() => false));
   const dropdownStates = writable({});
   const marginTop = tweened(20, { duration: 200, easing: cubicOut });
-
-  
-  let x = [];
-
   let rotationStatesVal;
 rotationStates.subscribe(val => rotationStatesVal = val);
 
@@ -72,52 +70,90 @@ function changeColour(clickedItem) {
       item.clicked = false;
     }
   });
-
-  
-
   // This line is to make Svelte reactivity work
   dropdownItems = dropdownItems;
 }
+let showLinks = false;
 
+function toggleLinks() {
+  showLinks = !showLinks;
+}
 
 </script>
-<div class="links">
+
+<div class="navBar">
+  <div class="burger" on:click={toggleLinks}>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div class="links {showLinks ? 'active' : ''}">
+
+    {#each dropdownItems as item, index (item.id)}
+      <a class="MainLinks" href="/" 
+         style:color={item.clicked ? '#2608eb' : 'initial'} 
+         on:click|preventDefault={() => {changeColour(item); moveDivDown(item.id);}}
+      >
+        {item.title}
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class:rotated={rotationStatesVal[index]} class="feather feather-arrow-down dropdown-icon"
+          id="dropdown-icon">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </a>
+    {/each}
+  </div>
+  
   {#each dropdownItems as item, index (item.id)}
-    <a class="MainLinks" href="/" 
-       style:color={item.clicked ? '#2608eb' : 'initial'} 
-       on:click|preventDefault={() => {changeColour(item); moveDivDown(item.id);}}
-    >
-      {item.title}
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
-        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-        class:rotated={rotationStatesVal[index]} class="feather feather-arrow-down dropdown-icon"
-        id="dropdown-icon">
-        <polyline points="6 9 12 15 18 9"></polyline>
-      </svg>
-    </a>
+    <div class="box" bind:this={x[index]}>
+      <div class="linksContainer">
+        <div class="dropDownContent firstDrop">
+          <!-- Links -->
+          {#each item.links as link}
+            <a href="/">{link}</a>
+          {/each}
+        </div>
+        <div class="dropDownContent secondLinksContainer">
+          <!-- Second Links -->
+          {#each item.secondLinks as secondLink}
+              <a href='/about'> <span class="dot"></span> {secondLink}</a>
+          {/each}
+        </div>
+      </div>
+    </div>
   {/each}
 </div>
 
-{#each dropdownItems as item, index (item.id)}
-  <div class="box" bind:this={x[index]}>
-    <div class="linksContainer">
-      <div class="dropDownContent firstDrop">
-        <!-- Links -->
-        {#each item.links as link}
-          <a href="/">{link}</a>
-        {/each}
-      </div>
-      <div class="dropDownContent secondLinksContainer">
-        <!-- Second Links -->
-        {#each item.secondLinks as secondLink}
-            <a href="/"> <span class="dot"></span> {secondLink}</a>
-        {/each}
-      </div>
-    </div>
-  </div>
-{/each}
-
 <style>
+
+.burger {
+  width: 2rem;
+  height: 80px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+  padding-left: 15px;
+}
+* {
+  box-sizing: border-box;
+}
+
+.burger div {
+  width: 5rem;
+  height: 0.5rem;
+  background-color: #333;
+}
+  .navBar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: white;
+  }
   .dropdown-icon {
   transition: transform 0.3s ease-in-out;
   transform: translateY(5px);
@@ -133,6 +169,7 @@ function changeColour(clickedItem) {
 .MainLinks{
   color: initial;
   text-decoration: none;
+  padding-left: 15px; 
 }
 
 .MainLinks:hover, .MainLinks:hover svg {
@@ -161,10 +198,8 @@ function changeColour(clickedItem) {
 
 /* start*/
 .dropDownContent a {
-
   color: black;
-  text-decoration: none;
-  
+  text-decoration: none; 
 }
 
 
@@ -217,6 +252,47 @@ function changeColour(clickedItem) {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.links{
+  position: fixed;
+  z-index: 10;
+  background-color: white;
+  width: 100%;
+}
+
+.navBar .links.active {
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (max-width: 600px) {
+    .links {
+        /* Styles for screens smaller than 600px */
+        flex-direction: column;
+        padding: 10px 0;
+        text-align: center;
+    }
+    .navBar{
+      width: 100%;
+      height: 80px;
+    }
+    
+    .MainLinks{
+        padding: 5px 0; 
+    }
+    .MainLinks svg{
+      display: none;
+    }
+    .navBar .links {
+    display: none;
+  }
+  
+  .navBar .burger {
+    display: flex;
+  }
+  .box{
+    visibility: hidden;
+  }
 }
 
 
