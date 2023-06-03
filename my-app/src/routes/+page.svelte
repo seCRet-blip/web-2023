@@ -1,15 +1,8 @@
 <script>
-  import Slider from "./slider.svelte";
-  import Card from "./card.svelte";
-  import Test from "./test.svelte";
+  import Slider from "$lib/slider.svelte";
+  import Card from "$lib/card.svelte";
+  
 </script>
-<Test />
+ <!-- this is the root page-->  
 <Slider />
 <Card />
-
-
-
-
-
-
-
