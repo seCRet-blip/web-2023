@@ -10,39 +10,64 @@
   
 // Use the function for both card arrays
 
+<<<<<<< HEAD
 const cards = [
+=======
+  const cards = [
+>>>>>>> b176fa589548f25824508745315ce4868f662ed9
     {
       imageSrc: "",
       imageAlt: "Image",
       announcement:"ethay | eckwray",
+<<<<<<< HEAD
       title: "Virtual Reality Gaming",
       caption: "Dive into immersive worlds with virtual reality gaming. Experience games in a way you never thought possible."
+=======
+      title: "Everyyay ordway",
+      caption: "ethay inksay isyay ethay ingthay inyay ichwhay eway ilepay ishesday . ethay orsehay alkedbay andyay ewthray ethay alltay iderray . "
+>>>>>>> b176fa589548f25824508745315ce4868f662ed9
     },
     {
       imageSrc: "",
       imageAlt: "Image",
       announcement:"ethay | eckwray",
+<<<<<<< HEAD
       title: "Emergence of Esports",
       caption: "Esports are taking the world by storm, transforming the landscape of competitive gaming."
+=======
+      title: "Ethay upcay ackedcray",
+      caption: "ayay eepstay ailtray isyay ainfulpay orfay ouryay eetfay . ethay apmay adhay anyay x atthay eantmay othingnay."
+>>>>>>> b176fa589548f25824508745315ce4868f662ed9
     },
     {
       imageSrc: "",
       imageAlt: "Image",
       announcement:"ethay | eckwray",
+<<<<<<< HEAD
       title: "AI in Gaming",
       caption: "AI is revolutionizing game development, creating more dynamic and realistic gameplay experiences."
+=======
+      title: "Ethay eckwray ",
+      caption: "ethay assbray ubetay ircledcay ethay ighhay allway . ayay eaplay orfay undsfay eemssay otay omecay againyay . "
+>>>>>>> b176fa589548f25824508745315ce4868f662ed9
     },
     {
       imageSrc: "",
       imageAlt: "Image",
       announcement:"ethay | eckwray",
+<<<<<<< HEAD
       title: "Blockchain in Gaming",
       caption: "Discover how blockchain is providing new ways for gamers to own and trade virtual assets."
+=======
+      title: "Endsay ethay",
+      caption: "oodway isyay estbay orfay akingmay oystay andyay ocksblay . ethay itekay ippedday andyay ayedsway , utbay ayedstay aloftyay . "
+>>>>>>> b176fa589548f25824508745315ce4868f662ed9
     },
     {
       imageSrc: "",
       imageAlt: "Image",
       announcement:"ethay | eckwray",
+<<<<<<< HEAD
       title: "Mobile Gaming Trends",
       caption: "Mobile gaming continues to dominate the industry with innovative games and new technologies."
     },
@@ -76,6 +101,45 @@ const cards = [
     }
 ];
 
+=======
+      title: "Ickthay aperpay",
+      caption: "atscay andyay ogsday eachyay atehay ethay otheryay . ethay eachbay isyay ydray andyay allowshay atyay owlay idetay ."
+    },
+
+    {
+      imageSrc: "",
+      imageAlt: "Image",
+      announcement:"ethay | eckwray",
+      title: "Everyyay ordway",
+      caption: "ethay inksay isyay ethay ingthay inyay ichwhay eway ilepay ishesday . ethay orsehay alkedbay andyay ewthray ethay alltay iderray .",
+      imageAlt: "Image",
+      announcement:"ethay | eckwray",
+      title: "Ethay upcay ackedcray",
+      caption: "ayay eepstay ailtray isyay ainfulpay orfay ouryay eetfay . ethay apmay adhay anyay x atthay eantmay othingnay."
+    },
+    {
+      imageSrc: "",
+      imageAlt: "Image",
+      announcement:"ethay | eckwray",
+      title: "Ethay eckwray ",
+      caption: "ethay assbray ubetay ircledcay ethay ighhay allway . ayay eaplay orfay undsfay eemssay otay omecay againyay . "
+    },
+    {
+      imageSrc: "",
+      imageAlt: "Image",
+      announcement:"ethay | eckwray",
+      title: "Endsay ethay",
+      caption: "oodway isyay estbay orfay akingmay oystay andyay ocksblay . ethay itekay ippedday andyay ayedsway , utbay ayedstay aloftyay . "
+    },
+    {
+      imageSrc: "",
+      imageAlt: "Image",
+      announcement:"ethay | eckwray",
+      title: "Ickthay aperpay",
+      caption: "atscay andyay ogsday eachyay atehay ethay otheryay . ethay eachbay isyay ydray andyay allowshay atyay owlay idetay ."
+    }
+  ];
+>>>>>>> b176fa589548f25824508745315ce4868f662ed9
   async function fetchImages() {
     const response = await fetch(
       `${BASE_URL}/search/photos?query=gaming&client_id=-N6JZHxqqovedx2eWCPPe5NbO2-r3h1SJE5_PnCWU7E&per_page=30&page=2`
@@ -154,8 +218,13 @@ const cards = [
   </div>
   <div class="cards-container">
     <div class="image-container" bind:this={imageContainer}>
+<<<<<<< HEAD
       <div class="text-container test">
         <TextCard  title="Design and Simulation" text="NVIDIA RTX™ and NVIDIA Omniverse™
+=======
+      <div class="text-container">
+        <TextCard title="Design and Simulation" text="NVIDIA RTX™ and NVIDIA Omniverse™
+>>>>>>> b176fa589548f25824508745315ce4868f662ed9
           deliver the performance to help professionals, creators, developers,
           and students worldwide enhance creative workflows and build, operate,
           and connect metaverse applications." />
@@ -199,12 +268,20 @@ const cards = [
 
   <div class="cards-container">
     <div class="image-container" bind:this={imageContainer}>
+<<<<<<< HEAD
       <div class="text-container Gaming">
         <TextCard
         title="Gaming Redefined"
         text="Immerse yourself in a world of breathtaking graphics, thrilling gameplay, and limitless adventures with the latest gaming technologies. Explore expansive virtual worlds, compete with friends, and unlock your true gaming potential with cutting-edge hardware and software."
       />
       
+=======
+      <div class="text-container">
+        <TextCard title="Design and Simulation" text="NVIDIA RTX™ and NVIDIA Omniverse™
+          deliver the performance to help professionals, creators, developers,
+          and students worldwide enhance creative workflows and build, operate,
+          and connect metaverse applications." />
+>>>>>>> b176fa589548f25824508745315ce4868f662ed9
       </div>
       {#each cards.slice(6) as card} <!-- second half -->
       <ImageCard
@@ -345,4 +422,8 @@ const cards = [
 
 }
 
+<<<<<<< HEAD
 </style>
+=======
+</style>
+>>>>>>> b176fa589548f25824508745315ce4868f662ed9

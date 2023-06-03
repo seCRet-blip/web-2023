@@ -3,6 +3,7 @@
   import { tweened } from 'svelte/motion';
   import { cubicOut } from 'svelte/easing';
   let dropdownItems = [
+<<<<<<< HEAD
   { 
     id: 1, 
     title: 'Games', 
@@ -93,6 +94,17 @@
 ];
 
 
+=======
+  {id: 1, title: 'Games', links: ['PS5', 'PS4','PS VR' , 'PS Plus' , 'Buy Games'],secondLinks: ['Playstation indies', 'PS4 games on PS5', 'Free to play' ,
+  'Playstation games on pc' ,'Deals & offers']},
+  {id: 2, title: 'Hardware', links: ['PS5', 'PS4', 'PS VR2'],secondLinks: ['DualSense wireless controller', 'PULSE 3D wireless headset', 'DUALSHOCK 4 wireless controller','PS5 & PS4 accessories','PlayStation VR']}, 
+  {id: 3, title: 'Services', links: ['PS Plus', 'PS Stars'],secondLinks: ['PS5 entertainment', 'PS4 entertainment']}, 
+  {id: 4, title: 'News', links: ['PS Blog', 'This month on Playstation'],secondLinks: ['Accessibility', 'TestingPrivacy & Safety']}, 
+  {id: 5, title: 'Shop', links: ['Digital Games and Services'],secondLinks: ['New releases', 'Latest discounts', 'Collections','Buy gift card' ,'Subscribe to PS Plus']}, 
+  {id: 6, title: 'About', links: ['Support', 'IT Support', 'PS Status'],secondLinks: ['Account', 'Store', 'Games' ,'Hardware']}
+  
+];
+>>>>>>> b176fa589548f25824508745315ce4868f662ed9
 let x = [];
 
 
@@ -159,6 +171,7 @@ let showLinks = false;
 function toggleLinks() {
   showLinks = !showLinks;
 }
+<<<<<<< HEAD
 import { goto } from '$app/navigation';
 
 async function scrollToTest(event, targetClass) {
@@ -180,6 +193,11 @@ async function scrollToTest(event, targetClass) {
 
 
 
+=======
+
+</script>
+
+>>>>>>> b176fa589548f25824508745315ce4868f662ed9
 <div class="navBar">
   <div class="burger" on:click={toggleLinks}>
     <div></div>
@@ -187,6 +205,10 @@ async function scrollToTest(event, targetClass) {
     <div></div>
   </div>
   <div class="links {showLinks ? 'active' : ''}">
+<<<<<<< HEAD
+=======
+
+>>>>>>> b176fa589548f25824508745315ce4868f662ed9
     {#each dropdownItems as item, index (item.id)}
       <a class="MainLinks" href="/" 
          style:color={item.clicked ? '#2608eb' : 'initial'} 
@@ -204,6 +226,7 @@ async function scrollToTest(event, targetClass) {
   </div>
   
   {#each dropdownItems as item, index (item.id)}
+<<<<<<< HEAD
   <div class="box" bind:this={x[index]}>
     <div class="linksContainer">
       <div class="dropDownContent firstDrop">
@@ -225,6 +248,25 @@ async function scrollToTest(event, targetClass) {
 
 
   
+=======
+    <div class="box" bind:this={x[index]}>
+      <div class="linksContainer">
+        <div class="dropDownContent firstDrop">
+          <!-- Links -->
+          {#each item.links as link}
+            <a href="/">{link}</a>
+          {/each}
+        </div>
+        <div class="dropDownContent secondLinksContainer">
+          <!-- Second Links -->
+          {#each item.secondLinks as secondLink}
+              <a href='/about'> <span class="dot"></span> {secondLink}</a>
+          {/each}
+        </div>
+      </div>
+    </div>
+  {/each}
+>>>>>>> b176fa589548f25824508745315ce4868f662ed9
 </div>
 
 <style>
@@ -398,4 +440,8 @@ async function scrollToTest(event, targetClass) {
 }
 
 
+<<<<<<< HEAD
 </style>
+=======
+</style>
+>>>>>>> b176fa589548f25824508745315ce4868f662ed9
