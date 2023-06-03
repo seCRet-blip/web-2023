@@ -31,7 +31,7 @@
   async function fetchImages() {
   const response = await fetch(
     // I tried to only get images that have blue in them some images dont have that much blue in them/
-    `${BASE_URL}/search/photos?query=gaming&client_id=-N6JZHxqqovedx2eWCPPe5NbO2-r3h1SJE5_PnCWU7E&per_page=10&page=10`
+    `${BASE_URL}/search/photos?query=gaming&client_id=-N6JZHxqqovedx2eWCPPe5NbO2-r3h1SJE5_PnCWU7E&per_page=9&page=10`
   );
 
   if (!response.ok) {
