@@ -14,6 +14,11 @@
 const cards = [
 
     {
+      type: "TextCard",
+    title: "Design and Simulation",
+    text: "NVIDIA RTX™ and NVIDIA Omniverse™ deliver the performance to help professionals, creators, developers, and students worldwide enhance creative workflows and build, operate, and connect metaverse applications."
+  },
+  {
       imageSrc: "",
       imageAlt: "Image",
       announcement:"ethay | eckwray",
@@ -52,12 +57,18 @@ const cards = [
       caption: "Mobile gaming continues to dominate the industry with innovative games and new technologies."
     },
     {
+    type: "TextCard",
+    title: "Design and Simulation",
+    text: "NVIDIA RTX™ and NVIDIA Omniverse™ deliver the performance to help professionals, creators, developers, and students worldwide enhance creative workflows and build, operate, and connect metaverse applications."
+  },
+    {
       imageSrc: "",
       imageAlt: "Image",
       announcement:"ethay | eckwray",
       title: "Cloud Gaming Services",
       caption: "Cloud gaming is reshaping the industry, providing gamers access to games on any device, anytime."
     },
+  
     {
       imageSrc: "",
       imageAlt: "Image",
@@ -82,144 +93,107 @@ const cards = [
     
   ];
 
-  async function fetchImages() {
-    const response = await fetch(
-      `${BASE_URL}/search/photos?query=gaming&client_id=-N6JZHxqqovedx2eWCPPe5NbO2-r3h1SJE5_PnCWU7E&per_page=30&page=2`
-    );
-  
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-  
-    const { results } = await response.json();
-    return results.map((result) => result.urls.regular);
+  // ...
+
+async function populateImageUrls() {
+  const images = await fetchImages();
+
+  for (let i = 0; i < Math.min(cards.length, images.length); i++) {
+    cards[i].imageSrc = images[i];
+  }
+}
+
+async function fetchImages() {
+  const response = await fetch(
+    `${BASE_URL}/search/photos?query=gaming&client_id=-N6JZHxqqovedx2eWCPPe5NbO2-r3h1SJE5_PnCWU7E&per_page=30&page=2`
+  );
+
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
   }
 
-  async function populateImageUrls() {
-    const images = await fetchImages();
+  const { results } = await response.json();
+  return results.map((result) => result.urls.regular);
+}
 
-    for(let i = 0; i < Math.min(cards.length, images.length); i++) {
-      cards[i].imageSrc = images[i];
-    }
-    console.log(cards);
-  }
+// Call the populateImageUrls function to populate the image URLs
+populateImageUrls();
 
-  populateImageUrls();
+// ...
 
-   // Initialize variables to keep track of the current card and the image container
-   let sliders = [
-    { currentCard: 0, imageContainer: null },
-    { currentCard: 0, imageContainer: null },
-  ];
+  const SLIDER_SIZE = 6;
+  let sliderCards = [];
 
-  function prevCard(sliderIndex) {
-  let slider = sliders[sliderIndex];
+// Split the cards array into multiple arrays of length SLIDER_SIZE
+for(let i = 0; i < cards.length; i += SLIDER_SIZE) {
+  sliderCards.push(cards.slice(i, i + SLIDER_SIZE));
+}
+
+  let sliderState = sliderCards.map((_, i) => ({ currentCard: 0, imageContainer: null }));
+
+function prevCard(sliderIndex) {
+  let slider = sliderState[sliderIndex];
   slider.currentCard = Math.max(slider.currentCard - 1, 0);
   const cardWidth = slider.imageContainer.children[0].offsetWidth;
   slider.imageContainer.scrollTo(slider.currentCard * cardWidth, 0);
+  console.log(cards.imageSrc)
 }
 
 function nextCard(sliderIndex) {
-  let slider = sliders[sliderIndex];
+  let slider = sliderState[sliderIndex];
   slider.currentCard = Math.min(slider.currentCard + 1, slider.imageContainer.children.length - 1);
   const cardWidth = slider.imageContainer.children[0].offsetWidth;
   slider.imageContainer.scrollTo(slider.currentCard * cardWidth, 0);
 }
 
+
+
+
 </script>
-
-<div class="carousel-container">
-  <div class="nav-buttons">
-    <button class="Prev" on:click={()=>prevCard(0)}>
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" 
-      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-       class="feather feather-arrow-left">
-       <line x1="19" y1="12" x2="5" y2="12">
-       </line>
-        <polyline points="12 19 5 12 12 5">
-        </polyline>
+{#each sliderCards as _, i (i)}
+  <div class="carousel-container">
+    <div class="nav-buttons">
+      <button class="Prev"  on:click={()=>prevCard(i)}>
+        <svg xmlns="http://www.w3.org/2000/svg" 
+        width="24" height="24" viewBox="0 0 24 24" 
+        fill="none" stroke="currentColor" stroke-width="2" 
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left">
+        <line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline>
       </svg>
-      
-    </button>
-    <button class="Next"  on:click={()=>nextCard(0)}>
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" 
-      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
-      class="feather feather-arrow-right">
-      <line x1="5" y1="12" x2="19" y2="12">
-      </line>
-      <polyline points="12 5 19 12 12 19">
-      </polyline>
-    </svg>
-    </button>
-  </div>
-  <div class="cards-container">
-    <div class="image-container" bind:this={sliders[0].imageContainer}>
-      <div class="text-container test">
-        <TextCard title="Design and Simulation" text="NVIDIA RTX™ and NVIDIA Omniverse™
-  
-          deliver the performance to help professionals, creators, developers,
-          and students worldwide enhance creative workflows and build, operate,
-          and connect metaverse applications." />
-      </div>
-      {#each cards.slice(0, 6) as card} <!-- first half -->
-        <ImageCard
-          imageSrc={card.imageSrc}
-          imageAlt={card.imageAlt}
-          announcement={card.announcement}
-          title={card.title}
-          caption={card.caption}
-        />
-      {/each}
+      </button>
+      <button class="Next"  on:click={()=>nextCard(i)}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+         viewBox="0 0 24 24" fill="none" 
+         stroke="currentColor" stroke-width="2" 
+         stroke-linecap="round" stroke-linejoin="round" 
+         class="feather feather-arrow-right">
+         <line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
     </div>
-  </div>
-</div>
 
-<div class="carousel-container">
-  <div class="nav-buttons">
-    <button class="Prev"  on:click={()=>prevCard(1)}>
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" 
-      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-       class="feather feather-arrow-left">
-       <line x1="19" y1="12" x2="5" y2="12">
-       </line>
-        <polyline points="12 19 5 12 12 5">
-        </polyline>
-      </svg>
-      
-    </button>
-    <button class="Next"  on:click={()=>nextCard(1)}>
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" 
-      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
-      class="feather feather-arrow-right">
-      <line x1="5" y1="12" x2="19" y2="12">
-      </line>
-      <polyline points="12 5 19 12 12 19">
-      </polyline>
-    </svg>
-    </button>
-  </div>
-
-  <div class="cards-container">
-    <div class="image-container" bind:this={sliders[1].imageContainer}>
-      <div class="text-container Gaming">
-        <TextCard
-          title="Gaming Redefined"
-          text="Immerse yourself in a world of breathtaking graphics, thrilling gameplay, and limitless adventures with the latest gaming technologies. Explore expansive virtual worlds, compete with friends, and unlock your true gaming potential with cutting-edge hardware and software."
-        />
+    <div class="cards-container">
+      <div class="image-container" bind:this={sliderState[i].imageContainer}>
+        {#each sliderCards[i] as card}
+          {#if card.type === "TextCard"}
+            <div class="text-container">
+              <TextCard title={card.title} text={card.text} />
+            </div>
+          {:else}
+            <ImageCard
+              imageSrc={card.imageSrc}
+              imageAlt={card.imageAlt}
+              announcement={card.announcement}
+              title={card.title}
+              caption={card.caption}
+            />
+          {/if}
+        {/each}
       </div>
-      {#each cards.slice(6) as card} <!-- second half -->
-        <ImageCard
-          imageSrc={card.imageSrc}
-          imageAlt={card.imageAlt}
-          announcement={card.announcement}
-          title={card.title}
-          caption={card.caption}
-        />
-      {/each}
     </div>
+    
   </div>
-</div>
-
+{/each}
 
 <style>
 

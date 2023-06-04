@@ -4,6 +4,7 @@
   export let announcement;
   export let title;
   export let caption;
+
 </script>
 
 <div class="card">
@@ -15,38 +16,43 @@
 
 <style>
   .card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-right: 10px;
-    transform: translateX(238px);
-    margin-top: 50px;
-    box-shadow: 
-      0 0 0 4px rgba(255, 255, 255, 0.3), /* inner white border */
-      0 4px 6px rgba(0, 0, 0, 0.1), /* shadow */
-      0 8px 20px rgba(0, 0, 0, 0.1); /* shadow */
-    height: 450px;
-  }
+  perspective: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+  transform: translateX(238px);
+  margin-top: 50px;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3), 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.1);
+  height: 450px;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+  transform-style: preserve-3d;
+}
 
-  .card__image {
-    height: 250px;
-    width: 400px;
-    object-fit: cover;
-  }
+.card:hover {
+  transform: translateX(238px) scale(1.05);
+}
+.card__image {
+  height: 250px;
+  width: 400px;
+  object-fit: cover;
+}
 
-  .card__title {
-    margin-top: 20px;
-    font-size: 24px;
-    text-align: center;
-  }
+.card__title {
+  margin-top: 20px;
+  font-size: 24px;
+  text-align: center;
+}
 
-  .card__text {
-    margin-top: 10px;
-    margin-left: 5%;
-    margin-right: 5%;
-    font-size: 16px;
-    text-align: left;
-  }
+.card__text {
+  margin-top: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+  font-size: 16px;
+  text-align: left;
+}
+
 
   /* Responsive styles for phone view */
   

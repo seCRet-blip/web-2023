@@ -79,8 +79,8 @@
   }
 
   .info {
-    padding: 10px 20px 15px;
-  }
+  padding: 10px 20px 15px;
+}
 
   .name,
   .location-label,
@@ -110,8 +110,7 @@ const BASE_URL = `https://api.unsplash.com`;
 
 async function fetchImages() {
   const response = await fetch(
-    `${BASE_URL}/search/photos?query=gaming&client_id=-N6JZHxqqovedx2eWCPPe5NbO2-r3h1SJE5_PnCWU7E&per_page=30&page=2&color=blue`
-
+    `${BASE_URL}/search/photos?query=gaming&client_id=-N6JZHxqqovedx2eWCPPe5NbO2-r3h1SJE5_PnCWU7E&per_page=30&page=2`
   );
 
   if (!response.ok) {
@@ -139,19 +138,19 @@ populateImageUrls();
   {#each dataArray as item, index}
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div class="card {item.showBack ? 'flipped' : ''}" on:click={() => toggleCard(index)}>
-    <div class="card-inner">
-      <div class="card-front">
+
+   
         <div class="image" style="background-image: url('{item.url}')"></div>
         <div class="info">
           <h1 class="name">{item.name}</h1>
           <h3 class="locationLabel">Last known location</h3>
           <h3 class="location">{item.location}</h3>
         </div>
-      </div>
+
       <div class="card-back">
         <p>Additional information goes here...</p>
       </div>
-    </div>
+
   </div>
 {/each}
 

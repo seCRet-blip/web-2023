@@ -181,12 +181,11 @@ async function scrollToTest(event, targetClass, id) {
 
   
 </script>
-<div class="navBar">
-  <div class="burger" on:click={toggleLinks}>
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
+
+
+
+
+<div class="desktopNav">
   <div class="links {showLinks ? 'active' : ''}">
     {#each dropdownItems as item, index (item.id)}
       <a class="MainLinks" href="/" 
@@ -227,38 +226,21 @@ async function scrollToTest(event, targetClass, id) {
     </div>
   {/each}
 </div>
+  
+
 
 
 
 <style>
+    .desktopNav {
+      width: 100%;
+    display: block;  /* Display navbar on desktop by default */
+  }
 
-.burger {
-  width: 2rem;
-  height: 80px;
-  display: none;
-  flex-direction: column;
-  justify-content: space-around;
-  cursor: pointer;
-  padding-left: 15px;
-}
 * {
   box-sizing: border-box;
 }
 
-.burger div {
-  width: 5rem;
-  height: 0.5rem;
-  background-color: #333;
-}
-  .navBar {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    background-color: white;
-  }
   .dropdown-icon {
   transition: transform 0.3s ease-in-out;
   transform: translateY(5px);
@@ -367,41 +349,11 @@ async function scrollToTest(event, targetClass, id) {
   height: 50px;
 }
 
-.navBar .links.active {
-  display: flex;
-  flex-direction: column;
-}
-@media screen and (max-width: 600px) {
-    .links {
-        /* Styles for screens smaller than 600px */
-        flex-direction: column;
-        padding: 10px 0;
-        text-align: center;
+@media (max-width: 800px) {
+    .desktopNav {
+      display: none;  /* Hide navbar on mobile */
     }
-    .navBar{
-      width: 100%;
-      height: 80px;
-    }
-    
-    .MainLinks{
-        padding: 5px 0; 
-    }
-    .MainLinks svg{
-      display: none;
-    }
-    .navBar .links {
-    display: none;
   }
-  
-  .navBar .burger {
-    display: flex;
-  }
-  .box{
-    visibility: hidden;
-  }
-}
-
-
 
 </style>
 
