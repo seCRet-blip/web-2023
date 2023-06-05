@@ -4,7 +4,8 @@
   export let announcement;
   export let title;
   export let caption;
-
+  console.log('imageSrc:', imageSrc);
+  console.log('imageAlt:', imageAlt);
 </script>
 
 <div class="card">

@@ -225,14 +225,10 @@ async function scrollToTest(event, targetClass, id) {
       </div>
     </div>
   {/each}
-</div>
-  
-
-
-
-
+</div>  
 <style>
     .desktopNav {
+      position: absolute;
       width: 100%;
     display: block;  /* Display navbar on desktop by default */
   }
@@ -311,7 +307,7 @@ async function scrollToTest(event, targetClass, id) {
     
   }
   .box {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 150px;
     background-color: white;

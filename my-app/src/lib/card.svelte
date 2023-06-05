@@ -5,6 +5,7 @@
   import ImageCard from '$lib/ImageCard.svelte';
     // Import the TextCard  components
   import TextCard from '$lib/TextCard.svelte';
+  import { onMount } from 'svelte';
 
   const BASE_URL = `https://api.unsplash.com`;
   
@@ -16,77 +17,87 @@ const cards = [
     {
       type: "TextCard",
     title: "Design and Simulation",
-    text: "NVIDIA RTX™ and NVIDIA Omniverse™ deliver the performance to help professionals, creators, developers, and students worldwide enhance creative workflows and build, operate, and connect metaverse applications."
+    text: "NVIDIA RTX™ and NVIDIA Omniverse™ deliver the performance to help professionals, creators, developers, and students worldwide enhance creative workflows and build, operate, and connect metaverse applications.",
+    cardClass: "test"
   },
   {
+    type: "ImageCard",
       imageSrc: "",
       imageAlt: "Image",
-      announcement:"ethay | eckwray",
+      announcement:"Gaming | Evolution",
 
       title: "Virtual Reality Gaming",
       caption: "Dive into immersive worlds with virtual reality gaming. Experience games in a way you never thought possible."
     },
     {
+      type: "ImageCard",
       imageSrc: "",
       imageAlt: "Image",
-      announcement:"ethay | eckwray",
+      announcement:"Rise Of Esports",
       title: "Emergence of Esports",
       caption: "Esports are taking the world by storm, transforming the landscape of competitive gaming."
     },
     {
+      type: "ImageCard",
       imageSrc: "",
       imageAlt: "Image",
-      announcement:"ethay | eckwray",
+      announcement:"AI | Revolution",
       title: "AI in Gaming",
       caption: "AI is revolutionizing game development, creating more dynamic and realistic gameplay experiences."
     },
     {
+      type: "ImageCard",
       imageSrc: "",
       imageAlt: "Image",
-      announcement:"ethay | eckwray",
-
+      announcement:"Blockchain | Bonanza",
       title: "Blockchain in Gaming",
       caption: "Discover how blockchain is providing new ways for gamers to own and trade virtual assets."
 
     },
     {
+      type: "ImageCard",
       imageSrc: "",
       imageAlt: "Image",
-      announcement:"ethay | eckwray",
+      announcement:"Mobile Mastery",
       title: "Mobile Gaming Trends",
       caption: "Mobile gaming continues to dominate the industry with innovative games and new technologies."
     },
     {
-    type: "TextCard",
-    title: "Design and Simulation",
-    text: "NVIDIA RTX™ and NVIDIA Omniverse™ deliver the performance to help professionals, creators, developers, and students worldwide enhance creative workflows and build, operate, and connect metaverse applications."
+      type: "TextCard",
+      title: "Innovation in Gaming Consoles",
+      text: "From 8-bit systems to modern consoles, the gaming industry has seen massive technological advancements. Today's devices offer high-resolution graphics, virtual reality support, and interactive gameplay. The future of gaming holds even more exciting possibilities.",
+      cardClass:"Gaming"
   },
     {
+      type: "ImageCard",
       imageSrc: "",
       imageAlt: "Image",
-      announcement:"ethay | eckwray",
+      announcement:"Cloud | Power",
       title: "Cloud Gaming Services",
       caption: "Cloud gaming is reshaping the industry, providing gamers access to games on any device, anytime."
     },
   
     {
+      type: "ImageCard",
       imageSrc: "",
       imageAlt: "Image",
-      announcement:"ethay | eckwray",
+      announcement:"Design | Dreams",
       title: "Tech Advances in Console Design",
       caption: "The evolution of console design has seen major tech advances, offering superior gaming experiences."
     },
     {
+      type: "ImageCard",
       imageSrc: "",
       imageAlt: "Image",
-      announcement:"ethay | eckwray",
+      announcement:"Education | Upgrade",
       title: "AR in Education",
       caption: "Augmented Reality is transforming education, making learning more interactive and engaging."
     },
     {
+      type: "ImageCard",
       imageSrc: "",
       imageAlt: "Image",
-      announcement:"ethay | eckwray",
+      announcement:"Security | First",
       title: "Cybersecurity in Technology",
       caption: "Learn about the importance of cybersecurity in safeguarding technology and digital data."
     }
@@ -95,11 +106,14 @@ const cards = [
 
   // ...
 
-async function populateImageUrls() {
+  async function populateImageUrls() {
   const images = await fetchImages();
 
   for (let i = 0; i < Math.min(cards.length, images.length); i++) {
-    cards[i].imageSrc = images[i];
+    if (cards[i].type !== "TextCard") {
+      cards[i].imageSrc = images[i];
+      console.log(cards[i].imageSrc)
+    }
   }
 }
 
@@ -116,38 +130,52 @@ async function fetchImages() {
   return results.map((result) => result.urls.regular);
 }
 
-// Call the populateImageUrls function to populate the image URLs
-populateImageUrls();
+onMount(async () => {
+  await populateImageUrls();
+});
 
-// ...
 
   const SLIDER_SIZE = 6;
   let sliderCards = [];
+  let sliderState =[];
+
 
 // Split the cards array into multiple arrays of length SLIDER_SIZE
-for(let i = 0; i < cards.length; i += SLIDER_SIZE) {
-  sliderCards.push(cards.slice(i, i + SLIDER_SIZE));
+$: {
+  sliderCards = [];
+  for (let i = 0; i < cards.length; i += SLIDER_SIZE) {
+    const sliderGroup = cards.slice(i, i + SLIDER_SIZE);
+    sliderCards.push(sliderGroup);
+  }
+
+  sliderState = sliderCards.map(() => ({ currentCard: 0, imageContainer: null }));
+  
 }
-
-  let sliderState = sliderCards.map((_, i) => ({ currentCard: 0, imageContainer: null }));
-
 function prevCard(sliderIndex) {
   let slider = sliderState[sliderIndex];
   slider.currentCard = Math.max(slider.currentCard - 1, 0);
   const cardWidth = slider.imageContainer.children[0].offsetWidth;
+  const currentCard = sliderCards[sliderIndex][slider.currentCard]; // Get the current card object
+
+  console.log('Current Card:', currentCard);
+
   slider.imageContainer.scrollTo(slider.currentCard * cardWidth, 0);
-  console.log(cards.imageSrc)
 }
 
 function nextCard(sliderIndex) {
   let slider = sliderState[sliderIndex];
   slider.currentCard = Math.min(slider.currentCard + 1, slider.imageContainer.children.length - 1);
   const cardWidth = slider.imageContainer.children[0].offsetWidth;
+  const currentCard = sliderCards[sliderIndex][slider.currentCard]; // Get the current card object
+
+  console.log('Current Card:', currentCard);
+
   slider.imageContainer.scrollTo(slider.currentCard * cardWidth, 0);
 }
 
 
 
+console.log('sliderCards:', sliderCards);
 
 </script>
 {#each sliderCards as _, i (i)}
@@ -173,23 +201,29 @@ function nextCard(sliderIndex) {
     </div>
 
     <div class="cards-container">
+      
       <div class="image-container" bind:this={sliderState[i].imageContainer}>
         {#each sliderCards[i] as card}
           {#if card.type === "TextCard"}
-            <div class="text-container">
+           
+            <div class="text-container {card.cardClass}">
               <TextCard title={card.title} text={card.text} />
             </div>
           {:else}
+          <!--
+            image scr wont come throuhg here
+          -->
             <ImageCard
-              imageSrc={card.imageSrc}
-              imageAlt={card.imageAlt}
-              announcement={card.announcement}
-              title={card.title}
-              caption={card.caption}
+            imageSrc={card.imageSrc}
+            imageAlt={card.imageAlt}
+            announcement={card.announcement}
+            title={card.title}
+            caption={card.caption}
             />
           {/if}
         {/each}
       </div>
+      
     </div>
     
   </div>
