@@ -18,7 +18,8 @@ const cards = [
       type: "TextCard",
     title: "Design and Simulation",
     text: "NVIDIA RTX™ and NVIDIA Omniverse™ deliver the performance to help professionals, creators, developers, and students worldwide enhance creative workflows and build, operate, and connect metaverse applications.",
-    cardClass: "test"
+    cardClass: "test",
+    cardClassD:"test2"
   },
   {
     type: "ImageCard",
@@ -66,7 +67,8 @@ const cards = [
       type: "TextCard",
       title: "Innovation in Gaming Consoles",
       text: "From 8-bit systems to modern consoles, the gaming industry has seen massive technological advancements. Today's devices offer high-resolution graphics, virtual reality support, and interactive gameplay. The future of gaming holds even more exciting possibilities.",
-      cardClass:"Gaming"
+      cardClass:"Gaming",
+      cardClassD:"GamingD"
   },
     {
       type: "ImageCard",
@@ -100,8 +102,63 @@ const cards = [
       announcement:"Security | First",
       title: "Cybersecurity in Technology",
       caption: "Learn about the importance of cybersecurity in safeguarding technology and digital data."
-    }
-    
+    },
+    {
+      type: "ImageCard",
+      imageSrc: "",
+      imageAlt: "Image",
+      announcement:"Education | Upgrade",
+      title: "AR in Education",
+      caption: "Augmented Reality is transforming education, making learning more interactive and engaging."
+    },
+    {
+  type: "TextCard",
+  title: "The Future of Technology",
+  text: "As technology continues to advance at an unprecedented pace, the future holds tremendous promise. From artificial intelligence to quantum computing and robotics, emerging technologies are set to reshape industries and revolutionize our lives. With each innovation, we move closer to a world of enhanced communication, automation, and boundless possibilities.",
+  cardClass: "Technology",
+  cardClassD:"TechnologyD"
+},
+  {
+    type: "ImageCard",
+    imageSrc: "image-url-1",
+    imageAlt: "Advanced Robotics",
+    announcement: "Technology | Future",
+    title: "Advancements in Robotics",
+    caption: "Advanced robotics is revolutionizing various industries, from manufacturing and healthcare to space exploration, paving the way for automation and enhanced efficiency."
+  },
+  {
+    type: "ImageCard",
+    imageSrc: "image-url-2",
+    imageAlt: "Self-Driving Car",
+    announcement: "Transportation | Innovation",
+    title: "Autonomous Vehicles",
+    caption: "Self-driving cars and other autonomous vehicles are reshaping transportation, promising safer roads, reduced congestion, and more efficient mobility systems."
+  },
+  {
+    type: "ImageCard",
+    imageSrc: "image-url-3",
+    imageAlt: "Futuristic City",
+    announcement: "Architecture | Urban Planning",
+    title: "Smart Cities",
+    caption: "The concept of smart cities involves using technology to create sustainable and efficient urban environments, with features like IoT connectivity, renewable energy, and improved infrastructure."
+  },
+  {
+    type: "ImageCard",
+    imageSrc: "image-url-4",
+    imageAlt: "Quantum Computing",
+    announcement: "Technology | Breakthrough",
+    title: "Quantum Computing",
+    caption: "Quantum computing has the potential to revolutionize computational power, enabling complex calculations and solving problems that are currently infeasible for classical computers."
+  },
+  {
+    type: "ImageCard",
+    imageSrc: "image-url-5",
+    imageAlt: "Wearable Technology",
+    announcement: "Healthcare | Personalization",
+    title: "Wearable Devices",
+    caption: "Wearable technology, such as smartwatches and fitness trackers, is becoming increasingly advanced, enabling personalized health monitoring, activity tracking, and seamless integration with our daily lives."
+  }
+
   ];
 
   // ...
@@ -112,7 +169,7 @@ const cards = [
   for (let i = 0; i < Math.min(cards.length, images.length); i++) {
     if (cards[i].type !== "TextCard") {
       cards[i].imageSrc = images[i];
-      console.log(cards[i].imageSrc)
+      
     }
   }
 }
@@ -148,38 +205,52 @@ $: {
     sliderCards.push(sliderGroup);
   }
 
-  sliderState = sliderCards.map(() => ({ currentCard: 0, imageContainer: null }));
-  
+  // Initialize or update sliderState
+  sliderState = sliderCards.map((_, i) => sliderState[i] || { currentCard: 0, imageContainer: null });
 }
-function prevCard(sliderIndex) {
-  let slider = sliderState[sliderIndex];
-  slider.currentCard = Math.max(slider.currentCard - 1, 0);
-  const cardWidth = slider.imageContainer.children[0].offsetWidth;
-  const currentCard = sliderCards[sliderIndex][slider.currentCard]; // Get the current card object
-
-  console.log('Current Card:', currentCard);
-
-  slider.imageContainer.scrollTo(slider.currentCard * cardWidth, 0);
-}
-
 function nextCard(sliderIndex) {
-  let slider = sliderState[sliderIndex];
-  slider.currentCard = Math.min(slider.currentCard + 1, slider.imageContainer.children.length - 1);
-  const cardWidth = slider.imageContainer.children[0].offsetWidth;
-  const currentCard = sliderCards[sliderIndex][slider.currentCard]; // Get the current card object
+  let updatedSliderState = [...sliderState];
 
-  console.log('Current Card:', currentCard);
+  if (updatedSliderState[sliderIndex].currentCard < sliderCards[sliderIndex].length - 3) {
+    updatedSliderState[sliderIndex].currentCard += 1;
 
-  slider.imageContainer.scrollTo(slider.currentCard * cardWidth, 0);
+    const cardWidth = updatedSliderState[sliderIndex].imageContainer.scrollWidth / sliderCards[sliderIndex].length;
+    updatedSliderState[sliderIndex].imageContainer.scrollTo(updatedSliderState[sliderIndex].currentCard * cardWidth, 0);
+  }
+
+  sliderState = updatedSliderState;
+}
+
+function prevCard(sliderIndex) {
+  let updatedSliderState = [...sliderState];
+
+  if (updatedSliderState[sliderIndex].currentCard > 0) {
+    updatedSliderState[sliderIndex].currentCard -= 1;
+
+    const cardWidth = updatedSliderState[sliderIndex].imageContainer.scrollWidth / sliderCards[sliderIndex].length;
+    updatedSliderState[sliderIndex].imageContainer.scrollTo(updatedSliderState[sliderIndex].currentCard * cardWidth, 0);
+  }
+
+  sliderState = updatedSliderState;
 }
 
 
-
-console.log('sliderCards:', sliderCards);
 
 </script>
+
+
 {#each sliderCards as _, i (i)}
   <div class="carousel-container">
+    
+
+
+    {#each sliderCards[i] as card}
+    {#if card.type === "TextCard"}
+      <div class="text-container mobile-only {card.cardClass}">
+        <TextCard title={card.title} text={card.text} />
+      </div>
+    {/if}
+  {/each}
     <div class="nav-buttons">
       <button class="Prev"  on:click={()=>prevCard(i)}>
         <svg xmlns="http://www.w3.org/2000/svg" 
@@ -200,18 +271,21 @@ console.log('sliderCards:', sliderCards);
       </button>
     </div>
 
+    <!-- Mobile only TextCard -->
+ 
+
     <div class="cards-container">
       
       <div class="image-container" bind:this={sliderState[i].imageContainer}>
         {#each sliderCards[i] as card}
           {#if card.type === "TextCard"}
            
-            <div class="text-container {card.cardClass}">
+            <div class="text-container {card.cardClassD}">
               <TextCard title={card.title} text={card.text} />
             </div>
           {:else}
           <!--
-            image scr wont come throuhg here
+            image src wont come through here
           -->
             <ImageCard
             imageSrc={card.imageSrc}
@@ -274,6 +348,7 @@ console.log('sliderCards:', sliderCards);
 
   padding-top: 40px;
 }
+
   .cards-container {
     display: flex;
     flex-direction: row;
@@ -335,12 +410,14 @@ console.log('sliderCards:', sliderCards);
     height: 100vh;
   align-items: center;
   overflow: hidden;
-  padding-bottom: 50px;
+
   }
 .carousel-container{
-    width: 100%;
+  position: relative;  
+  width: 100%;
     height: 100vh; /* 100% of viewport height */
     margin-bottom: 50px;
+    padding-top: 280px;
   }
 
   .image-container{
@@ -355,8 +432,22 @@ console.log('sliderCards:', sliderCards);
   .text-container{
     display: none;
   }
+  .text-container.mobile-only {
+    display: block;
+    position: absolute;
+    top: 100px;  /* Adjust this value according to your needs */
+    width: 80%;  /* This will make it take full width of its parent element */
+    z-index: 10;  /* Ensure it appears above other elements */
+    height: 25%;
+    margin-left: 10%;
+  }
 
 }
+.mobile-only {
+  display: none;
+}
+
+
 
 </style>
 

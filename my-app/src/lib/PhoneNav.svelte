@@ -3,9 +3,9 @@
     let showNav = false;
   
     let navItems = [
-      { title: "Home", link: "/", class: '.test' },
-      { title: "About", link: "/about", class: ".aboutSection" },
-      { title: "Services", link: "/about", class: ".servicesSection" },
+      { title: "Infomation", link: "/", class: '.test' },
+      { title: "About", link: "/", class: ".Gaming" },
+      { title: "Services", link: "/", class: ".Technology" },
       { title: "Contact", link: "/about", class: ".contactSection" },
     ];
   

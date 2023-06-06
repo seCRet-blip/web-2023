@@ -2,17 +2,17 @@
   import { writable } from 'svelte/store';
   import { tweened } from 'svelte/motion';
   import { cubicOut } from 'svelte/easing';
-  let dropdownItems = [
 
+  let dropdownItems = [
   { 
     id: 1, 
-    title: 'Games', 
+    title: 'Infomation', 
     links: [
-      { text: 'Design and Simulation', class: '.test' }, 
-      { text: 'Gaming Redefined', class: '.Gaming' },
-      { text: 'PS VR', class: 'psvrClass' },
-      { text: 'PS Plus', class: 'psplusClass' },
-      { text: 'Buy Games', class: 'buyGamesClass' }
+      { text: 'Design and Simulation', link:"/", class: '.test2' }, 
+      { text: 'Gaming Redefined', link:"/", class: '.GamingD' },
+      { text: 'The Future of Technology', link:"/", class: '.TechnologyD'},
+      { text: 'PS Plus',link:"/", class:  'psplusClass' },
+      { text: 'Buy Games',link:"/", class: 'buyGamesClass' }
     ], 
     secondLinks: [
       'Playstation indies',
@@ -50,47 +50,7 @@
       'PS4 entertainment'
     ]
   },
-  { 
-    id: 4, 
-    title: 'News', 
-    links: [
-      { text: 'PS Blog', class: 'psblogClass' },
-      { text: 'This month on Playstation', class: 'thismonthClass' }
-    ], 
-    secondLinks: [
-      'Accessibility',
-      'TestingPrivacy & Safety'
-    ]
-  },
-  { 
-    id: 5, 
-    title: 'Shop', 
-    links: [
-      { text: 'Digital Games and Services', class: 'digitalGamesClass' }
-    ], 
-    secondLinks: [
-      'New releases',
-      'Latest discounts',
-      'Collections',
-      'Buy gift card',
-      'Subscribe to PS Plus'
-    ]
-  },
-  { 
-    id: 6, 
-    title: 'About', 
-    links: [
-      { text: 'Support', class: 'supportClass' },
-      { text: 'IT Support', class: 'itSupportClass' },
-      { text: 'PS Status', class: 'psStatusClass' }
-    ], 
-    secondLinks: [
-      'Account',
-      'Store',
-      'Games',
-      'Hardware'
-    ]
-  }
+
 ];
 
 
@@ -158,25 +118,22 @@ function changeColour(clickedItem) {
 }
 let showLinks = false;
 
-function toggleLinks() {
-  showLinks = !showLinks;
-}
 
 import { goto } from '$app/navigation';
 
 async function scrollToTest(event, targetClass, id) {
     event.preventDefault();
-
+  console.log(targetClass)
     // Navigate to the new page
     await goto('/');
 
     // Scroll to the desired element
-    const element = document.querySelector(targetClass);
+    const element = document.querySelector( targetClass); // added the dot here
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
     moveDivDown(id);
-  }
+}
 
 
   

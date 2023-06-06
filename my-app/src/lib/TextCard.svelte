@@ -140,7 +140,7 @@
     .dropDownContent {
       width: 100%;
       position: static;
-      display: flex;
+      display: none;
       flex-wrap: wrap;
       justify-content: center;
     }
