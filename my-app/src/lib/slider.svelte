@@ -1,7 +1,7 @@
 <script>
   // Importing necessary functions from Svelte
   import { onMount, onDestroy } from 'svelte';
-
+  import { page } from '$app/stores';
   // Base URL for the Unsplash API
   const BASE_URL = `https://api.unsplash.com`;
 
@@ -26,23 +26,8 @@
   { title: 'Tech Revolution', text: 'Witness the Tech Revolution sweeping the gaming industry. Experience mind-blowing advancements, from realistic graphics to immersive virtual reality, as technology continues to redefine the way we play.' }
 ];
 
-
-  // Function to fetch images from the Unsplash API
-  async function fetchImages() {
-  const response = await fetch(
-    // I tried to only get images that have blue in them some images dont have that much blue in them/
-    `${BASE_URL}/search/photos?query=gaming&client_id=-N6JZHxqqovedx2eWCPPe5NbO2-r3h1SJE5_PnCWU7E&per_page=9&page=10`
-  );
-
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
-
-  const { results } = await response.json();
-  images = results.map((result) => result.urls.regular);
-}
-
-
+  
+images = ($page.data.props?.images || []).slice(0, 9);
   // Function to move the slides and update the opacity of the images
   function moveSlides() {
     slide.style.transform = `translateX(-${slideIndex * 100}%)`;
@@ -61,22 +46,23 @@
     });
   }
 
-  // Svelte lifecycle hook that runs when the component is mounted
   onMount(() => {
-    // Fetch images from the Unsplash API and then perform necessary actions
-    fetchImages().then(() => {
-      // Move the slides to the initial position
-      moveSlides();
+  // Move the slides to the initial position
+  moveSlides();
 
-      // Start the automatic slideshow
-      interval = setInterval(() => {
-        // Update the slide index to the next image index (circular)
-        slideIndex = (slideIndex + 1) % images.length;
-        // Move the slides to the updated index
-        moveSlides();
-      }, 5000);
-    });
-  });
+  // Start the automatic slideshow
+  interval = setInterval(() => {
+    // Update the slide index to the next image index (circular)
+    slideIndex = (slideIndex + 1) % images.length;
+    // Move the slides to the updated index
+    moveSlides();
+  }, 5000);
+});
+
+onDestroy(() => {
+  // Stop the automatic slideshow when the component is destroyed
+  clearInterval(interval);
+});
 
   // Svelte lifecycle hook that runs when the component is destroyed
   onDestroy(() => {
@@ -87,16 +73,18 @@
 
 </script>
 
-<main>
+
   <div class="container">
     <div class="slider">
       <div class="slide" bind:this={slide}>
-        {#each images as image, index}
+        {#each images as image, index (image)}
         <!-- Display each image in the 'images' array -->
         <div class="text-container">
           <div class="text">
-            <h2>{arr[index].title}</h2>
-            <p>{arr[index].text}</p>
+            {#if arr[index]}
+              <h2>{arr[index].title}</h2>
+              <p>{arr[index].text}</p>
+            {/if}
           </div>
         </div>
         <!-- svelte-ignore a11y-img-redundant-alt -->
@@ -105,7 +93,8 @@
       </div>
     </div>
   </div>
-</main>
+
+
 
 
   

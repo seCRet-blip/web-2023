@@ -4,8 +4,7 @@
   export let announcement;
   export let title;
   export let caption;
-  console.log('imageSrc:', imageSrc);
-  console.log('imageAlt:', imageAlt);
+  
 </script>
 
 <div class="card">
@@ -25,10 +24,13 @@
   transform: translateX(238px);
   margin-top: 50px;
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3), 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.1);
-  height: 450px;
+  height: 500px;
   transition: transform 0.3s ease-in-out;
-  cursor: pointer;
+  
   transform-style: preserve-3d;
+}
+.card__announcement{
+  font-size: 20px;
 }
 
 .card:hover {
@@ -50,7 +52,7 @@
   margin-top: 10px;
   margin-left: 5%;
   margin-right: 5%;
-  font-size: 16px;
+  font-size: 20px;
   text-align: left;
 }
 

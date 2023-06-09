@@ -5,15 +5,13 @@
   import ImageCard from '$lib/ImageCard.svelte';
     // Import the TextCard  components
   import TextCard from '$lib/TextCard.svelte';
-  import { onMount } from 'svelte';
-
+  import { page } from '$app/stores';
   const BASE_URL = `https://api.unsplash.com`;
   
 // Use the function for both card arrays
 
 
 const cards = [
-
     {
       type: "TextCard",
     title: "Design and Simulation",
@@ -120,7 +118,7 @@ const cards = [
 },
   {
     type: "ImageCard",
-    imageSrc: "image-url-1",
+    imageSrc: "",
     imageAlt: "Advanced Robotics",
     announcement: "Technology | Future",
     title: "Advancements in Robotics",
@@ -128,7 +126,7 @@ const cards = [
   },
   {
     type: "ImageCard",
-    imageSrc: "image-url-2",
+    imageSrc: "i",
     imageAlt: "Self-Driving Car",
     announcement: "Transportation | Innovation",
     title: "Autonomous Vehicles",
@@ -136,7 +134,7 @@ const cards = [
   },
   {
     type: "ImageCard",
-    imageSrc: "image-url-3",
+    imageSrc: "",
     imageAlt: "Futuristic City",
     announcement: "Architecture | Urban Planning",
     title: "Smart Cities",
@@ -144,7 +142,7 @@ const cards = [
   },
   {
     type: "ImageCard",
-    imageSrc: "image-url-4",
+    imageSrc: "",
     imageAlt: "Quantum Computing",
     announcement: "Technology | Breakthrough",
     title: "Quantum Computing",
@@ -152,51 +150,36 @@ const cards = [
   },
   {
     type: "ImageCard",
-    imageSrc: "image-url-5",
+    imageSrc: "",
     imageAlt: "Wearable Technology",
     announcement: "Healthcare | Personalization",
     title: "Wearable Devices",
     caption: "Wearable technology, such as smartwatches and fitness trackers, is becoming increasingly advanced, enabling personalized health monitoring, activity tracking, and seamless integration with our daily lives."
   }
-
   ];
 
-  // ...
 
-  async function populateImageUrls() {
-  const images = await fetchImages();
+  
+  let images = []; 
+  if ($page.data.props) {
+images = ($page.data.props?.images || []).slice(9);
 
-  for (let i = 0; i < Math.min(cards.length, images.length); i++) {
-    if (cards[i].type !== "TextCard") {
-      cards[i].imageSrc = images[i];
-      
+    
+    let imageIndex = 0;
+    for (let i = 0; i < cards.length; i++) {
+        if (cards[i].type === 'ImageCard') {
+            cards[i].imageSrc = images[imageIndex];
+            console.log(cards[i].imageSrc);
+            imageIndex++;
+            if (imageIndex >= images.length) {
+                imageIndex = 0;  // Loop back to the start if we've used all images
+            }
+        }
     }
-  }
 }
-
-async function fetchImages() {
-  const response = await fetch(
-    `${BASE_URL}/search/photos?query=gaming&client_id=-N6JZHxqqovedx2eWCPPe5NbO2-r3h1SJE5_PnCWU7E&per_page=30&page=2`
-  );
-
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
-
-  const { results } = await response.json();
-  return results.map((result) => result.urls.regular);
-}
-
-onMount(async () => {
-  await populateImageUrls();
-});
-
-
   const SLIDER_SIZE = 6;
   let sliderCards = [];
   let sliderState =[];
-
-
 // Split the cards array into multiple arrays of length SLIDER_SIZE
 $: {
   sliderCards = [];
@@ -233,17 +216,11 @@ function prevCard(sliderIndex) {
 
   sliderState = updatedSliderState;
 }
-
-
-
 </script>
 
 
 {#each sliderCards as _, i (i)}
   <div class="carousel-container">
-    
-
-
     {#each sliderCards[i] as card}
     {#if card.type === "TextCard"}
       <div class="text-container mobile-only {card.cardClass}">
@@ -272,8 +249,6 @@ function prevCard(sliderIndex) {
     </div>
 
     <!-- Mobile only TextCard -->
- 
-
     <div class="cards-container">
       
       <div class="image-container" bind:this={sliderState[i].imageContainer}>
@@ -340,7 +315,7 @@ function prevCard(sliderIndex) {
  .carousel-container {
   width: 100%;
   position: relative;
-  height: 550px;
+  height: 600px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -398,7 +373,7 @@ function prevCard(sliderIndex) {
     transform: translateY(-80px); 
   }
   
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 600px) {
   .nav-buttons{
     display: none;
   }
@@ -414,7 +389,7 @@ function prevCard(sliderIndex) {
   }
 .carousel-container{
   position: relative;  
-  width: 100%;
+   width: 800px;
     height: 100vh; /* 100% of viewport height */
     margin-bottom: 50px;
     padding-top: 280px;
@@ -446,9 +421,6 @@ function prevCard(sliderIndex) {
 .mobile-only {
   display: none;
 }
-
-
-
 </style>
 
 
