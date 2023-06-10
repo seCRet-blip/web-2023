@@ -1,4 +1,4 @@
-let currentPage = 3;  // This would have to be stored persistently somewhere
+let currentPage = 4;  // This would have to be stored persistently somewhere
 
 export async function load({ page, fetch }) {
     

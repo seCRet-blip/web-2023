@@ -159,7 +159,6 @@ const cards = [
   ];
 
 
-  
   let images = []; 
   if ($page.data.props) {
 images = ($page.data.props?.images || []).slice(9);
@@ -169,7 +168,7 @@ images = ($page.data.props?.images || []).slice(9);
     for (let i = 0; i < cards.length; i++) {
         if (cards[i].type === 'ImageCard') {
             cards[i].imageSrc = images[imageIndex];
-            console.log(cards[i].imageSrc);
+
             imageIndex++;
             if (imageIndex >= images.length) {
                 imageIndex = 0;  // Loop back to the start if we've used all images

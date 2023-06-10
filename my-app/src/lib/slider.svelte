@@ -2,11 +2,12 @@
   // Importing necessary functions from Svelte
   import { onMount, onDestroy } from 'svelte';
   import { page } from '$app/stores';
-  // Base URL for the Unsplash API
-  const BASE_URL = `https://api.unsplash.com`;
+  
 
   // Array to store the fetched images from the API
   let images = [];
+  images = ($page.data.props?.images || []).slice(0, 9);
+  console.log(images, "slider page ")
     // Variables to hold the slider and the current slide index
   let slide;
   let slideIndex = 0;
@@ -27,7 +28,7 @@
 ];
 
   
-images = ($page.data.props?.images || []).slice(0, 9);
+
   // Function to move the slides and update the opacity of the images
   function moveSlides() {
     slide.style.transform = `translateX(-${slideIndex * 100}%)`;
