@@ -7,6 +7,12 @@
 
   let dropdownState = false;
   let links = ["Shop", "Newsroom", "Professionals", "Creators", "Developers", "Researchers", "XR"];
+  let showMore = false;
+  let numSentences = 2; // Number of sentences to display initially
+
+  function handleClick() {
+    showMore = !showMore; // Toggle the visibility of additional text
+  }
 
   function toggleDropdown() {
     dropdownState = !dropdownState;
@@ -29,43 +35,56 @@
       hideDropdown();
     }
   }
-  function handleClick() {
-    console.log("this is the read me function")
-  }
 </script>
 
-<div class="text-card">
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<div class="text-card" class:readmore-card={textCardType === 'readmore'} on:click={handleClick}>
   <h2>{title}</h2>
-  <p>{text}</p>
-  <!-- svelte-ignore a11y-missing-attribute -->
+  {#if textCardType === 'dropdown'}
+    <p>{text}</p>
 
-{#if textCardType ==='dropdown'}
+    <div class="dropdown">
+      <!-- Dropdown code here -->
 
-  <div class="dropdown">
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <a on:click={toggleDropdown}>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-           class:rotated={dropdownState} class="feather feather-arrow-down dropdown-icon"
-           id="dropdown-icon">
-        <line x1="12" y1="5" x2="12" y2="19"></line>
-        <polyline points="19 12 12 19 5 12"></polyline>
-      </svg>
-      Links
-    </a>
-    <div class={dropdownState ? 'dropDownContent show' : 'dropDownContent'} on:clickoutside={hideDropdown}>
-      {#each links as link }
-        <a href="/">{link}</a>
-      {/each}
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <!-- svelte-ignore a11y-missing-attribute -->
+      <a on:click={toggleDropdown}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             class:rotated={dropdownState} class="feather feather-arrow-down dropdown-icon"
+             id="dropdown-icon">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <polyline points="19 12 12 19 5 12"></polyline>
+        </svg>
+        Links
+      </a>
+      <div class={dropdownState ? 'dropDownContent show' : 'dropDownContent'} on:clickoutside={hideDropdown}>
+        {#each links as link }
+          <a href="/">{link}</a>
+        {/each}
+      </div>
     </div>
-  </div>
-  {:else  if textCardType === 'readmore'}
-  <button on:click={handleClick}>Read more</button>
-
+    {:else if textCardType === 'readmore'}
+    <div class="readmore-card">
+      {#if !showMore}
+        {#each text.split('.').slice(0, numSentences) as sentence}
+          <p>{sentence}{#if !showMore && numSentences > 0 && sentence !== text.split('.').slice(0, numSentences).pop()}...{/if}</p>
+        {/each}
+        {#if text.split('.').length > numSentences}
+          <p> <strong>Click to read more</p>
+        {/if}
+      {:else}
+        <p>{text}</p>
+      {/if}
+    </div>
   {/if}
 </div>
 
+
 <style>
+  .readmore-card{
+    cursor: pointer;
+  }
   .text-card {
     width: 450px;
     height: 300px;

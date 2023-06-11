@@ -8,11 +8,12 @@
   
   let cardTexts = [
     {
-      textCardType: "readmore",
-      title: "Evolution of Gaming Consoles",
-      text: "Embark on a journey to discover the fascinating evolution of gaming consoles over the decades. Starting from the advent of the earliest home systems like the Magnavox Odyssey and Atari, we trace the path to today's highly sophisticated platforms such as PlayStation 5 and Xbox Series X. Delve into the exponential improvements in graphics, processing power, and game design, along with a profound shift in the players' gaming experiences. Understand how these advancements have revolutionized the gaming industry and created a cultural phenomenon that extends beyond mere entertainment.",
-      imageSrc: null
-    },
+  textCardType: "readmore",
+  title: "Gaming Console Hardware",
+  text: "Dive into a comprehensive exploration of the intricate hardware components that power your beloved gaming consoles. Gain a deep understanding of the pivotal role played by key components like GPUs, CPUs, RAM, and more in creating immersive gaming experiences. Discover how these hardware elements seamlessly collaborate to support intricate game designs and stunning graphics, delivering the top-notch gameplay you've come to expect from modern consoles.",
+  imageSrc: null
+}
+,
     {
       textCardType: "readmore",
       title: "Gaming Console Hardware",
@@ -75,7 +76,7 @@
   .card {
     perspective: 1000px;
     width: 90%;
-    height: 800px;
+    height: 700px;
     position: relative;
     margin-top: 5%;
     background-color: white;
