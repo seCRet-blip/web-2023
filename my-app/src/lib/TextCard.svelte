@@ -29,6 +29,9 @@
       hideDropdown();
     }
   }
+  function handleClick() {
+    console.log("this is the read me function")
+  }
 </script>
 
 <div class="text-card">
@@ -57,7 +60,8 @@
     </div>
   </div>
   {:else  if textCardType === 'readmore'}
-  <a href="/readmore">Read more</a>
+  <button on:click={handleClick}>Read more</button>
+
   {/if}
 </div>
 
