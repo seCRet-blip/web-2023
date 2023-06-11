@@ -1,6 +1,7 @@
 <script>
 
     import Info from "$lib/Info.svelte"
+    import LandingImage from '$lib/LandingImage.svelte'
 </script>
-<!-- this is the about page-->
+<LandingImage />
 <Info />

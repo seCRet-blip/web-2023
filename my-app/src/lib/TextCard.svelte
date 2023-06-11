@@ -3,6 +3,7 @@
 
   export let title;
   export let text;
+  export let textCardType;
 
   let dropdownState = false;
   let links = ["Shop", "Newsroom", "Professionals", "Creators", "Developers", "Researchers", "XR"];
@@ -34,6 +35,9 @@
   <h2>{title}</h2>
   <p>{text}</p>
   <!-- svelte-ignore a11y-missing-attribute -->
+
+{#if textCardType ==='dropdown'}
+
   <div class="dropdown">
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <a on:click={toggleDropdown}>
@@ -52,6 +56,9 @@
       {/each}
     </div>
   </div>
+  {:else  if textCardType === 'readmore'}
+  <a href="/readmore">Read more</a>
+  {/if}
 </div>
 
 <style>

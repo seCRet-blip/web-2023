@@ -15,6 +15,7 @@ const cards = [
     {
       type: "TextCard",
     title: "Design and Simulation",
+    textCardType: "dropdown", 
     text: "NVIDIA RTX™ and NVIDIA Omniverse™ deliver the performance to help professionals, creators, developers, and students worldwide enhance creative workflows and build, operate, and connect metaverse applications.",
     cardClass: "test",
     cardClassD:"test2"
@@ -63,6 +64,7 @@ const cards = [
     },
     {
       type: "TextCard",
+      textCardType: "dropdown",
       title: "Innovation in Gaming Consoles",
       text: "From 8-bit systems to modern consoles, the gaming industry has seen massive technological advancements. Today's devices offer high-resolution graphics, virtual reality support, and interactive gameplay. The future of gaming holds even more exciting possibilities.",
       cardClass:"Gaming",
@@ -111,6 +113,7 @@ const cards = [
     },
     {
   type: "TextCard",
+  textCardType: "dropdown",
   title: "The Future of Technology",
   text: "As technology continues to advance at an unprecedented pace, the future holds tremendous promise. From artificial intelligence to quantum computing and robotics, emerging technologies are set to reshape industries and revolutionize our lives. With each innovation, we move closer to a world of enhanced communication, automation, and boundless possibilities.",
   cardClass: "Technology",
@@ -254,9 +257,10 @@ function prevCard(sliderIndex) {
         {#each sliderCards[i] as card}
           {#if card.type === "TextCard"}
            
-            <div class="text-container {card.cardClassD}">
-              <TextCard title={card.title} text={card.text} />
-            </div>
+          <div class="text-container {card.cardClassD}">
+            <TextCard textCardType={card.textCardType} title={card.title} text={card.text} />
+          </div>
+          
           {:else}
           <!--
             image src wont come through here

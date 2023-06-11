@@ -46,10 +46,11 @@ let cardTexts = [
   <div class="card" on:click={() => flipCard(index)}>
     <div class={`card-content ${flippedStates[index] ? 'flipped' : ''}`}>
       <div class="front">
-        <img src={images[index]} alt={`Image ${index + 1}`} />
         <div class="text">
           <p>{cardText.title}</p>
         </div>
+        <img src={images[index]} alt={`Image ${index + 1}`} />
+       
       </div>
       <div class="back">
         <div class="back-text">
