@@ -6,7 +6,7 @@
       { title: "Infomation", link: "/", class: '.test' },
       { title: "About", link: "/", class: ".Gaming" },
       { title: "Services", link: "/", class: ".Technology" },
-      { title: "Contact", link: "/about", class: ".contactSection" },
+      { title: "Contact", link: "/about", class: ".Impact" },
     ];
   
     function toggleNav() {

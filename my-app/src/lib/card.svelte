@@ -115,7 +115,7 @@ const cards = [
   type: "TextCard",
   textCardType: "dropdown",
   title: "The Future of Technology",
-  text: "As technology continues to advance at an unprecedented pace, the future holds tremendous promise. From artificial intelligence to quantum computing and robotics, emerging technologies are set to reshape industries and revolutionize our lives. With each innovation, we move closer to a world of enhanced communication, automation, and boundless possibilities.",
+  text: "As technology advances rapidly, the future looks promising. Emerging technologies like AI, quantum computing, and robotics will reshape industries and revolutionize our lives. With each innovation, we move closer to a world of enhanced communication, automation, and limitless possibilities.",
   cardClass: "Technology",
   cardClassD:"TechnologyD"
 },
@@ -158,6 +158,54 @@ const cards = [
     announcement: "Healthcare | Personalization",
     title: "Wearable Devices",
     caption: "Wearable technology, such as smartwatches and fitness trackers, is becoming increasingly advanced, enabling personalized health monitoring, activity tracking, and seamless integration with our daily lives."
+  },
+  {
+    type: "TextCard",
+    title: "Introduction to AI",
+    textCardType: "dropdown",
+    text: "AI, or Artificial Intelligence, refers to the simulation of human intelligence in machines that are programmed to think like humans and mimic their actions. The term may also be applied to any machine that exhibits traits associated with a human mind such as learning and problem-solving.",
+    cardClass: "AI_Intro",
+    cardClassD:"AI_IntroD"
+  },
+  {
+    type: "ImageCard",
+    imageSrc: "",
+    imageAlt: "AI Evolution",
+    announcement:"AI | Evolution",
+    title: "Evolution of AI",
+    caption: "AI has evolved significantly over time, from simple rule-based systems to complex machine learning models. With each advancement, AI systems become more capable and impactful."
+  },
+  {
+    type: "ImageCard",
+    imageSrc: "",
+    imageAlt: "AI in various industries",
+    announcement:"Industries | AI Transformation",
+    title: "AI in Various Industries",
+    caption: "AI has been transforming various industries, providing automated solutions, efficient processes, and data-driven insights."
+  },
+  {
+    type: "ImageCard",
+    imageSrc: "",
+    imageAlt: "AI in Healthcare",
+    announcement:"AI | Healthcare Revolution",
+    title: "AI in Healthcare",
+    caption: "AI is revolutionizing healthcare, from improving diagnostic accuracy to personalizing treatment plans."
+  },
+  {
+    type: "ImageCard",
+    imageSrc: "",
+    imageAlt: "AI Ethics",
+    announcement:"Ethics | AI Challenges",
+    title: "Ethics in AI",
+    caption: "As AI becomes more prevalent, ethical considerations around privacy, bias, and control have become increasingly important."
+  },
+  {
+    type: "ImageCard",
+    imageSrc: "",
+    imageAlt: "AI in Future",
+    announcement:"Future | AI Prospects",
+    title: "Future of AI",
+    caption: "The future of AI holds vast potential, with possibilities like advanced automation, smarter algorithms, and seamless human-machine interaction."
   }
   ];
 
@@ -226,7 +274,7 @@ function prevCard(sliderIndex) {
     {#each sliderCards[i] as card}
     {#if card.type === "TextCard"}
       <div class="text-container mobile-only {card.cardClass}">
-        <TextCard title={card.title} text={card.text} />
+        <TextCard textCardType={card.textCardType} title={card.title} text={card.text} />
       </div>
     {/if}
   {/each}
@@ -395,7 +443,7 @@ function prevCard(sliderIndex) {
    width: 800px;
     height: 100vh; /* 100% of viewport height */
     margin-bottom: 50px;
-    padding-top: 280px;
+    padding-top: 200%;
   }
 
   .image-container{
@@ -416,8 +464,9 @@ function prevCard(sliderIndex) {
     top: 100px;  /* Adjust this value according to your needs */
     width: 80%;  /* This will make it take full width of its parent element */
     z-index: 10;  /* Ensure it appears above other elements */
-    height: 25%;
+    height: 50%;
     margin-left: 10%;
+    
   }
 
 }

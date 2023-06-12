@@ -164,6 +164,7 @@ onDestroy(() => {
   @media screen and (max-width: 600px) {
   .text {
     width: 30%; /* Adjust as needed */
+    font-size: 30px;
   }
 
   .container {

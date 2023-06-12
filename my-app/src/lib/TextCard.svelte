@@ -85,6 +85,7 @@
   .readmore-card{
     cursor: pointer;
   }
+
   .text-card {
     width: 450px;
     height: 300px;
@@ -144,8 +145,10 @@
   
   /* Responsive styles */
   @media only screen and (max-width: 800px) {
+    
+    
     .text-card {
-      width: 100%;
+      width: 500px;
       height: auto;
       margin-left: 0;
       margin-right: 0;
@@ -154,7 +157,8 @@
     }
 
     h2 {
-      font-size: 20px;
+      font-size: 50px;
+      padding-bottom: 10px;
       margin-right: 0;
     }
 
@@ -174,9 +178,21 @@
       flex-wrap: wrap;
       justify-content: center;
     }
-
+    .readmore-card{
+      line-height: 43px;
+    }
+    .readmore-card ,p{
+      font-size: 40px;
+      text-align: left;
+      padding-left: 5px;
+     
+  }
+  .readmore-card h2{
+    font-size: 60px;
+  }
     .dropDownContent a {
       padding: 5px 10px;
+      
     }
   }
 </style>

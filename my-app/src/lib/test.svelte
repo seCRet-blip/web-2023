@@ -2,56 +2,55 @@
   import { writable } from 'svelte/store';
   import { tweened } from 'svelte/motion';
   import { cubicOut } from 'svelte/easing';
-
+  import { goto } from '$app/navigation';
   let dropdownItems = [
-  { 
-    id: 1, 
-    title: 'Infomation', 
+  {
+    id: 1,
+    title: "Home",
     links: [
-      { text: 'Design and Simulation', link:"/", class: '.test2' }, 
-      { text: 'Gaming Redefined', link:"/", class: '.GamingD' },
-      { text: 'The Future of Technology', link:"/", class: '.TechnologyD'},
-      { text: 'PS Plus',link:"/", class:  'psplusClass' },
-      { text: 'Buy Games',link:"/", class: 'buyGamesClass' }
-    ], 
-    secondLinks: [
-      'Playstation indies',
-      'PS4 games on PS5',
-      'Free to play',
-      'Playstation games on pc',
-      'Deals & offers'
+      { text: 'Design and Simulation', link:"/", class: '.test2' },
+      { text: 'Innovation in Gaming Consoles', link:"/", class: '.GamingD' },
+      { text: 'The Future of Technology', link:"/", class: '.TechnologyD' },
+      { text: 'Ai Intro', link:"/", class: '.AI_IntroD' }
+      ]
+  },
+  {
+    id: 2,
+    title: "The Future",
+    links: [
+      { text: 'Future of Gaming Consoles', link:"/about", class: '.Future' },
+      { text: 'The Future of Technology', link:"/", class: '.TechnologyD' },
+      { text: 'Virtual Reality in Gaming', link:"/about", class: '.Virtual' }
+    ],
+    secondLinks: []
+  },
+  {
+    id: 3,
+    title: "About",
+    links: [
+      { text: 'NVIDIA Graphics Technology', link:"/about", class: '.NVIDIA' },
+      { text: 'Gaming Console Hardware', link:"/about", class: '.Gaming-Console' },
+      { text: 'Future of Gaming Consoles', link:"/about", class: '.Future' },
+      { text: 'Virtual Reality in Gaming', link:"/about", class: '.Virtual' },
+      { text: 'Artificial Intelligence in Gaming', link:"/about", class: '.Artificial' },
+      { text: 'Impact of Cloud Gaming', link:"/about", class: '.Impact' }
     ]
   },
-  { 
-    id: 2, 
-    title: 'Hardware', 
+  {
+    id: 4,
+    title: "Gaming",
     links: [
-      { text: 'PS5', class: 'ps5Class' }, 
-      { text: 'PS4', class: 'ps4Class' },
-      { text: 'PS VR2', class: 'psvr2Class' }
-    ], 
-    secondLinks: [
-      'DualSense wireless controller',
-      'PULSE 3D wireless headset',
-      'DUALSHOCK 4 wireless controller',
-      'PS5 & PS4 accessories',
-      'PlayStation VR'
+      { text: 'Gaming Console Hardware', link:"/about", class: '.Gaming-Console' },
+      { text: 'Innovation in Gaming Consoles', link:"/", class: '.GamingD' },
+      { text: 'Future of Gaming Consoles', link:"/about", class: '.Future' },
+      { text: 'Virtual Reality in Gaming', link:"/about", class: '.Virtual' },
+      { text: 'Artificial Intelligence in Gaming', link:"/about", class: '.Artificial' },
+      { text: 'Impact of Cloud Gaming', link:"/about", class: '.Impact' }
     ]
-  },
-  { 
-    id: 3, 
-    title: 'Services', 
-    links: [
-      { text: 'PS Plus', class: 'psplusClass' },
-      { text: 'PS Stars', class: 'psstarsClass' }
-    ], 
-    secondLinks: [
-      'PS5 entertainment',
-      'PS4 entertainment'
-    ]
-  },
 
+  }
 ];
+
 
 
 
@@ -119,13 +118,13 @@ function changeColour(clickedItem) {
 let showLinks = false;
 
 
-import { goto } from '$app/navigation';
 
-async function scrollToTest(event, targetClass, id) {
+
+async function scrollToTest(event,link, targetClass, id) {
     event.preventDefault();
   console.log(targetClass)
     // Navigate to the new page
-    await goto('/');
+    await goto(link);
 
     // Scroll to the desired element
     const element = document.querySelector( targetClass); // added the dot here
@@ -166,19 +165,11 @@ async function scrollToTest(event, targetClass, id) {
         <div class="dropDownContent firstDrop">
           <!-- Links -->
           {#each item.links as link}
-          <a href="/" on:click|preventDefault={(e) => scrollToTest(e, link.class, item.id)}>{link.text}</a>
+          <a href="/" on:click|preventDefault={(e) => scrollToTest(e, link.link, link.class, item.id)}>{link.text}</a>
 
           {/each}
         </div>
-        <div class="dropDownContent secondLinksContainer">
-          <!-- Second Links -->
-          {#each item.secondLinks as secondLink}
-          <a href="/about" on:click|preventDefault={async (e) => {
-            moveDivDown(item.id);
-            await goto('/about');
-          }}><span class="dot"></span> {secondLink}</a>
-          {/each}
-        </div>
+       
       </div>
     </div>
   {/each}
@@ -228,13 +219,7 @@ async function scrollToTest(event, targetClass, id) {
   transform: translateY(40px);
 }
 
-.secondLinksContainer {
-  position: absolute;
-  top: 100%; /* Position the second links below the border */
-  left: 0;
-  right: 0;
-  transform: translateY(-50px); /* Adjust this value to create a gap between the border and second links */
-}
+
 
 /* start*/
 .dropDownContent a {

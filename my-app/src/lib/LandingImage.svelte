@@ -6,7 +6,7 @@
   </script>
   
   <div class="container">
-    <div class="image" style="background-image: url({backgroundImage}); background-size: cover; background-position: center; width: 100%; height: 500px;">
+    <div class="image" style="background-image: url({backgroundImage});">
       <div class="overlay">
         <h1 class="title">
           <span class="special-word1">Why</span>
@@ -24,6 +24,10 @@
   
     .image {
       position: relative;
+      background-size: cover; 
+      background-position: center;
+       width: 100%; 
+       height: 500px;
     }
   
     .overlay {
@@ -70,5 +74,32 @@
       top: 40px; /* Adjust the vertical position */
       margin-bottom: 15px; /* Increase the margin-bottom */
     }
+
+
+    @media (max-width: 600px) {
+  .title {
+    font-size: 30px;
+  }
+  .image{
+    height: 100vh;  /* take up the full height of the screen */
+  }
+  .container{
+    height: 100vh;  /* take up the full height of the screen */
+  }
+  .special-word {
+    font-size: 35px;
+    top: -10px;
+  }
+
+  .special-word1 {
+    font-size: 40px;
+    top: -30px;
+  }
+
+  .special-word3 {
+    font-size: 30px;
+    top: 20px;
+  }
+}   
   </style>
   
