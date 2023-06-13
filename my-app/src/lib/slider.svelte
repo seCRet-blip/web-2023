@@ -71,50 +71,61 @@ onDestroy(() => {
     clearInterval(interval);
   });
 
-
 </script>
-
-
-  <div class="container">
-    <div class="slider">
-      <div class="slide" bind:this={slide}>
-        {#each images as image, index (image)}
-        <!-- Display each image in the 'images' array -->
-        <div class="text-container">
-          <div class="text">
-            {#if arr[index]}
-              <h2>{arr[index].title}</h2>
-              <p>{arr[index].text}</p>
-            {/if}
-          </div>
+<div class="container">
+  <div class="slider">
+    <div class="slide" bind:this={slide}>
+      {#each images as image, index (image)}
+      <!-- Display each image in the 'images' array -->
+      <div class="text-container">
+        <div class="text">
+          {#if arr[index]}
+            <h2>
+              {#each arr[index].title.split(' ') as word, i}
+                {#if i === 1}
+                  <span class="second-word">{word}</span>
+                {:else}
+                  <span class="first-word"> {word}</span> 
+                {/if}
+                &nbsp;
+              {/each}
+            </h2>
+            <p>{arr[index].text}</p>
+          {/if}
         </div>
-        <!-- svelte-ignore a11y-img-redundant-alt -->
-        <img src={image} alt="slide image" />
-        {/each}
       </div>
+      <!-- svelte-ignore a11y-img-redundant-alt -->
+      <img src={image} alt="slide image" />
+      {/each}
     </div>
   </div>
+</div>
 
-
-
-
-  
 <style>
   /* CSS styles for the slider and slides */
 
-
+  :root {
+  --cool-gray: #9499AAff;
+--lavender-web: #C9CFE3ff;
+--blue-gray: #6994C5ff;
+--french-gray: #BEC3D5ff;
+--lavender-web-2: #D5DBEEff;
+--white: #FEFEFEff;
+--charcoal-overlay: rgba(65, 68, 79, 0.6);
+}
  .text {
     position: absolute;
     z-index: 1;
     margin-left: 5%;
     padding-top: 100px;
     padding-left: 25px;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.6);
+    color: var(--white);
+    background-color: var(--charcoal-overlay);
     height: 100%;
     width: 30%;
     line-height: 30px;
     box-sizing: border-box;
+    font-size: 20px;
   }
   *,
   ::after,
@@ -132,7 +143,16 @@ onDestroy(() => {
     height: 400px;
     width: 100%;
   }
-
+  .first-word{
+    position: relative;
+  top: -10px;
+  }
+  .second-word{
+  color: var(--blue-gray);
+}
+.text h2{
+    padding-bottom: 25px;
+  }
   .slider {
     position: relative;
     display: grid;
@@ -163,10 +183,14 @@ onDestroy(() => {
   }
   @media screen and (max-width: 600px) {
   .text {
-    width: 30%; /* Adjust as needed */
+    width: 50%; /* Adjust as needed */
     font-size: 30px;
+    
   }
 
+  .slide{
+    height: 450px;
+  }
   .container {
     width: 800px;
   }
@@ -178,5 +202,6 @@ onDestroy(() => {
   .slide img {
     width: 100%;
   }
+
 }
 </style>

@@ -81,7 +81,7 @@ let cardTexts = [
   display: flex;  /* Add Flexbox */
   perspective: 1000px;
   width: 90%;
-  height: 700px;
+  height: 800px;
   position: relative;
   margin-top: 5%;
   background-color: white;

@@ -3,7 +3,7 @@
     let showNav = false;
   
     let navItems = [
-      { title: "Infomation", link: "/", class: '.test' },
+      { title: "Home", link: "/", class: '.test' },
       { title: "About", link: "/", class: ".Gaming" },
       { title: "Services", link: "/", class: ".Technology" },
       { title: "Contact", link: "/about", class: ".Impact" },
@@ -29,18 +29,21 @@
   </script>
   
   <div class="mobileNav">
-    <button class="toggle" on:click={toggleNav}>
-      ☰
-    </button>
-    {#if showNav}
-      <nav>
-        {#each navItems as item (item.title)}
-          <a href={item.link} on:click|preventDefault={(e) => navigate(e, item.link, item.class)}>
-            {item.title}
-          </a>
-        {/each}
-      </nav>
-    {/if}
+    <div class="header">
+      <button class="toggle" on:click={toggleNav}>
+        ☰
+      </button>
+      {#if showNav}
+        <nav>
+          {#each navItems as item (item.title)}
+            <a href={item.link} on:click|preventDefault={(e) => navigate(e, item.link, item.class)}>
+              {item.title}
+            </a>
+          {/each}
+        </nav>
+      {/if}
+    </div>
+    
   </div>
   
   <style>
@@ -49,7 +52,7 @@
     width: 100%;
   }
 
-  header {
+  .header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -58,7 +61,7 @@
     color: white;
     width: 100%;
     position: fixed;
-    z-index: 10;
+    z-index: 999;
   }
 
   .toggle {
@@ -70,13 +73,15 @@
 
   nav {
     display: flex;
-    flex-direction:row;
+    flex-direction:column;
     background-color: white;
     position: absolute;
+    align-items: center;
     top: 60px;
     left: 0;
     right: 0;
     width: 100%;
+    height: 300px;
     padding: 10px 0;
     box-shadow:
       0 1px 1px hsl(0deg 0% 0% / 0.075),
@@ -84,13 +89,14 @@
       0 4px 4px hsl(0deg 0% 0% / 0.075),
       0 8px 8px hsl(0deg 0% 0% / 0.075),
       0 16px 16px hsl(0deg 0% 0% / 0.075);
-    z-index: 1;
+    z-index: 999;
   }
 
   nav a {
     color: black;
     text-decoration: none;
     padding: 10px 20px;
+    font-size: 40px;
     display: block;
   }
 

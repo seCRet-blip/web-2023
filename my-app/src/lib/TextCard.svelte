@@ -6,6 +6,14 @@
   export let textCardType;
 
   let dropdownState = false;
+
+  let LinkItems = [
+  {  
+  title: "About", link:"/about", class:'.gaming-Console',
+  title: "Home", link:"/", class:'.testD'
+
+  }
+  ];
   let links = ["Shop", "Newsroom", "Professionals", "Creators", "Developers", "Researchers", "XR"];
   let showMore = false;
   let numSentences = 2; // Number of sentences to display initially
@@ -50,17 +58,17 @@
       <!-- svelte-ignore a11y-missing-attribute -->
       <a on:click={toggleDropdown}>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-             class:rotated={dropdownState} class="feather feather-arrow-down dropdown-icon"
-             id="dropdown-icon">
-          <line x1="12" y1="5" x2="12" y2="19"></line>
-          <polyline points="19 12 12 19 5 12"></polyline>
-        </svg>
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class:rotated={dropdownState} class="feather feather-chevron-down dropdown-icon"
+        id="dropdown-icon">
+     <polyline points="6 9 12 15 18 9"></polyline>
+   </svg>
+   
         Links
       </a>
       <div class={dropdownState ? 'dropDownContent show' : 'dropDownContent'} on:clickoutside={hideDropdown}>
-        {#each links as link }
-          <a href="/">{link}</a>
+        {#each LinkItems as link }
+          <a href="/">{link.title}</a>
         {/each}
       </div>
     </div>
@@ -138,22 +146,26 @@
     text-decoration: none;
     transition: background-color 0.3s ease;
   }
-
+.dropdown-icon{
+  transform: translateY(5px);
+}
   .dropDownContent a:hover {
     background-color: #eee;
   }
   
   /* Responsive styles */
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 600px) {
     
     
     .text-card {
-      width: 500px;
+      width: 100%;
       height: auto;
-      margin-left: 0;
+      margin-left: -20px;
       margin-right: 0;
       transform: none;
-      height: 100px;
+      height: 80px;
+      z-index: 0;
+      
     }
 
     h2 {
@@ -165,10 +177,12 @@
     p {
       font-size: 18px;
       text-align: center;
+      line-height: 60px;
     }
 
     .dropdown {
       text-align: center;
+      display: none;
     }
 
     .dropDownContent {

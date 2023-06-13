@@ -231,23 +231,7 @@ async function scrollToTest(event,link, targetClass, id) {
 .firstDrop a:nth-child(n+2){
   padding-left: 90px;
 }
-.secondLinksContainer a:nth-child(n+2)
-{
-  padding-left: 30px; 
-  
-}
 
-
-.dot {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    height: 10px;
-    width: 10px;
-    background-color: #2608eb;
-    border-radius: 50%;
-    
-  }
   .box {
     position: fixed;
     width: 100%;

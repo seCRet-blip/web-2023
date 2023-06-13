@@ -330,7 +330,14 @@ function prevCard(sliderIndex) {
 {/each}
 
 <style>
-
+:root {
+  --cool-gray: #9499AAff;
+--lavender-web: #C9CFE3ff;
+--blue-gray: #6994C5ff;
+--french-gray: #BEC3D5ff;
+--lavender-web-2: #D5DBEEff;
+--white: #FEFEFEff;
+}
 .nav-buttons {
   position: absolute;
   top: 0;
@@ -347,7 +354,7 @@ function prevCard(sliderIndex) {
   padding-top: 2px;
 }
 .Prev:hover, .Next:hover {
-  background: linear-gradient(to right, #2608eb, #add8e6);
+  filter: brightness(120%);
   color: white;
   cursor: pointer;
 }
@@ -357,9 +364,9 @@ function prevCard(sliderIndex) {
   height: 30px;
   width: 30px;
   margin-left: 10px;
-  background: #2608eb;
-  transition: background 0.5s ease;
-  color: white;
+  background-color: var(--blue-gray);
+  
+  color: var(--white);
   border: none;
 }
 
@@ -401,11 +408,11 @@ function prevCard(sliderIndex) {
 }
 
 .image-container::-webkit-scrollbar-track {
-  background: #f1f1f1; /* adjust as needed */
+  background: var(--lavender-web); /* adjust as needed */
 }
 
 .image-container::-webkit-scrollbar-thumb {
-  background: #888; /* adjust as needed */
+  background: var(--blue-gray); /* adjust as needed */
   border-radius: 4px; /* adjust as needed */
 }
 
@@ -415,15 +422,19 @@ function prevCard(sliderIndex) {
 
   
   .text-container {
-    width: 20%;
+    width: 30%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-right: 90px;
+    padding-right: 40px;
+    color: var( --raisin-black);
+    
     transform: translateY(-80px); 
   }
-  
+  .mobile-only {
+  display: none;
+}
 @media only screen and (max-width: 600px) {
   .nav-buttons{
     display: none;
@@ -433,7 +444,7 @@ function prevCard(sliderIndex) {
     display: flex;
     flex-direction: row;
     position: relative;
-    height: 100vh;
+    height: 150vh;
   align-items: center;
   overflow: hidden;
 
@@ -441,9 +452,9 @@ function prevCard(sliderIndex) {
 .carousel-container{
   position: relative;  
    width: 800px;
-    height: 100vh; /* 100% of viewport height */
+    height: 150vh; /* 100% of viewport height */
     margin-bottom: 50px;
-    padding-top: 200%;
+    padding-top: 300%;
   }
 
   .image-container{
@@ -461,18 +472,16 @@ function prevCard(sliderIndex) {
   .text-container.mobile-only {
     display: block;
     position: absolute;
-    top: 100px;  /* Adjust this value according to your needs */
-    width: 80%;  /* This will make it take full width of its parent element */
-    z-index: 10;  /* Ensure it appears above other elements */
-    height: 50%;
+    top: 200px;  /* Adjust this value according to your needs */
+    width: 90%;  /* This will make it take full width of its parent element */
+  /* Ensure it appears above other elements */
+    height: 25%;
     margin-left: 10%;
-    
   }
+  
 
 }
-.mobile-only {
-  display: none;
-}
+
 </style>
 
 

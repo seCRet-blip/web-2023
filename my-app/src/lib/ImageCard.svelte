@@ -66,14 +66,15 @@
       scroll-snap-align: start; /* Snap cards to the start of the viewport */
       flex: 0 0 auto;
       width: 100%;
-      max-width: 650px; /* Limit the width of each card */
+      max-width: 750px; /* Limit the width of each card */
       margin-right: 10px;
-      height: 100vh;
+      height: 150vh;
+      transform: translateY(-90px);
 
     }
 
     .card__image {
-      height: 250px;
+      height: 400px;
       width: 100%;
       object-fit: cover;
     }
@@ -86,9 +87,12 @@
 
     .card__text {
       margin-top: 5px;
-      margin-left: 10px;
+      margin-left: 15px;
       margin-right: 10px;
-      font-size: 30px;
+      font-size: 40px;
+    }
+    .card__announcement{
+      font-size: 40px;
     }
   }
 </style>
