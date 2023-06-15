@@ -16,7 +16,6 @@
 
 <style>
   .card {
-  perspective: 1000px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +23,7 @@
   transform: translateX(238px);
   margin-top: 50px;
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3), 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.1);
-  height: 500px;
+  height: 550px;
   transition: transform 0.3s ease-in-out;
   
   transform-style: preserve-3d;
@@ -59,7 +58,7 @@
 
   /* Responsive styles for phone view */
   
-    @media only screen and (max-width: 800px) {
+    @media only screen and (max-width: 600px) {
 
 
     .card {
@@ -69,7 +68,7 @@
       max-width: 750px; /* Limit the width of each card */
       margin-right: 10px;
       height: 150vh;
-      transform: translateY(-90px);
+      transform: translateY(-100px);
 
     }
 

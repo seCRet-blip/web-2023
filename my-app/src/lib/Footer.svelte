@@ -1,5 +1,6 @@
 <script>
       import { goto } from '$app/navigation';
+      
   let items = [
     {
       title: "Home",
@@ -61,52 +62,21 @@
   <div class="grid-container">
     {#each items as item}
       <div class="grid-item">
-        <div class="grid-content">
-          <h3>{item.title}</h3>
+        <div class="grid-content .text-align text-style">
+          <h3 class="text-style">{item.title}</h3>
           {#each item.links as link}
-            <p><a href={link.link} on:click|preventDefault={(e) => navigate(e, link.link, link.class)}>{link.text}</a></p>
+            <p><a class="text-style" href={link.link} on:click|preventDefault={(e) => navigate(e, link.link, link.class)}>{link.text}</a></p>
           {/each}
         </div>
       </div>
     {/each}
   </div>
 </footer>
-
-
   
 <style>
-  .grid-content {
-    text-align: left;
-    margin-right: 25%;
-  }
-  .grid-content, a ,h3{
-    text-decoration: none;
-    color: #333;
-  }
-  .grid-content, a:hover{
-    color: #2608eb;
-  }
-  footer {
-    padding: 20px;
-  }
-  
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 10px;
-  }
-  
-  .grid-item {
-    padding: 10px;
-    height: 250px;
-    width: 100%;
-    text-align: center;
-    border-left: 1px solid #333;
-  }
-  
-  .grid-item:first-child {
-    border-left: none;
-  }
+
+
+
   
   /* Smartphone portrait and landscape */
   @media only screen 
@@ -117,7 +87,7 @@
       }
       .grid-item{
         height: 400px;
-        
+        width: 400px;
       }
       .grid-content {
         margin-right: 0;

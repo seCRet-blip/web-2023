@@ -355,7 +355,7 @@ function prevCard(sliderIndex) {
 }
 .Prev:hover, .Next:hover {
   filter: brightness(120%);
-  color: white;
+  color: var(--white);
   cursor: pointer;
 }
 
@@ -373,13 +373,13 @@ function prevCard(sliderIndex) {
  .carousel-container {
   width: 100%;
   position: relative;
-  height: 600px;
+  height: 650px;
   display: flex;
   flex-direction: row;
   align-items: center;
   overflow: hidden;
 
-  padding-top: 40px;
+  margin-top: 18%;
 }
 
   .cards-container {
@@ -435,6 +435,10 @@ function prevCard(sliderIndex) {
   .mobile-only {
   display: none;
 }
+
+
+
+
 @media only screen and (max-width: 600px) {
   .nav-buttons{
     display: none;
@@ -444,7 +448,7 @@ function prevCard(sliderIndex) {
     display: flex;
     flex-direction: row;
     position: relative;
-    height: 150vh;
+    height: 300vh;
   align-items: center;
   overflow: hidden;
 
@@ -454,7 +458,7 @@ function prevCard(sliderIndex) {
    width: 800px;
     height: 150vh; /* 100% of viewport height */
     margin-bottom: 50px;
-    padding-top: 300%;
+    padding-top: 630%;
   }
 
   .image-container{
@@ -472,13 +476,12 @@ function prevCard(sliderIndex) {
   .text-container.mobile-only {
     display: block;
     position: absolute;
-    top: 200px;  /* Adjust this value according to your needs */
+    top: 350px;  /* Adjust this value according to your needs */
     width: 90%;  /* This will make it take full width of its parent element */
-  /* Ensure it appears above other elements */
+    
     height: 25%;
     margin-left: 10%;
   }
-  
 
 }
 

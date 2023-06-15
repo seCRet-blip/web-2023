@@ -141,11 +141,11 @@ async function scrollToTest(event,link, targetClass, id) {
 
 
 
-<div class="desktopNav">
+<div class="desktopNav absolute">
   <div class="links {showLinks ? 'active' : ''}">
     {#each dropdownItems as item, index (item.id)}
-      <a class="MainLinks" href="/" 
-         style:color={item.clicked ? '#2608eb' : 'initial'} 
+    <a class="MainLinks text-style {item.clicked ? 'clicked' : ''}" href="/"
+
          on:click|preventDefault={() => {changeColour(item); moveDivDown(item.id);}}
       >
         {item.title}
@@ -161,11 +161,11 @@ async function scrollToTest(event,link, targetClass, id) {
   
   {#each dropdownItems as item, index (item.id)}
     <div class="box" bind:this={x[index]}>
-      <div class="linksContainer">
-        <div class="dropDownContent firstDrop">
+      <div class="linksContainer flex-center">
+        <div class="dropDownContent firstDrop flex-center text-style ">
           <!-- Links -->
           {#each item.links as link}
-          <a href="/" on:click|preventDefault={(e) => scrollToTest(e, link.link, link.class, item.id)}>{link.text}</a>
+          <a class="text-style" href="/" on:click|preventDefault={(e) => scrollToTest(e, link.link, link.class, item.id)}>{link.text}</a>
 
           {/each}
         </div>
@@ -175,101 +175,6 @@ async function scrollToTest(event,link, targetClass, id) {
   {/each}
 </div>  
 <style>
-    .desktopNav {
-      position: absolute;
-      width: 100%;
-    display: block;  /* Display navbar on desktop by default */
-  }
-
-* {
-  box-sizing: border-box;
-}
-
-  .dropdown-icon {
-  transition: transform 0.3s ease-in-out;
-  transform: translateY(5px);
-  height: 20px;
-  width: 20px;
-}
-
-.dropdown-icon.rotated {
-  transform: rotate(180deg);
-  
-}
-
-.MainLinks{
-  color: initial;
-  text-decoration: none;
-  padding-left: 15px; 
-}
-
-.MainLinks:hover, .MainLinks:hover svg {
-  color: #2608eb !important;
-  
-}
-
-.linksContainer::after {
-  content: '';
-  position: absolute;
-  bottom: 90px;
-  left: 0;
-  right: 0;
-  height: 1px; 
-  background-color: #797777; 
-  transform: translateY(40px);
-}
-
-
-
-/* start*/
-.dropDownContent a {
-  color: black;
-  text-decoration: none; 
-}
-
-
-.firstDrop a:nth-child(n+2){
-  padding-left: 90px;
-}
-
-  .box {
-    position: fixed;
-    width: 100%;
-    height: 150px;
-    background-color: white;
-    display: none;
-    z-index: 1;
-    box-shadow:
-      0 1px 1px hsl(0deg 0% 0% / 0.075),
-      0 2px 2px hsl(0deg 0% 0% / 0.075),
-      0 4px 4px hsl(0deg 0% 0% / 0.075),
-      0 8px 8px hsl(0deg 0% 0% / 0.075),
-      0 16px 16px hsl(0deg 0% 0% / 0.075);
-  }
-
-  .linksContainer {
-    padding-top: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.dropDownContent {
-  padding-top: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.links{
-  position: fixed;
-  z-index: 10;
-  background-color: white;
-  width: 100%;
-  height: 50px;
-}
 
 @media (max-width: 800px) {
     .desktopNav {

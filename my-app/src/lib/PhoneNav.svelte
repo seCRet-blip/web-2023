@@ -3,10 +3,10 @@
     let showNav = false;
   
     let navItems = [
-      { title: "Home", link: "/", class: '.test' },
-      { title: "About", link: "/", class: ".Gaming" },
-      { title: "Services", link: "/", class: ".Technology" },
-      { title: "Contact", link: "/about", class: ".Impact" },
+      { title: "Home", link: "/", class: null },
+      { title: "About", link: "/", class: null },
+      { title: "Future Consoles", link: "/", class: ".Technology" },
+      { title: "In the Clouds", link: "/about", class: ".Impact" },
     ];
   
     function toggleNav() {
@@ -54,6 +54,7 @@
 
   .header {
     display: flex;
+    top: 0;
     justify-content: flex-start;
     align-items: center;
     padding: 1rem;
@@ -65,7 +66,7 @@
   }
 
   .toggle {
-    font-size: 2rem;
+    font-size: 5rem;
     background: none;
     border: none;
     color: black;
@@ -77,7 +78,7 @@
     background-color: white;
     position: absolute;
     align-items: center;
-    top: 60px;
+    top: 110px;
     left: 0;
     right: 0;
     width: 100%;

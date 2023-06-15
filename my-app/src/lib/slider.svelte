@@ -7,7 +7,7 @@
   // Array to store the fetched images from the API
   let images = [];
   images = ($page.data.props?.images || []).slice(0, 9);
-  console.log(images, "slider page ")
+  
     // Variables to hold the slider and the current slide index
   let slide;
   let slideIndex = 0;
@@ -117,7 +117,7 @@ onDestroy(() => {
     position: absolute;
     z-index: 1;
     margin-left: 5%;
-    padding-top: 100px;
+    padding-top: 50px;
     padding-left: 25px;
     color: var(--white);
     background-color: var(--charcoal-overlay);
@@ -174,9 +174,10 @@ onDestroy(() => {
 
   .slide {
     position: relative;
+    margin-top: 20%;
     width: 100%;
-    height: 400px;
-    max-height: 100vh;
+    height: 100%;
+    max-height: 90vh;
     display: flex;
     transition: opacity 400ms ease-out;
     background-color: black;
@@ -189,7 +190,8 @@ onDestroy(() => {
   }
 
   .slide{
-    height: 450px;
+    margin-top: 35%;
+    height: 500px;
   }
   .container {
     width: 800px;

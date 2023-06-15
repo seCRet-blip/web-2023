@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-
+  import { goto } from '$app/navigation';
   export let title;
   export let text;
   export let textCardType;
@@ -9,11 +9,27 @@
 
   let LinkItems = [
   {  
-  title: "About", link:"/about", class:'.gaming-Console',
-  title: "Home", link:"/", class:'.testD'
+    title: "About", 
+    link:"/about", 
+    class: null
+  }, 
+  {
+    title: "|Virtual Reality", 
+    link:"/about", 
+    class:'.Virtual'
+  },
+  {  
+    title: "|Gaming Console", 
+    link:"/about", 
+    class:'.Gaming-Console'
+  }, 
+  {  
+    title: "|AI", 
+    link:"/about", 
+    class:'.Artificial'
+  }, 
+];
 
-  }
-  ];
   let links = ["Shop", "Newsroom", "Professionals", "Creators", "Developers", "Researchers", "XR"];
   let showMore = false;
   let numSentences = 2; // Number of sentences to display initially
@@ -43,6 +59,20 @@
       hideDropdown();
     }
   }
+  async function scrollToTest(event,link, targetClass, id) {
+    event.preventDefault();
+  console.log(targetClass)
+    // Navigate to the new page
+    await goto(link);
+
+    // Scroll to the desired element
+    const element = document.querySelector( targetClass); // added the dot here
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+
+}
+
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -68,7 +98,7 @@
       </a>
       <div class={dropdownState ? 'dropDownContent show' : 'dropDownContent'} on:clickoutside={hideDropdown}>
         {#each LinkItems as link }
-          <a href="/">{link.title}</a>
+        <a href="/" on:click|preventDefault={(e) => scrollToTest(e, link.link, link.class, link.id)}>{link.title}</a>
         {/each}
       </div>
     </div>
@@ -91,7 +121,11 @@
 
 <style>
   .readmore-card{
+    width: 95%;
+  }
+  .readmore-card p{
     cursor: pointer;
+    font-size: 20px;
   }
 
   .text-card {
@@ -110,7 +144,7 @@
     font-size: 24px;
     margin: 0 0 10px 0;
     font-weight: 700;
-    text-align: center;
+    width: 80%;
     margin-right: 40%;
   }
 
@@ -152,10 +186,10 @@
   .dropDownContent a:hover {
     background-color: #eee;
   }
-  
+
+
   /* Responsive styles */
   @media only screen and (max-width: 600px) {
-    
     
     .text-card {
       width: 100%;
@@ -172,12 +206,14 @@
       font-size: 50px;
       padding-bottom: 10px;
       margin-right: 0;
+      line-height: 50px;
     }
 
     p {
-      font-size: 18px;
-      text-align: center;
+      font-size: 40px;
+      text-align: left;
       line-height: 60px;
+      
     }
 
     .dropdown {
@@ -192,17 +228,18 @@
       flex-wrap: wrap;
       justify-content: center;
     }
-    .readmore-card{
-      line-height: 43px;
-    }
-    .readmore-card ,p{
-      font-size: 40px;
+ 
+    .readmore-card p{
+      font-size: 25px;
+      line-height: 55px;
       text-align: left;
-      padding-left: 5px;
+      padding-left: 10%;
      
   }
   .readmore-card h2{
+    margin-left: 30px;
     font-size: 60px;
+    line-height: 60px;
   }
     .dropDownContent a {
       padding: 5px 10px;
