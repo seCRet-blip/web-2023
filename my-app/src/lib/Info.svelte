@@ -61,7 +61,7 @@ let cardTexts = [
   
   </script>
   {#each cardTexts as card }
-  <div class="card">
+  <div class="card card-base">
     <div class="textContainer {card.class}" >
       <div class="text ">
         <TextCard textCardType={card.textCardType} title={card.title} text={card.text} />
@@ -77,50 +77,7 @@ let cardTexts = [
   
   
   <style>
-.card {
-  display: flex;  /* Add Flexbox */
-  perspective: 1000px;
-  width: 90%;
-  height: 600px;
-  position: relative;
-  margin-top: 5%;
-  background-color: white;
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2); /* Add shadow for 3D effect */
-  transition: transform 0.2s, box-shadow 0.2s; /* Ensure smooth transitions for both transform and box-shadow */
-  border-radius: 10px;
-  margin-left: 5%;
-}
 
-.textContainer {
-  padding-top: 5%;
-  width: 50%;
-  height: 50%;
-}
-
-.imageContainer {
-  width: 50%;
-  height: 100%;
-}
-
-.card:hover {
-  transform: scale(1.05); /* make the card slightly larger when hovered */
-  box-shadow: 0 30px 40px rgba(0, 0, 0, 0.3); /* Enhance shadow when hovered for a more pronounced 3D effect */
-}
-
-.image {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-}
-
-.text {
-  width: 100%;
-  height: 100%;
-  font-size: 20px;
-  box-sizing: border-box;
-  color: #333;
-}
 
 @media only screen and (max-width: 600px) { 
 

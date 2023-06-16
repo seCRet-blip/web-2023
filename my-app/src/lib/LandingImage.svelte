@@ -5,7 +5,7 @@
     let backgroundImage = images[10];  // Set the first image as the background
   </script>
   <!-- this is a landing image that the user will see as soon as they are on the about page-->
-  <div class="container relative">
+  <div class="landing-container relative">
     <div class="image relative" style="background-image: url({backgroundImage});">
       <div class="overlay text-left absolute flex-center">
         <h1 class="title"><!--The reason for spans is to be able to style the invidual word in the title-->
