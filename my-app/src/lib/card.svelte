@@ -443,6 +443,10 @@ function prevCard(sliderIndex) {
   .nav-buttons{
     display: none;
   }
+  .image-container::-webkit-scrollbar {
+  width: 8px; /* adjust as needed */
+  height: 8px; /* adjust as needed */
+}
   .cards-container{
     width: 800px;
     display: flex;
@@ -482,9 +486,25 @@ function prevCard(sliderIndex) {
     height: 25%;
     margin-left: 10%;
   }
-
 }
-
+@media only screen and (min-width:700px){
+  .carousel-container{
+    margin-top: 200px;
+    height: 120vh;
+    width: 800px;
+  }
+}
+@media only screen and (min-width:1000px){
+  .carousel-container{
+    margin-top: 300px;
+    width: 100%;
+    height: 100vh;
+    
+  }
+  .text-container{
+    height: 600px;
+  }
+}
 </style>
 
 

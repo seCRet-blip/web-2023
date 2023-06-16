@@ -246,4 +246,11 @@
       
     }
   }
+
+  @media only screen and (min-width: 700px) {
+    .text-card{
+      margin-left: 0;
+      width: 400px;
+    }
+  }
 </style>

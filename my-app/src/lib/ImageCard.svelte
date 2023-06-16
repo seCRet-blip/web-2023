@@ -27,9 +27,9 @@
       scroll-snap-align: start; /* Snap cards to the start of the viewport */
       flex: 0 0 auto;
       width: 100%;
-      max-width: 750px; /* Limit the width of each card */
+      max-width: 700px; /* Limit the width of each card */
       margin-right: 10px;
-      height: 150vh;
+      height: 160vh;
       transform: translateY(-100px);
 
     }

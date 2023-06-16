@@ -18,8 +18,6 @@
   </div>
   
   <style>
-
-
 @media (max-width: 600px) {
     .title {
         font-size: 30px; /* Decrease the font size of the title for smaller screens */
@@ -28,7 +26,7 @@
 
         height: 100vh; /* Take up the full height of the screen on smaller screens */
     }
-    .container {
+    .landing-container {
         width: 800px;
         height: 100vh; /* Take up the full height of the screen on smaller screens */
     }

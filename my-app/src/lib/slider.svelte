@@ -204,6 +204,10 @@ onDestroy(() => {
   .slide img {
     width: 100%;
   }
-
+}
+@media screen and (min-width: 700px){
+  .text{
+    margin-top: 10%;
+  }
 }
 </style>

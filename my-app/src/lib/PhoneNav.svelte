@@ -4,7 +4,7 @@
   
     let navItems = [
       { title: "Home", link: "/", class: null },
-      { title: "About", link: "/", class: null },
+      { title: "About", link: "/about", class: null },
       { title: "Future Consoles", link: "/", class: ".Technology" },
       { title: "In the Clouds", link: "/about", class: ".Impact" },
     ];
@@ -104,6 +104,29 @@
   @media (max-width: 800px) {
     .mobileNav {
       display: block;
+    }
+  }
+  @media screen and (min-width: 700px){
+    .mobileNav{
+      display: block;
+    }
+    .header{
+      height: 60px;
+    }
+    .toggle{
+      font-size: 3rem;
+    }
+    nav{
+      top: 50px;
+      height: 210px;
+    }
+    nav a{
+      font-size: 25px;
+    }
+  }
+  @media screen and (min-width: 1000px){
+    .mobileNav{
+      display: none;
     }
   }
   </style>
