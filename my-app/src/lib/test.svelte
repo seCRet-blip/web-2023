@@ -135,16 +135,16 @@ async function scrollToTest(event,link, targetClass, id) {
 }
 </script>
 <div class="desktopNav absolute">
-  <div class="links {showLinks ? 'active' : ''}">
+  <div class="links position-fixed {showLinks ? 'active' : ''}">
     {#each dropdownItems as item, index (item.id)}
-    <a class="MainLinks text-style {item.clicked ? 'clicked' : ''}" href="/"
+    <a class="MainLinks relative text-style {item.clicked ? 'clicked' : ''}" href="/"
 
          on:click|preventDefault={() => {changeColour(item); moveDivDown(item.id);}}
       >
         {item.title}
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class:rotated={rotationStatesVal[index]} class="feather feather-arrow-down dropdown-icon"
+          class:rotated={rotationStatesVal[index]} class="relative feather feather-arrow-down dropdown-icon"
           id="dropdown-icon">
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
@@ -153,7 +153,7 @@ async function scrollToTest(event,link, targetClass, id) {
   </div>
   
   {#each dropdownItems as item, index (item.id)}
-    <div class="box" bind:this={x[index]}>
+    <div class="box position-fixed" bind:this={x[index]}>
       <div class="linksContainer flex-center">
         <div class="dropDownContent-n firstDrop flex-center text-style ">
           <!-- Links -->

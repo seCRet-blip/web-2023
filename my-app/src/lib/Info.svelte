@@ -61,7 +61,7 @@ let cardTexts = [
   
   </script>
   {#each cardTexts as card }
-  <div class="card card-base">
+  <div class="card relative card-base">
     <div class="textContainer {card.class}" >
       <div class="text ">
         <TextCard textCardType={card.textCardType} title={card.title} text={card.text} />

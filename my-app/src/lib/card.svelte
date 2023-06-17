@@ -270,7 +270,7 @@ function prevCard(sliderIndex) {
 
 
 {#each sliderCards as _, i (i)}
-  <div class="carousel-container">
+  <div class="carousel-container relative">
     {#each sliderCards[i] as card}
     {#if card.type === "TextCard"}
       <div class="text-container mobile-only {card.cardClass}">
@@ -278,7 +278,7 @@ function prevCard(sliderIndex) {
       </div>
     {/if}
   {/each}
-    <div class="nav-buttons">
+    <div class="nav-buttons absolute">
       <button class="Prev"  on:click={()=>prevCard(i)}>
         <svg xmlns="http://www.w3.org/2000/svg" 
         width="24" height="24" viewBox="0 0 24 24" 

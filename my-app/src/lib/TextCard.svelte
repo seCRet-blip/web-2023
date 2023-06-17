@@ -96,7 +96,7 @@
    
         Links
       </a>
-      <div class={dropdownState ? 'dropDownContent show' : 'dropDownContent'} on:clickoutside={hideDropdown}>
+      <div class={dropdownState ? 'dropDownContent show absolute' : 'dropDownContent'} on:clickoutside={hideDropdown}>
         {#each LinkItems as link }
         <a href="/" on:click|preventDefault={(e) => scrollToTest(e, link.link, link.class, link.id)}>{link.title}</a>
         {/each}

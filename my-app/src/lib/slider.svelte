@@ -73,19 +73,19 @@ onDestroy(() => {
 
 </script>
 <div class="container">
-  <div class="slider">
-    <div class="slide" bind:this={slide}>
+  <div class="slider relative">
+    <div class="slide relative" bind:this={slide}>
       {#each images as image, index (image)}
       <!-- Display each image in the 'images' array -->
       <div class="text-container-s">
-        <div class="text-s">
+        <div class="text-s absolute">
           {#if arr[index]}
             <h2>
               {#each arr[index].title.split(' ') as word, i}
                 {#if i === 1}
                   <span class="second-word">{word}</span>
                 {:else}
-                  <span class="first-word"> {word}</span> 
+                  <span class="first-word relative"> {word}</span> 
                 {/if}
                 &nbsp;
               {/each}
