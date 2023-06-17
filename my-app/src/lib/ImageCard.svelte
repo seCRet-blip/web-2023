@@ -4,9 +4,10 @@
   export let announcement;
   export let title;
   export let caption;
+  
 </script>
 
-<div class="card">
+<div class="card-I card-base">
   <img class="card__image" src="{imageSrc}" alt="{imageAlt}">
   <div class="card__announcement">{announcement}</div>
   <h2 class="card__title">{title}</h2> <!-- add title here -->
@@ -14,57 +15,27 @@
 </div>
 
 <style>
-  .card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-right: 10px;
-    transform: translateX(238px);
-    margin-top: 50px;
-    box-shadow: 
-      0 0 0 4px rgba(255, 255, 255, 0.3), /* inner white border */
-      0 4px 6px rgba(0, 0, 0, 0.1), /* shadow */
-      0 8px 20px rgba(0, 0, 0, 0.1); /* shadow */
-    height: 450px;
-  }
 
-  .card__image {
-    height: 250px;
-    width: 400px;
-    object-fit: cover;
-  }
 
-  .card__title {
-    margin-top: 20px;
-    font-size: 24px;
-    text-align: center;
-  }
-
-  .card__text {
-    margin-top: 10px;
-    margin-left: 5%;
-    margin-right: 5%;
-    font-size: 16px;
-    text-align: left;
-  }
 
   /* Responsive styles for phone view */
   
-    @media only screen and (max-width: 800px) {
+    @media only screen and (max-width: 600px) {
 
 
-    .card {
+    .card-I{
       scroll-snap-align: start; /* Snap cards to the start of the viewport */
       flex: 0 0 auto;
       width: 100%;
-      max-width: 650px; /* Limit the width of each card */
+      max-width: 700px; /* Limit the width of each card */
       margin-right: 10px;
-      height: 100vh;
+      height: 160vh;
+      transform: translateY(-100px);
 
     }
 
     .card__image {
-      height: 250px;
+      height: 400px;
       width: 100%;
       object-fit: cover;
     }
@@ -77,9 +48,12 @@
 
     .card__text {
       margin-top: 5px;
-      margin-left: 10px;
+      margin-left: 15px;
       margin-right: 10px;
-      font-size: 30px;
+      font-size: 40px;
+    }
+    .card__announcement{
+      font-size: 40px;
     }
   }
 </style>

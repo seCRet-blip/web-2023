@@ -1,12 +1,13 @@
 <script>
   // Importing necessary functions from Svelte
   import { onMount, onDestroy } from 'svelte';
-
-  // Base URL for the Unsplash API
-  const BASE_URL = `https://api.unsplash.com`;
+  import { page } from '$app/stores';
+  
 
   // Array to store the fetched images from the API
   let images = [];
+  images = ($page.data.props?.images || []).slice(0, 9);
+  
     // Variables to hold the slider and the current slide index
   let slide;
   let slideIndex = 0;
@@ -26,29 +27,14 @@
   { title: 'Tech Revolution', text: 'Witness the Tech Revolution sweeping the gaming industry. Experience mind-blowing advancements, from realistic graphics to immersive virtual reality, as technology continues to redefine the way we play.' }
 ];
 
-
-  // Function to fetch images from the Unsplash API
-  async function fetchImages() {
-  const response = await fetch(
-    // I tried to only get images that have blue in them some images dont have that much blue in them/
-    `${BASE_URL}/search/photos?query=gaming&client_id=-N6JZHxqqovedx2eWCPPe5NbO2-r3h1SJE5_PnCWU7E&per_page=9&page=10`
-  );
-
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
-
-  const { results } = await response.json();
-  images = results.map((result) => result.urls.regular);
-}
-
+  
 
   // Function to move the slides and update the opacity of the images
   function moveSlides() {
     slide.style.transform = `translateX(-${slideIndex * 100}%)`;
    
     const images = slide.querySelectorAll('img');
-    const texts = slide.querySelectorAll('.text');
+    const texts = slide.querySelectorAll('.text-s');
     images.forEach((image, index) => {
       texts[index].style.left = `${slideIndex * 100}%`;
       if (index === slideIndex) {
@@ -61,22 +47,23 @@
     });
   }
 
-  // Svelte lifecycle hook that runs when the component is mounted
   onMount(() => {
-    // Fetch images from the Unsplash API and then perform necessary actions
-    fetchImages().then(() => {
-      // Move the slides to the initial position
-      moveSlides();
+  // Move the slides to the initial position
+  moveSlides();
 
-      // Start the automatic slideshow
-      interval = setInterval(() => {
-        // Update the slide index to the next image index (circular)
-        slideIndex = (slideIndex + 1) % images.length;
-        // Move the slides to the updated index
-        moveSlides();
-      }, 5000);
-    });
-  });
+  // Start the automatic slideshow
+  interval = setInterval(() => {
+    // Update the slide index to the next image index (circular)
+    slideIndex = (slideIndex + 1) % images.length;
+    // Move the slides to the updated index
+    moveSlides();
+  }, 5000);
+});
+
+onDestroy(() => {
+  // Stop the automatic slideshow when the component is destroyed
+  clearInterval(interval);
+});
 
   // Svelte lifecycle hook that runs when the component is destroyed
   onDestroy(() => {
@@ -84,98 +71,49 @@
     clearInterval(interval);
   });
 
-
 </script>
-
-<main>
-  <div class="container">
-    <div class="slider">
-      <div class="slide" bind:this={slide}>
-        {#each images as image, index}
-        <!-- Display each image in the 'images' array -->
-        <div class="text-container">
-          <div class="text">
-            <h2>{arr[index].title}</h2>
+<div class="container">
+  <div class="slider">
+    <div class="slide" bind:this={slide}>
+      {#each images as image, index (image)}
+      <!-- Display each image in the 'images' array -->
+      <div class="text-container-s">
+        <div class="text-s">
+          {#if arr[index]}
+            <h2>
+              {#each arr[index].title.split(' ') as word, i}
+                {#if i === 1}
+                  <span class="second-word">{word}</span>
+                {:else}
+                  <span class="first-word"> {word}</span> 
+                {/if}
+                &nbsp;
+              {/each}
+            </h2>
             <p>{arr[index].text}</p>
-          </div>
+          {/if}
         </div>
-        <!-- svelte-ignore a11y-img-redundant-alt -->
-        <img src={image} alt="slide image" />
-        {/each}
       </div>
+      <!-- svelte-ignore a11y-img-redundant-alt -->
+      <img src={image} alt="slide image" />
+      {/each}
     </div>
   </div>
-</main>
+</div>
 
-
-  
 <style>
   /* CSS styles for the slider and slides */
-
-
- .text {
-    position: absolute;
-    z-index: 1;
-    margin-left: 5%;
-    padding-top: 100px;
-    padding-left: 25px;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.6);
-    height: 100%;
-    width: 30%;
-    line-height: 30px;
-    box-sizing: border-box;
-  }
-  *,
-  ::after,
-  ::before {
-    border: 0;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  .container {
-    display: grid;
-    place-items: center;
-    padding: 2rem 0;
-    height: 400px;
-    width: 100%;
-  }
-
-  .slider {
-    position: relative;
-    display: grid;
-    place-items: center;
-    overflow: hidden;
-    box-shadow: 20px 20px 50px hsl(210, 50%, 40% .4),
-      -20px -20px 50px hsl(210, 50%, 80% .2);
-      width: 100%;
-  }
-
-  .slide img {
-    width: 100%;
-    flex: 1 0 100%;
-    opacity: 0;
-    transition: opacity 3s ease;
-    object-fit: cover;
-    z-index: 0;
-  }
-
-  .slide {
-    position: relative;
-    width: 100%;
-    height: 400px;
-    max-height: 100vh;
-    display: flex;
-    transition: opacity 400ms ease-out;
-    background-color: black;
-  }
   @media screen and (max-width: 600px) {
-  .text {
-    width: 30%; /* Adjust as needed */
+  .text-s {
+    width: 50%; /* Adjust as needed */
+    font-size: 30px;
+    
   }
 
+  .slide{
+    margin-top: 35%;
+    height: 500px;
+  }
   .container {
     width: 800px;
   }
@@ -185,6 +123,40 @@
   }
 
   .slide img {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 768px){
+  .text-s{
+    margin-top: 5%;
+    width: 50%;
+  }
+  .container{
+    width: 800px
+  }
+  .slide{
+    width: 100%;
+  }
+}
+@media screen and (min-width: 1000px){
+  .text-s{
+    margin-top: 5%;
+  }
+  .container{
+    width: 1320px;
+  }
+  .slide{
+    width: 100%;
+  }
+}
+@media screen and (min-width: 1300px){
+  .text-s{
+    margin-top: 0;
+  }
+  .container{
+    width: 1320px;
+  }
+  .slide{
     width: 100%;
   }
 }

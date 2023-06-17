@@ -5,5 +5,6 @@
 </script>
  <!-- this is the root page-->  
 <Slider />
+
 <Card />
 
