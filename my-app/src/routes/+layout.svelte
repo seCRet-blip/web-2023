@@ -7,16 +7,15 @@
   import '../Main.css'
 
 </script>
-<div class="container">
+
   <Nav />
 <PhoneNav />
-</div>
+
 
   <slot />
 
 
 
-  <div class="container" >
+  
     <Footer />  
-  </div>
   

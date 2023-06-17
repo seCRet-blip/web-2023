@@ -330,115 +330,6 @@ function prevCard(sliderIndex) {
 {/each}
 
 <style>
-:root {
-  --cool-gray: #9499AAff;
---lavender-web: #C9CFE3ff;
---blue-gray: #6994C5ff;
---french-gray: #BEC3D5ff;
---lavender-web-2: #D5DBEEff;
---white: #FEFEFEff;
-}
-.nav-buttons {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin-right: 40px;
-  width: 100%;
-  height: 40px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.feather {
-  vertical-align: middle;
-  padding-top: 2px;
-}
-.Prev:hover, .Next:hover {
-  filter: brightness(120%);
-  color: var(--white);
-  cursor: pointer;
-}
-
-.Prev ,.Next{
-  margin-top: 15px;
-  height: 30px;
-  width: 30px;
-  margin-left: 10px;
-  background-color: var(--blue-gray);
-  
-  color: var(--white);
-  border: none;
-}
-
- .carousel-container {
-  width: 100%;
-  position: relative;
-  height: 650px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  overflow: hidden;
-
-  margin-top: 18%;
-}
-
-  .cards-container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%; 
-  }
-  
-  .image-container {
-    width: 100%;
-    height: 100%;
-    margin-left: 30px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-    
-  }
-
-  .image-container::-webkit-scrollbar {
-  width: 8px; /* adjust as needed */
-  height: 8px; /* adjust as needed */
-}
-
-.image-container::-webkit-scrollbar-track {
-  background: var(--lavender-web); /* adjust as needed */
-}
-
-.image-container::-webkit-scrollbar-thumb {
-  background: var(--blue-gray); /* adjust as needed */
-  border-radius: 4px; /* adjust as needed */
-}
-
-.image-container::-webkit-scrollbar-button {
-  display: none; /* hide the scrollbar buttons */
-}
-
-  
-  .text-container {
-    width: 30%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-right: 40px;
-    color: var( --raisin-black);
-    
-    transform: translateY(-80px); 
-  }
-  .mobile-only {
-  display: none;
-}
-
-
-
-
 @media only screen and (max-width: 600px) {
   .nav-buttons{
     display: none;
@@ -497,7 +388,18 @@ function prevCard(sliderIndex) {
 @media only screen and (min-width:1000px){
   .carousel-container{
     margin-top: 300px;
-    width: 100%;
+    width: 1300px;
+    height: 80vh;
+    
+  }
+  .text-container{
+    height: 600px;
+  }
+}
+@media only screen and (min-width:1200px){
+  .carousel-container{
+    margin-top: 300px;
+    width: 1300px;
     height: 100vh;
     
   }
@@ -505,6 +407,7 @@ function prevCard(sliderIndex) {
     height: 600px;
   }
 }
+
 </style>
 
 

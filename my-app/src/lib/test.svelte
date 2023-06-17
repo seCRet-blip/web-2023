@@ -133,14 +133,7 @@ async function scrollToTest(event,link, targetClass, id) {
     }
     moveDivDown(id);
 }
-
-
-  
 </script>
-
-
-
-
 <div class="desktopNav absolute">
   <div class="links {showLinks ? 'active' : ''}">
     {#each dropdownItems as item, index (item.id)}
@@ -162,7 +155,7 @@ async function scrollToTest(event,link, targetClass, id) {
   {#each dropdownItems as item, index (item.id)}
     <div class="box" bind:this={x[index]}>
       <div class="linksContainer flex-center">
-        <div class="dropDownContent firstDrop flex-center text-style ">
+        <div class="dropDownContent-n firstDrop flex-center text-style ">
           <!-- Links -->
           {#each item.links as link}
           <a class="text-style" href="/" on:click|preventDefault={(e) => scrollToTest(e, link.link, link.class, item.id)}>{link.text}</a>

@@ -77,9 +77,9 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="text-card" class:readmore-card={textCardType === 'readmore'} on:click={handleClick}>
-  <h2>{title}</h2>
+  <h2 class="title-c">{title}</h2>
   {#if textCardType === 'dropdown'}
-    <p>{text}</p>
+    <p class="text-c">{text}</p>
 
     <div class="dropdown">
       <!-- Dropdown code here -->
@@ -106,13 +106,13 @@
     <div class="readmore-card">
       {#if !showMore}
         {#each text.split('.').slice(0, numSentences) as sentence}
-          <p>{sentence}{#if !showMore && numSentences > 0 && sentence !== text.split('.').slice(0, numSentences).pop()}...{/if}</p>
+          <p class="text-c">{sentence}{#if !showMore && numSentences > 0 && sentence !== text.split('.').slice(0, numSentences).pop()}...{/if}</p>
         {/each}
         {#if text.split('.').length > numSentences}
-          <p> <strong>Click to read more</p>
+          <p class="text-c"> <strong>Click to read more</p>
         {/if}
       {:else}
-        <p>{text}</p>
+        <p class="text-c">{text}</p>
       {/if}
     </div>
   {/if}
@@ -120,73 +120,6 @@
 
 
 <style>
-  .readmore-card{
-    width: 95%;
-  }
-  .readmore-card p{
-    cursor: pointer;
-    font-size: 20px;
-  }
-
-  .text-card {
-    width: 450px;
-    height: 300px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-left: 20px;
-    text-align: left;
-    transform: translateY(-30px);
-    line-height: 40px;
-  }
-
-  h2 {
-    font-size: 24px;
-    margin: 0 0 10px 0;
-    font-weight: 700;
-    width: 80%;
-    margin-right: 40%;
-  }
-
-  p {
-    font-size: 25px;
-    margin: 0;
-    text-align: left;
-  }
-  .dropDownContent.show {
-    display: block;
-}
-
-  .dropdown-icon {
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .dropdown-icon.rotated {
-    transform: rotate(180deg);
-  }
-
-  .dropDownContent {
-    display: none;
-    position: absolute;
-    z-index: 1;
-    width: 500px;
-    flex-wrap: wrap;
-  }
-
-  .dropDownContent a {
-    display: inline;
-    padding: 5px;
-    color: #333;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-  }
-.dropdown-icon{
-  transform: translateY(5px);
-}
-  .dropDownContent a:hover {
-    background-color: #eee;
-  }
-
 
   /* Responsive styles */
   @media only screen and (max-width: 600px) {
@@ -253,4 +186,11 @@
       width: 400px;
     }
   }
+  @media only screen and (min-width: 1000px) {
+    .text-card{
+      margin-left: 0;
+      width: 500px;
+    }
+  }
+  
 </style>

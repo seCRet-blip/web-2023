@@ -34,7 +34,7 @@
     slide.style.transform = `translateX(-${slideIndex * 100}%)`;
    
     const images = slide.querySelectorAll('img');
-    const texts = slide.querySelectorAll('.text');
+    const texts = slide.querySelectorAll('.text-s');
     images.forEach((image, index) => {
       texts[index].style.left = `${slideIndex * 100}%`;
       if (index === slideIndex) {
@@ -77,8 +77,8 @@ onDestroy(() => {
     <div class="slide" bind:this={slide}>
       {#each images as image, index (image)}
       <!-- Display each image in the 'images' array -->
-      <div class="text-container">
-        <div class="text">
+      <div class="text-container-s">
+        <div class="text-s">
           {#if arr[index]}
             <h2>
               {#each arr[index].title.split(' ') as word, i}
@@ -103,87 +103,8 @@ onDestroy(() => {
 
 <style>
   /* CSS styles for the slider and slides */
-
-  :root {
-  --cool-gray: #9499AAff;
---lavender-web: #C9CFE3ff;
---blue-gray: #6994C5ff;
---french-gray: #BEC3D5ff;
---lavender-web-2: #D5DBEEff;
---white: #FEFEFEff;
---charcoal-overlay: rgba(65, 68, 79, 0.6);
-}
- .text {
-    position: absolute;
-    z-index: 1;
-    margin-left: 5%;
-    padding-top: 50px;
-    padding-left: 25px;
-    color: var(--white);
-    background-color: var(--charcoal-overlay);
-    height: 100%;
-    width: 30%;
-    line-height: 30px;
-    box-sizing: border-box;
-    font-size: 20px;
-  }
-  *,
-  ::after,
-  ::before {
-    border: 0;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  .container {
-    display: grid;
-    place-items: center;
-    padding: 2rem 0;
-    height: 400px;
-    width: 100%;
-  }
-  .first-word{
-    position: relative;
-  top: -10px;
-  }
-  .second-word{
-  color: var(--blue-gray);
-}
-.text h2{
-    padding-bottom: 25px;
-  }
-  .slider {
-    position: relative;
-    display: grid;
-    place-items: center;
-    overflow: hidden;
-    box-shadow: 20px 20px 50px hsl(210, 50%, 40% .4),
-      -20px -20px 50px hsl(210, 50%, 80% .2);
-      width: 100%;
-  }
-
-  .slide img {
-    width: 100%;
-    flex: 1 0 100%;
-    opacity: 0;
-    transition: opacity 3s ease;
-    object-fit: cover;
-    z-index: 0;
-  }
-
-  .slide {
-    position: relative;
-    margin-top: 20%;
-    width: 100%;
-    height: 100%;
-    max-height: 90vh;
-    display: flex;
-    transition: opacity 400ms ease-out;
-    background-color: black;
-  }
   @media screen and (max-width: 600px) {
-  .text {
+  .text-s {
     width: 50%; /* Adjust as needed */
     font-size: 30px;
     
@@ -205,9 +126,38 @@ onDestroy(() => {
     width: 100%;
   }
 }
-@media screen and (min-width: 700px){
-  .text{
-    margin-top: 10%;
+@media screen and (min-width: 768px){
+  .text-s{
+    margin-top: 5%;
+    width: 50%;
+  }
+  .container{
+    width: 800px
+  }
+  .slide{
+    width: 100%;
+  }
+}
+@media screen and (min-width: 1000px){
+  .text-s{
+    margin-top: 5%;
+  }
+  .container{
+    width: 1320px;
+  }
+  .slide{
+    width: 100%;
+  }
+}
+@media screen and (min-width: 1300px){
+  .text-s{
+    margin-top: 0;
+  }
+  .container{
+    width: 1320px;
+  }
+  .slide{
+    width: 100%;
   }
 }
 </style>
