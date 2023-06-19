@@ -1,0 +1,543 @@
+
+/***************
+ * Global Styles 
+ ***************/
+
+ :root {
+  --cool-gray: #9499AAff;
+--lavender-web: #C9CFE3ff;
+--blue-gray: #6994C5ff;
+--french-gray: #BEC3D5ff;
+--lavender-web-2: #D5DBEEff;
+--white: #FEFEFEff;
+--charcoal-overlay: rgba(65, 68, 79, 0.6);
+--box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3), 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+body{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+h3{
+  color: var(--white);
+}
+.text-style{
+  text-decoration: none;
+  color: #333;
+}
+.absolute{
+  position: absolute;/* Position the overlay relative to the container 
+  this is a css class on all elements that need position absolute*/
+}
+.relative{
+  position: relative;   /* Position the image relative to its normal position 
+  css class on all element that need position relative*/
+}
+.text-align{
+  text-align: left;
+}
+.flex-center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.position-fixed {
+  position: fixed;
+}
+/****************
+* Navbar Styles 
+****************/
+.desktopNav {
+  top: 0;
+  width: 100%;
+display: block;  /* Display navbar on desktop by default */
+}
+
+* {
+box-sizing: border-box;
+}
+
+.dropdown-icon {
+transition: transform 0.3s ease-in-out;
+transform: translateY(5px);
+height: 20px;
+width: 20px;
+}
+
+.dropdown-icon.rotated {
+transform: rotate(180deg);
+
+}
+
+.MainLinks{
+
+  top: 10px;
+padding-left: 10px; 
+}
+.MainLinks svg{
+
+  top: -5px;
+}
+
+.text-style.clicked,
+.text-style:hover {
+  color: var(--blue-gray);
+}
+
+.linksContainer::after {
+content: '';
+position: absolute;
+left: 0;
+right: 0;
+height: 1px; 
+background-color: var(--blue-gray); 
+transform: translateY(40px);
+}
+
+
+.firstDrop a{
+margin-left: 30px;
+}
+
+.box {
+width: 100%;
+height: 150px;
+background-color: var(--white);
+display: none;
+z-index: 1;
+box-shadow:
+  0 1px 1px hsl(0deg 0% 0% / 0.075),
+  0 2px 2px hsl(0deg 0% 0% / 0.075),
+  0 4px 4px hsl(0deg 0% 0% / 0.075),
+  0 8px 8px hsl(0deg 0% 0% / 0.075),
+  0 16px 16px hsl(0deg 0% 0% / 0.075);
+}
+
+.linksContainer {
+padding-top: 40px;
+}
+
+.dropDownContent-n {
+padding-top: 20px;
+flex-direction: row;
+justify-content: center;
+
+}
+
+.links{
+z-index: 10;
+background-color: white;
+width: 100%;
+height: 50px;
+}
+
+
+/****************
+* Footer Styles 
+****************/
+
+.grid-content {
+  
+  margin-right: 25%;
+}
+
+.grid-content, a:hover{
+  color: #2608eb;
+}
+footer {
+  padding: 20px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px;
+}
+
+.grid-item {
+  padding: 10px;
+  height: 250px;
+  width: 100%;
+  border-left: 1px solid #333;
+}
+
+.grid-item:first-child {
+  border-left: none;
+}
+
+/****************
+* Landing Image 
+****************/
+
+.image {
+
+  background-size: cover; /* Scale the background image to cover the entire container */
+  background-position: center; /* Position the background image at the center */
+  width: 100%; /* Set the width to 100% of the container */
+  height: 500px; /* Set the initial height of the image */
+  top: 0; /* Position the image at the top of the container */
+}
+
+.overlay {
+   
+  top: 0; /* Position the overlay at the top of the container */
+  left: 0; /* Position the overlay at the left of the container */
+  padding-left: 15px; /* Add left padding to the overlay */
+  width: 100%; /* Set the width to 100% of the container */
+  height: 100%; /* Set the height to 100% of the container */
+
+  align-items: flex-start; /* Align the content to the left side */
+  background-color: rgba(0, 0, 0, 0.5); /* Set the background color of the overlay with transparency */
+  color: white; /* Set the text color to white */
+   /* Align the text to the left */
+}
+
+.title {
+  font-size: 50px; /* Set the font size of the title */
+  margin-bottom: 20px; /* Add bottom margin to the title */
+}
+/*common styles for the specail words*/
+.special-word-base{
+  margin-bottom: 15px;
+  color: var(--white);
+}
+.special-word {
+  font-size: 70px; /* Set the font size of the special word */
+  color: yellow; /* Set the color of the special word to yellow */
+  top: -20px; /* Adjust the vertical position of the special word */
+}
+
+.special-word1 {
+  font-size: 100px; /* Set the font size of the first special word */
+  top: -60px; /* Adjust the vertical position of the first special word */
+}
+
+.special-word3 {
+  font-size: 50px; /* Set the font size of the third special word */
+  top: 40px; /* Adjust the vertical position of the third special word */
+   
+}
+/*Image card*/
+.card-base {
+  display: flex;
+
+  transition: transform 0.3s ease-in-out;
+  box-shadow: var(--box-shadow);
+}
+
+.card {
+perspective: 1000px;
+width: 90%;
+height: 600px;
+margin-top: 5%;
+background-color: white;
+border-radius: 10px;
+margin-left: 5%;
+}
+.card-I {
+
+flex-direction: column;
+align-items: center;
+margin-right: 10px;
+transform: translateX(238px);
+margin-top: 50px;
+height: 550px;
+transform-style: preserve-3d;
+}
+
+.textContainer {
+padding-top: 5%;
+margin-left: 1%;
+margin-right: 2%;
+width: 50%;
+height: 50%;
+}
+
+.imageContainer {
+width: 50%;
+height: 100%;
+}
+
+.card:hover {
+transform: scale(1.05); /* make the card slightly larger when hovered */
+box-shadow: 0 30px 40px rgba(0, 0, 0, 0.3); /* Enhance shadow when hovered for a more pronounced 3D effect */
+}
+.landing-container{
+  height: 600px;
+}
+.image {
+width: 100%;
+height: 100%;
+background-size: cover;
+background-position: center;
+}
+
+.text {
+width: 100%;
+height: 100%;
+font-size: 20px;
+box-sizing: border-box;
+color: #333;
+}
+
+
+.card__announcement{
+font-size: 20px;
+}
+
+.card-I:hover {
+transform: translateX(238px) scale(1.05);
+}
+.card__image {
+height: 250px;
+width: 400px;
+object-fit: cover;
+}
+
+.card__title {
+margin-top: 20px;
+font-size: 24px;
+text-align: center;
+}
+
+.card__text {
+margin-top: 10px;
+margin-left: 5%;
+margin-right: 5%;
+font-size: 20px;
+text-align: left;
+}
+
+
+/*Text card*/
+.readmore-card{
+  width: 95%;
+}
+.readmore-card p{
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.text-card {
+  width: 450px;
+  height: 300px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
+  text-align: left;
+  transform: translateY(-30px);
+  line-height: 40px;
+}
+
+.title-c {
+  font-size: 24px;
+  margin: 0 0 10px 0;
+  font-weight: 700;
+  width: 80%;
+  margin-right: 40%;
+}
+
+.text-c {
+  font-size: 25px;
+  margin: 0;
+  text-align: left;
+}
+.dropDownContent.show {
+  display: block;
+}
+
+.dropdown-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.dropdown-icon.rotated {
+  transform: rotate(180deg);
+}
+
+.dropDownContent {
+  display: none;
+
+  z-index: 1;
+  width: 500px;
+  flex-wrap: wrap;
+}
+
+.dropDownContent a {
+  display: inline;
+  padding: 5px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+.dropdown-icon{
+transform: translateY(5px);
+}
+.dropDownContent a:hover {
+  background-color: #eee;
+}
+
+/*card parent*/
+.nav-buttons {
+  top: 0;
+  right: 0;
+  margin-right: 40px;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.feather {
+  vertical-align: middle;
+  padding-top: 2px;
+}
+.Prev:hover, .Next:hover {
+  filter: brightness(120%);
+  color: var(--white);
+  cursor: pointer;
+}
+
+.Prev ,.Next{
+  margin-top: 15px;
+  height: 30px;
+  width: 30px;
+  margin-left: 10px;
+  background-color: var(--blue-gray);
+  
+  color: var(--white);
+  border: none;
+}
+.nav-buttons, .carousel-container, .cards-container ,.image-container,.text-container,.slide{
+  display: flex;
+}
+ .carousel-container {
+  width: 100%;
+  height: 650px;
+  
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+
+  margin-top: 18%;
+}
+
+
+
+  .cards-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%; 
+  }
+  
+  .image-container {
+    width: 100%;
+    height: 100%;
+    margin-left: 30px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    
+  }
+
+  .image-container::-webkit-scrollbar {
+  width: 8px; /* adjust as needed */
+  height: 8px; /* adjust as needed */
+}
+
+.image-container::-webkit-scrollbar-track {
+  background: var(--lavender-web); /* adjust as needed */
+}
+
+.image-container::-webkit-scrollbar-thumb {
+  background: var(--blue-gray); /* adjust as needed */
+  border-radius: 4px; /* adjust as needed */
+}
+
+.image-container::-webkit-scrollbar-button {
+  display: none; /* hide the scrollbar buttons */
+}
+  .text-container {
+    width: 30%;
+    height: 100%;
+    
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 40px;
+    color: var( --raisin-black);
+    transform: translateY(-80px); 
+  }
+  .mobile-only {
+  display: none;
+}
+
+/*Slider*/
+.text-s {
+
+  z-index: 3;
+  margin-left: 5%;
+  padding-top: 50px;
+  padding-left: 25px;
+  color: var(--white);
+  background-color: var(--charcoal-overlay);
+  height: 100%;
+  width: 30%;
+  line-height: 30px;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+.slide {
+  margin-top: 20%;
+  width: 100%;
+  height: 100%;
+  max-height: 90vh;
+  
+  transition: opacity 400ms ease-out;
+  background-color: black;
+}
+*,
+::after,
+::before {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: grid;
+  place-items: center;
+  padding: 2rem 0;
+  height: 400px;
+  width: 100%;
+}
+.first-word{
+top: -10px;
+}
+.second-word{
+color: var(--blue-gray);
+}
+.text-s h2{
+  padding-bottom: 25px;
+}
+.slider {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  box-shadow: 20px 20px 50px hsl(210, 50%, 40% .4),
+    -20px -20px 50px hsl(210, 50%, 80% .2);
+    width: 100%;
+}
+
+.slide img {
+  width: 100%;
+  flex: 1 0 100%;
+  opacity: 0;
+  transition: opacity 3s ease;
+  object-fit: cover;
+  z-index: 0;
+}
+
