@@ -64,11 +64,6 @@ height: 20px;
 width: 20px;
 }
 
-.dropdown-icon.rotated {
-transform: rotate(180deg);
-
-}
-
 .MainLinks{
 
   top: 10px;
@@ -139,10 +134,11 @@ height: 50px;
 .grid-content {
   
   margin-right: 25%;
+  line-height: 30px;
 }
 
 .grid-content, a:hover{
-  color: #2608eb;
+  color: var(--blue-gray);
 }
 footer {
   padding: 20px;
@@ -158,7 +154,7 @@ footer {
   padding: 10px;
   height: 250px;
   width: 100%;
-  border-left: 1px solid #333;
+  border-left: 1px solid var(--blue-gray);
 }
 
 .grid-item:first-child {
