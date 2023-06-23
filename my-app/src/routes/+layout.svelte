@@ -10,12 +10,6 @@
 
   <Nav />
 <PhoneNav />
-
-
   <slot />
-
-
-
-  
     <Footer />  
   
