@@ -2,158 +2,272 @@
 /***************
  * Global Styles 
  ***************/
-
- :root {
+/* The :root CSS pseudo-class matches the root element of a tree representing the document. 
+In HTML, :root represents the <html> element and is identical to the selector html, except that its 
+specificity is higher. The properties within this are custom CSS properties, sometimes referred to 
+as CSS variables, which contain values that can be reused throughout the document. */
+:root {
   --cool-gray: #9499AAff;
---lavender-web: #C9CFE3ff;
---blue-gray: #6994C5ff;
---french-gray: #BEC3D5ff;
---lavender-web-2: #D5DBEEff;
---white: #FEFEFEff;
---charcoal-overlay: rgba(65, 68, 79, 0.6);
---box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3), 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.1);
+  --lavender-web: #C9CFE3ff;
+  --blue-gray: #6994C5ff;
+  --french-gray: #BEC3D5ff;
+  --lavender-web-2: #D5DBEEff;
+  --white: #FEFEFEff;
+  --charcoal-overlay: rgba(65, 68, 79, 0.6);
+  --box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3), 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.1);
 }
-body{
+
+/* The body of the website is set to display a certain font family. */
+body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-h3{
+
+/* h3 headers throughout the website are set to display a certain color. */
+h3 {
   color: var(--white);
 }
-.text-style{
+
+/* This class is used to apply the same style to multiple text elements, 
+setting a consistent color and removing any text decoration like underlines. */
+.text-style {
   text-decoration: none;
   color: #333;
 }
-.absolute{
-  position: absolute;/* Position the overlay relative to the container 
-  this is a css class on all elements that need position absolute*/
+
+/* This class is used to set the position of an element to absolute. 
+Absolute positioning allows an element to be positioned with respect to its containing block, 
+but it is removed from the normal document flow. */
+.absolute {
+  position: absolute;
 }
-.relative{
-  position: relative;   /* Position the image relative to its normal position 
-  css class on all element that need position relative*/
+
+/* This class is used to set the position of an element to relative. 
+Relative positioning allows an element to be positioned relative to its normal position in the document flow. */
+.relative {
+  position: relative;   
 }
-.text-align{
+
+/* This class is used to align text to the left. */
+.text-align {
   text-align: left;
 }
-.flex-center{
+
+/* This class is used to center elements both vertically and horizontally using flexbox layout. */
+.flex-center {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+/* This class is used to fix the position of an element. 
+Fixed positioning is a subcategory of absolute positioning. The only difference is that for a fixed positioned box, 
+the containing block is established by the viewport. */
 .position-fixed {
   position: fixed;
 }
+
+/* This global style forces every element on the page to incorporate padding and border into the element's total width and height. */
+* {
+  box-sizing: border-box;
+}
+
 /****************
 * Navbar Styles 
 ****************/
+/* This class is used for navigation bar settings on desktop devices. 
+It positions the navigation bar at the top of the viewport and spans its width to 100% of the viewport. 
+It is set to display by default. */
 .desktopNav {
   top: 0;
   width: 100%;
-display: block;  /* Display navbar on desktop by default */
+  display: block;
 }
 
-* {
-box-sizing: border-box;
-}
-
+/* The dropdown-icon class applies to the icon used to indicate a dropdown menu. 
+It applies a transition effect to the transform property over 0.3s, initially moving the icon slightly downwards. 
+It also sets the icon's size. */
 .dropdown-icon {
-transition: transform 0.3s ease-in-out;
-transform: translateY(5px);
-height: 20px;
-width: 20px;
+  transition: transform 0.3s ease-in-out;
+  transform: translateY(5px);
+  height: 20px;
+  width: 20px;
 }
 
+/* This class applies when the dropdown icon is clicked. It rotates the dropdown icon by 180 degrees. */
 .dropdown-icon.rotated {
-transform: rotate(180deg);
-
+  transform: rotate(180deg);
 }
 
-.MainLinks{
-
+/* The MainLinks class positions the primary navigation links slightly down and to the right from their normal position. */
+.MainLinks {
   top: 10px;
-padding-left: 10px; 
+  padding-left: 10px;
 }
-.MainLinks svg{
 
+/* This positions any SVGs within elements with the MainLinks class slightly up from their normal position. */
+.MainLinks svg {
   top: -5px;
 }
 
+/* Changes the color of text when an element with the text-style class is clicked or hovered over. */
 .text-style.clicked,
 .text-style:hover {
   color: var(--blue-gray);
 }
 
+/* This creates a line after the linksContainer element with a subtle animation. */
 .linksContainer::after {
-content: '';
-position: absolute;
-left: 0;
-right: 0;
-height: 1px; 
-background-color: var(--blue-gray); 
-transform: translateY(40px);
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--blue-gray);
+  transform: translateY(40px);
 }
 
-
-.firstDrop a{
-margin-left: 30px;
+/* This sets the left margin of all anchor elements within an element with the firstDrop class. */
+.firstDrop a {
+  margin-left: 30px;
 }
 
+/* This sets the dimensions, background color, and display properties for the box class, 
+as well as a multi-layer box shadow for a blurry effect. It is initially hidden with display: none. */
 .box {
-width: 100%;
-height: 150px;
-background-color: var(--white);
-display: none;
-z-index: 1;
-box-shadow:
-  0 1px 1px hsl(0deg 0% 0% / 0.075),
-  0 2px 2px hsl(0deg 0% 0% / 0.075),
-  0 4px 4px hsl(0deg 0% 0% / 0.075),
-  0 8px 8px hsl(0deg 0% 0% / 0.075),
-  0 16px 16px hsl(0deg 0% 0% / 0.075);
+  width: 100%;
+  height: 150px;
+  background-color: var(--white);
+  display: none;
+  z-index: 1;
+  box-shadow:
+    0 1px 1px hsl(0deg 0% 0% / 0.075),
+    0 2px 2px hsl(0deg 0% 0% / 0.075),
+    0 4px 4px hsl(0deg 0% 0% / 0.075),
+    0 8px 8px hsl(0deg 0% 0% / 0.075),
+    0 16px 16px hsl(0deg 0% 0% / 0.075);
 }
 
+/* Adds padding to the top of the linksContainer class. */
 .linksContainer {
-padding-top: 40px;
+  padding-top: 40px;
 }
 
+/* Adjusts the padding and flex properties of the dropDownContent-n class. */
 .dropDownContent-n {
-padding-top: 20px;
-flex-direction: row;
-justify-content: center;
-
+  padding-top: 20px;
+  flex-direction: row;
+  justify-content: center;
 }
 
-.links{
-z-index: 10;
-background-color: white;
-width: 100%;
-height: 50px;
+/* Sets the stacking order, background color, and dimensions of the links class. */
+.links {
+  z-index: 10;
+  background-color: var(--white);
+  width: 100%;
+  height: 50px;
+}
+
+
+/****************
+* Phone Na Bar
+****************/
+/* Hides the mobile navigation by default */
+.mobileNav {
+  display: none;
+  width: 100%;
+}
+
+/* Defines the header of the page. It's a flex container that aligns its items 
+centered and start from the beginning of the horizontal axis. It's also positioned 
+at the top of the page and has a z-index of 999 to stay above all other elements. */
+.header {
+  display: flex;
+  top: 0;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--white);
+  color: var(--white);
+  width: 100%;
+  position: fixed;
+  z-index: 999;
+}
+
+/* Styles the toggle button. It's styled as a text, with no background or border,
+and its text color is black. */
+.toggle {
+  font-size: 5rem;
+  background: none;
+  border: none;
+  color: black;
+}
+
+/* Styles the navigation bar. It's a flex container that is vertically aligned. 
+It's positioned absolute and takes up the full width of the viewport. It has 
+a white background and a box shadow for visual depth. */
+nav {
+  display: flex;
+  flex-direction:column;
+  background-color: var(--white);
+  position: absolute;
+  align-items: center;
+  top: 110px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 300px;
+  padding: 10px 0;
+  box-shadow:
+    0 1px 1px hsl(0deg 0% 0% / 0.075),
+    0 2px 2px hsl(0deg 0% 0% / 0.075),
+    0 4px 4px hsl(0deg 0% 0% / 0.075),
+    0 8px 8px hsl(0deg 0% 0% / 0.075),
+    0 16px 16px hsl(0deg 0% 0% / 0.075);
+  z-index: 999;
+}
+
+/* Styles the links in the navigation. They have black text color, no text 
+decoration (underline), and padding on all sides. The font-size is set to 40px 
+and they are displayed as block elements which means they will start on a new line, 
+and take up the whole width available. */
+nav a {
+  color: black;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 40px;
+  display: block;
 }
 
 
 /****************
 * Footer Styles 
 ****************/
-
+/* The grid-content class adds right margin to the element. */
 .grid-content {
-  
   margin-right: 25%;
 }
 
+/* This rule sets the text color to --blue-gray for both grid-content elements and any hyperlinks on hover. */
 .grid-content, a:hover{
-  color: #2608eb;
+  color: var(--blue-gray);
 }
+
+/* The footer tag sets a padding of 20px on all sides. */
 footer {
   padding: 20px;
 }
 
+/* The grid-container class establishes a grid layout context and sets up auto-placement grid tracks. 
+It creates a flexible grid that wraps into new rows as needed and maintains a minimum column width of 300px. */
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 10px;
+  gap: 10px;  /* Specifies the size of the grid lines. */
 }
 
+/* The grid-item class adds padding to the grid items, sets their height to 250px, and sets their width to 100% of their parent. 
+It also adds a left border. */
 .grid-item {
   padding: 10px;
   height: 250px;
@@ -161,322 +275,381 @@ footer {
   border-left: 1px solid #333;
 }
 
+/* This rule removes the left border of the first grid item. */
 .grid-item:first-child {
   border-left: none;
 }
-
 /****************
 * Landing Image 
 ****************/
-
+/* This class styles the image to cover the entire container while being centered. */
 .image {
-
-  background-size: cover; /* Scale the background image to cover the entire container */
-  background-position: center; /* Position the background image at the center */
-  width: 100%; /* Set the width to 100% of the container */
-  height: 500px; /* Set the initial height of the image */
-  top: 0; /* Position the image at the top of the container */
+  background-size: cover; /* Ensures the background image covers the entire container */
+  background-position: center; /* Centers the background image */
+  width: 100%; /* Sets the width to occupy the entire container width */
+  height: 500px; /* Defines a fixed height for the image */
+  top: 0; /* Positions the image at the top of the container */
 }
 
+/* The overlay class creates a semi-transparent layer on top of the image, with content aligned to the left. */
 .overlay {
-   
-  top: 0; /* Position the overlay at the top of the container */
-  left: 0; /* Position the overlay at the left of the container */
-  padding-left: 15px; /* Add left padding to the overlay */
-  width: 100%; /* Set the width to 100% of the container */
-  height: 100%; /* Set the height to 100% of the container */
-
-  align-items: flex-start; /* Align the content to the left side */
-  background-color: rgba(0, 0, 0, 0.5); /* Set the background color of the overlay with transparency */
-  color: white; /* Set the text color to white */
-   /* Align the text to the left */
+  top: 0; /* Positions the overlay at the top of the container */
+  left: 0; /* Positions the overlay at the left of the container */
+  padding-left: 15px; /* Applies a padding to the left of the overlay content */
+  width: 100%; /* Ensures the overlay spans the entire container width */
+  height: 100%; /* Ensures the overlay spans the entire container height */
+  align-items: flex-start; /* Aligns the overlay content to the start of the flex container */
+  background-color: rgba(0, 0, 0, 0.5); /* Gives the overlay a semi-transparent black background */
+  color: white; /* Sets the color of the text within the overlay to white */
 }
 
+/* This class styles the title of the overlay. */
 .title {
-  font-size: 50px; /* Set the font size of the title */
-  margin-bottom: 20px; /* Add bottom margin to the title */
+  font-size: 50px; /* Sets the font size of the title */
+  margin-bottom: 20px; /* Adds a bottom margin to the title */
 }
-/*common styles for the specail words*/
+
+/* Common styles for special words in the overlay. */
 .special-word-base{
-  margin-bottom: 15px;
-  color: var(--white);
+  margin-bottom: 15px; /* Adds a bottom margin to the special words */
+  color: var(--white); /* Sets the color of the special words to white */
 }
+
+/* This class styles a special word with specific settings. */
 .special-word {
-  font-size: 70px; /* Set the font size of the special word */
-  color: yellow; /* Set the color of the special word to yellow */
-  top: -20px; /* Adjust the vertical position of the special word */
+  font-size: 70px; /* Sets the font size of the special word */
+  color: yellow; /* Sets the color of the special word to yellow */
+  top: -20px; /* Moves the special word up relative to its normal position */
 }
 
+/* This class styles the first special word with specific settings. */
 .special-word1 {
-  font-size: 100px; /* Set the font size of the first special word */
-  top: -60px; /* Adjust the vertical position of the first special word */
+  font-size: 100px; /* Sets the font size of the first special word */
+  top: -60px; /* Moves the first special word up relative to its normal position */
 }
 
+/* This class styles the third special word with specific settings. */
 .special-word3 {
-  font-size: 50px; /* Set the font size of the third special word */
-  top: 40px; /* Adjust the vertical position of the third special word */
-   
+  font-size: 50px; /* Sets the font size of the third special word */
+  top: 40px; /* Moves the third special word down relative to its normal position */
 }
-/*Image card*/
+
+/****************
+*  Image Card 
+****************/
+/* This class forms the basic structure for card components, including shadow and transform effects. */
 .card-base {
   display: flex;
-
-  transition: transform 0.3s ease-in-out;
-  box-shadow: var(--box-shadow);
+  transition: transform 0.3s ease-in-out; /* Transition for the transform property */
+  box-shadow: var(--box-shadow); /* Shadow effect defined by a CSS variable */
 }
 
+/* The .card class defines the appearance and positioning of card elements. */
 .card {
-perspective: 1000px;
-width: 90%;
-height: 600px;
-margin-top: 5%;
-background-color: white;
-border-radius: 10px;
-margin-left: 5%;
+  perspective: 1000px; /* Creates a 3D perspective for the card */
+  width: 90%; /* Set the width to 90% of its container */
+  height: 600px; /* Set a fixed height for the card */
+  margin-top: 5%; /* Space from the top */
+  background-color: white; /* Set the background color to white */
+  border-radius: 10px; /* Add border radius to create rounded corners */
+  margin-left: 5%; /* Space from the left */
 }
+
+/* The .card-I class sets the layout and positioning for inner card content. */
 .card-I {
+  flex-direction: column; /* Set the flex items in a columnar layout */
+  align-items: center; /* Center align the content horizontally */
+  margin-right: 10px; /* Space to the right */
+  transform: translateX(238px); /* Moves the card along the X-axis */
+  margin-top: 50px; /* Space from the top */
+  height: 550px; /* Set a fixed height */
 
-flex-direction: column;
-align-items: center;
-margin-right: 10px;
-transform: translateX(238px);
-margin-top: 50px;
-height: 550px;
-transform-style: preserve-3d;
 }
 
+/* The .textContainer class sets the size and positioning of text within a card. */
 .textContainer {
-padding-top: 5%;
-margin-left: 1%;
-margin-right: 2%;
-width: 50%;
-height: 50%;
+  padding-top: 5%; /* Padding from the top */
+  margin-left: 1%; /* Margin from the left */
+  margin-right: 2%; /* Margin from the right */
+  width: 50%; /* Half the container width */
+  height: 50%; /* Half the container height */
 }
 
+/* The .imageContainer class sets the size for images within a card. */
 .imageContainer {
-width: 50%;
-height: 100%;
+  width: 50%; /* Half the container width */
+  height: 100%; /* Full container height */
 }
 
+/* Styles to apply when a card is hovered over */
 .card:hover {
-transform: scale(1.05); /* make the card slightly larger when hovered */
-box-shadow: 0 30px 40px rgba(0, 0, 0, 0.3); /* Enhance shadow when hovered for a more pronounced 3D effect */
+  transform: scale(1.05); /* Scales the card slightly larger */
+  box-shadow: 0 30px 40px rgba(0, 0, 0, 0.3); /* Enhances the box shadow */
 }
+
+/* The .landing-container class sets the height for landing page containers. */
 .landing-container{
   height: 600px;
 }
+
+/* The .image class sets the size and positioning for images. */
 .image {
-width: 100%;
-height: 100%;
-background-size: cover;
-background-position: center;
+  width: 100%; /* Full container width */
+  height: 100%; /* Full container height */
+  background-size: cover; /* Scales the background image to cover the container */
+  background-position: center; /* Centers the background image */
 }
 
+/* The .text class sets the size, font and color for text. */
 .text {
-width: 100%;
-height: 100%;
-font-size: 20px;
-box-sizing: border-box;
-color: #333;
+  width: 100%; /* Full container width */
+  height: 100%; /* Full container height */
+  font-size: 20px; /* Sets the font size */
+  box-sizing: border-box; /* Includes padding and border in element's total width and height */
+  color: #333; /* Sets the text color */
 }
 
-
+/* The .card__announcement class sets the font size for announcement text in cards. */
 .card__announcement{
-font-size: 20px;
-}
-
-.card-I:hover {
-transform: translateX(238px) scale(1.05);
-}
-.card__image {
-height: 250px;
-width: 400px;
-object-fit: cover;
-}
-
-.card__title {
-margin-top: 20px;
-font-size: 24px;
-text-align: center;
-}
-
-.card__text {
-margin-top: 10px;
-margin-left: 5%;
-margin-right: 5%;
-font-size: 20px;
-text-align: left;
-}
-
-
-/*Text card*/
-.readmore-card{
-  width: 95%;
-}
-.readmore-card p{
-  cursor: pointer;
   font-size: 20px;
 }
 
+/* Styles to apply when .card-I is hovered over */
+.card-I:hover {
+  transform: translateX(238px) scale(1.05); /* Moves and scales the card */
+}
+
+/* The .card__image class sets the size and fit for card images. */
+.card__image {
+  height: 250px; /* Set a fixed height for the image */
+  width: 400px; /* Set a fixed width for the image */
+  object-fit: cover; /* Scales the image to cover its content box */
+}
+
+/* The .card__title class sets the size, positioning and alignment for card titles. */
+.card__title {
+  margin-top: 20px; /* Space from the top */
+  font-size: 24px; /* Set the font size for the title */
+  text-align: center; /* Center align the text */
+}
+
+/* The .card__text class sets the size, positioning, and alignment for card text. */
+.card__text {
+  margin-top: 10px; /* Space from the top */
+  margin-left: 5%; /* Margin from the left */
+  margin-right: 5%; /* Margin from the right */
+  font-size: 20px; /* Set the font size for the text */
+  text-align: left; /* Left align the text */
+}
+
+/****************
+*   Text Card 
+****************/
+/* The .readmore-card class sets the width for the read more cards. */
+.readmore-card{
+  width: 95%;
+}
+
+/* The .readmore-card p class styles the paragraph text within the read more cards. */
+.readmore-card p{
+  cursor: pointer; /* Changes the cursor to a pointer on hover */
+  font-size: 20px; /* Sets the font size for the text */
+}
+
+/* The .text-card class sets the layout, size, positioning and alignment for text cards. */
 .text-card {
-  width: 450px;
-  height: 300px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-left: 20px;
-  text-align: left;
-  transform: translateY(-30px);
-  line-height: 40px;
+  width: 450px; /* Set a fixed width for the text card */
+  height: 300px; /* Set a fixed height for the text card */
+  flex-direction: column; /* Set the flex items in a columnar layout */
+  justify-content: center; /* Center the content vertically */
+  align-items: center; /* Center the content horizontally */
+  margin-left: 20px; /* Space to the left */
+  text-align: left; /* Left align the text */
+  transform: translateY(-30px); /* Moves the card along the Y-axis */
+  line-height: 40px; /* Sets the line height for the text */
 }
 
+/* The .title-c class sets the size, weight and positioning for titles within cards. */
 .title-c {
-  font-size: 24px;
-  margin: 0 0 10px 0;
-  font-weight: 700;
-  width: 80%;
-  margin-right: 40%;
+  font-size: 24px; /* Set the font size for the title */
+  margin: 0 0 10px 0; /* Margin around the title */
+  font-weight: 700; /* Sets the font weight to bold */
+  width: 80%; /* Width is set to 80% of its container */
+  margin-right: 40%; /* Space to the right */
 }
 
+/* The .text-c class sets the size, margin and alignment for text within cards. */
 .text-c {
-  font-size: 25px;
-  margin: 0;
-  text-align: left;
+  font-size: 25px; /* Set the font size for the text */
+  margin: 0; /* Removes the margin */
+  text-align: left; /* Left align the text */
 }
+
+/* The .dropDownContent.show class changes the display property of the dropdown content when it's visible. */
 .dropDownContent.show {
-  display: block;
+  display: block; /* Makes the dropdown content visible */
 }
 
+/* The .dropdown-icon class sets a transition effect for the dropdown icons. */
 .dropdown-icon {
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out; /* Transition effect for the transform property */
 }
 
+/* The .dropdown svg class moves the SVG within the dropdown along the Y-axis. */
+.dropdown svg{
+  transform: translateY(-1px); /* Moves the SVG up */
+}
+
+/* The .dropdown-icon.rotated class rotates the dropdown icon. */
 .dropdown-icon.rotated {
-  transform: rotate(180deg);
+  transform: rotate(180deg); /* Rotates the icon by 180 degrees */
 }
 
+/* The .dropDownContent class sets the initial appearance, size and layout for the dropdown content. */
 .dropDownContent {
-  display: none;
-
-  z-index: 1;
-  width: 500px;
-  flex-wrap: wrap;
+  display: none; /* Dropdown content is initially hidden */
+  z-index: 1; /* Stacks the dropdown content above the other elements */
+  width: 500px; /* Set a fixed width for the dropdown content */
+  flex-wrap: wrap; /* Allows the flex items to wrap onto multiple lines */
 }
 
+/* The .dropDownContent a class styles the links within the dropdown content. */
 .dropDownContent a {
-  display: inline;
-  padding: 5px;
-  color: #333;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
+  display: inline; /* Displays the links inline */
+  padding: 5px; /* Adds padding around the links */
+  color: #333; /* Sets the text color for the links */
+  text-decoration: none; /* Removes the underline from the links */
+  transition: background-color 0.3s ease; /* Transition effect for the background color */
 }
+
+/* The .dropdown-icon class moves the dropdown icon along the Y-axis. */
 .dropdown-icon{
-transform: translateY(5px);
+  transform: translateY(5px); /* Moves the dropdown icon down */
 }
+
+/* The .dropDownContent a:hover class changes the background color of the links within the dropdown content on hover. */
 .dropDownContent a:hover {
-  background-color: #eee;
+  background-color: #eee; /* Changes the background color on hover */
 }
 
-/*card parent*/
+/****************
+* Card Parent 
+****************/
+/* The .nav-buttons class positions and styles the navigation buttons on the screen. */
 .nav-buttons {
-  top: 0;
-  right: 0;
-  margin-right: 40px;
-  width: 100%;
-  height: 40px;
-  display: flex;
-  justify-content: flex-end;
+  top: 0; /* Aligns the navigation buttons at the top of its container */
+  right: 0; /* Aligns the navigation buttons at the right of its container */
+  margin-right: 40px; /* Creates a 40px margin at the right */
+  width: 100%; /* Sets the width of the navigation buttons to 100% of its container */
+  height: 40px; /* Sets the height of the navigation buttons to 40px */
+  display: flex; /* Makes the navigation buttons a flex container, making its children align in a row */
+  justify-content: flex-end; /* Aligns the children of the navigation buttons at the end of the horizontal axis */
 }
 
+/* The .feather class aligns the feather icon and adds padding at the top. */
 .feather {
-  vertical-align: middle;
-  padding-top: 2px;
-}
-.Prev:hover, .Next:hover {
-  filter: brightness(120%);
-  color: var(--white);
-  cursor: pointer;
+  vertical-align: middle; /* Centers the feather icon vertically */
+  padding-top: 2px; /* Adds 2px padding at the top of the feather icon */
 }
 
-.Prev ,.Next{
-  margin-top: 15px;
-  height: 30px;
-  width: 30px;
-  margin-left: 10px;
-  background-color: var(--blue-gray);
-  
-  color: var(--white);
-  border: none;
+/* The .Prev:hover and .Next:hover classes change the brightness and cursor when these buttons are hovered over. */
+.Prev:hover, .Next:hover {
+  filter: brightness(120%); /* Increases the brightness of the buttons by 120% when hovered */
+  color: var(--white); /* Changes the color of the buttons to white when hovered */
+  cursor: pointer; /* Changes the cursor to a pointer when the buttons are hovered */
 }
+
+/* The .Prev and .Next classes style the Previous and Next buttons. */
+.Prev ,.Next{
+  margin-top: 15px; /* Adds a 15px margin at the top of the buttons */
+  height: 30px; /* Sets the height of the buttons to 30px */
+  width: 30px; /* Sets the width of the buttons to 30px */
+  margin-left: 10px; /* Adds a 10px margin at the left of the buttons */
+  background-color: var(--blue-gray); /* Sets the background color of the buttons to blue-gray */
+  color: var(--white); /* Sets the color of the buttons to white */
+  border: none; /* Removes the border of the buttons */
+}
+
+/* The .nav-buttons, .carousel-container, .cards-container, .image-container, .text-container, and .slide classes are all set to display as flex containers. */
 .nav-buttons, .carousel-container, .cards-container ,.image-container,.text-container,.slide{
   display: flex;
 }
- .carousel-container {
-  width: 100%;
-  height: 650px;
-  
-  flex-direction: row;
-  align-items: center;
-  overflow: hidden;
 
-  margin-top: 18%;
+/* The .carousel-container class sets the size, layout, alignment and visibility of the carousel container. */
+.carousel-container {
+  width: 100%; /* Sets the width of the carousel container to 100% of its container */
+  height: 650px; /* Sets the height of the carousel container to 650px */
+  flex-direction: row; /* Makes the children of the carousel container align in a row */
+  align-items: center; /* Centers the children of the carousel container along the vertical axis */
+  overflow: hidden; /* Hides any children of the carousel container that overflow */
+  margin-top: 18%; /* Adds an 18% margin at the top of the carousel container */
 }
 
-
-
-  .cards-container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%; 
-  }
-  
-  .image-container {
-    width: 100%;
-    height: 100%;
-    margin-left: 30px;
-    justify-content: flex-start;
-    align-items: flex-start;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-    
-  }
-
-  .image-container::-webkit-scrollbar {
-  width: 8px; /* adjust as needed */
-  height: 8px; /* adjust as needed */
+/* The .cards-container class sets the size, layout, and alignment of the cards container. */
+.cards-container {
+  display: flex; /* Makes the cards container a flex container, making its children align in a row */
+  flex-direction: row; /* Makes the children of the cards container align in a row */
+  width: 100%; /* Sets the width of the cards container to 100% of its container */
+  height: 100%; /* Sets the height of the cards container to 100% of its container */
 }
 
+/* The .image-container class sets the size, layout, alignment, and scroll behavior of the image container. */
+.image-container {
+  width: 100%; /* Sets the width of the image container to 100% of its container */
+  height: 100%; /* Sets the height of the image container to 100% of its container */
+  margin-left: 30px; /* Adds a 30px margin at the left of the image container */
+  justify-content: flex-start; /* Aligns the children of the image container at the start of the horizontal axis */
+  align-items: flex-start; /* Aligns the children of the image container at the start of the vertical axis */
+  overflow-x: auto; /* Allows horizontal scrolling if the children of the image container overflow */
+  scroll-behavior: smooth; /* Makes any scrolling within the image container smooth */
+  scroll-snap-type: x mandatory; /* Forces a scroll into the nearest child in the horizontal axis */
+}
+
+/* The .image-container::-webkit-scrollbar class sets the size of the scrollbar in the image container. */
+.image-container::-webkit-scrollbar {
+  width: 8px; /* Sets the width of the scrollbar to 8px */
+  height: 8px; /* Sets the height of the scrollbar to 8px */
+}
+
+/* The .image-container::-webkit-scrollbar-track class sets the background color of the scrollbar track in the image container. */
 .image-container::-webkit-scrollbar-track {
-  background: var(--lavender-web); /* adjust as needed */
+  background: var(--lavender-web); /* Sets the background color of the scrollbar track to lavender web */
 }
 
+/* The .image-container::-webkit-scrollbar-thumb class sets the appearance of the scrollbar thumb in the image container. */
 .image-container::-webkit-scrollbar-thumb {
-  background: var(--blue-gray); /* adjust as needed */
-  border-radius: 4px; /* adjust as needed */
+  background: var(--blue-gray); /* Sets the background color of the scrollbar thumb to blue-gray */
+  border-radius: 4px; /* Rounds the corners of the scrollbar thumb by 4px */
 }
 
+/* The .image-container::-webkit-scrollbar-button class hides the scrollbar buttons in the image container. */
 .image-container::-webkit-scrollbar-button {
-  display: none; /* hide the scrollbar buttons */
-}
-  .text-container {
-    width: 30%;
-    height: 100%;
-    
-    flex-direction: column;
-    justify-content: center;
-    padding-right: 40px;
-    color: var( --raisin-black);
-    transform: translateY(-80px); 
-  }
-  .mobile-only {
-  display: none;
+  display: none; /* Hides the scrollbar buttons */
 }
 
-/*Slider*/
+/* The .text-container class sets the size, layout, alignment, and position of the text container. */
+.text-container {
+  width: 30%; /* Sets the width of the text container to 30% of its container */
+  height: 100%; /* Sets the height of the text container to 100% of its container */
+  flex-direction: column; /* Makes the children of the text container align in a column */
+  justify-content: center; /* Centers the children of the text container along the horizontal axis */
+  padding-right: 40px; /* Adds a 40px padding at the right of the text container */
+  color: var(--raisin-black); /* Sets the color of the text in the text container to raisin black */
+  transform: translateY(-80px); /* Moves the text container 80px up from its original position */
+}
+
+/* The .mobile-only class hides elements on screens that are not mobile. */
+.mobile-only {
+  display: none; /* Hides the elements with this class */
+}
+/****************
+*    Slider 
+****************/
+/* Defines the text container properties. z-index is set to 3 so it's above 
+most other elements. It's offset from the left and top edges of its container, 
+and has a fixed width and height. It's also assigned colors from CSS variables,
+and its contents are aligned with a 30px line height. */
 .text-s {
-
   z-index: 3;
   margin-left: 5%;
   padding-top: 50px;
@@ -489,15 +662,22 @@ transform: translateY(5px);
   box-sizing: border-box;
   font-size: 20px;
 }
+
+/* Defines the slide container properties. It is positioned from the top edge of its
+container and has a fixed width and height. It also has a transition effect on its 
+opacity and its background color is black. */
 .slide {
   margin-top: 20%;
   width: 100%;
   height: 100%;
   max-height: 90vh;
-  
   transition: opacity 400ms ease-out;
   background-color: black;
 }
+
+/* Resets all elements' border, margin, and padding to 0 and changes the box-sizing 
+to border-box, which includes border and padding in the element's total width and height. 
+This also applies to ::before and ::after pseudo-elements.*/
 *,
 ::after,
 ::before {
@@ -507,6 +687,8 @@ transform: translateY(5px);
   box-sizing: border-box;
 }
 
+/* Styles the container as a grid with its children centered, and gives it padding on the top and 
+bottom, and a fixed height and width. */
 .container {
   display: grid;
   place-items: center;
@@ -514,24 +696,37 @@ transform: translateY(5px);
   height: 400px;
   width: 100%;
 }
+
+/* Moves the first word 10px above the top edge of its container */
 .first-word{
-top: -10px;
+  top: -10px;
 }
+
+/* Changes the color of the second word to the color defined in the --blue-gray variable */
 .second-word{
-color: var(--blue-gray);
+  color: var(--blue-gray);
 }
+
+/* Adds bottom padding to h2 elements inside the text container */
 .text-s h2{
   padding-bottom: 25px;
 }
+
+/* Styles the slider container as a grid with its children centered, hidden overflow, 
+and adds a box shadow for depth. It also takes up full width of its parent. */
 .slider {
   display: grid;
   place-items: center;
   overflow: hidden;
   box-shadow: 20px 20px 50px hsl(210, 50%, 40% .4),
     -20px -20px 50px hsl(210, 50%, 80% .2);
-    width: 100%;
+  width: 100%;
 }
 
+/* Styles the image inside the slide. It takes up full width of its container, 
+is hidden when the opacity is 0, and has a transition effect on its opacity. 
+It also fills its entire content box with the object-fit property and has a 
+z-index of 0 so it stays beneath other elements. */
 .slide img {
   width: 100%;
   flex: 1 0 100%;
@@ -541,3 +736,302 @@ color: var(--blue-gray);
   z-index: 0;
 }
 
+
+
+
+/*media queries*/
+/* This media query targets devices with a screen width of 600px or less. 
+   It represents styles that will be applied to a mobile or smaller device view. */
+
+  /* Responsive styles for phone view */
+  
+  @media only screen and (max-width: 600px) {
+    /* For devices with a max-width of 600px, the card class elements will have a 
+       width of 800px and height of 1300px. It seems the width of the card is greater 
+       than the max-width of the device. This could lead to horizontal scrolling or 
+       parts of the card being off-screen, depending on overflow settings. */
+       .card {
+      width: 800px;
+      height: 1300px;
+    }
+    
+    /* For both .textContainer and .imageContainer classes, their widths are set to 100%. 
+       This ensures these elements take up the full width of their parent container. */
+    .textContainer, .imageContainer {
+      width: 100%;
+    }
+    
+    /* The height of elements with the .image class is set to 100%, 
+       meaning they'll take up the full height of their parent container. */
+    .image {
+      height: 100%;
+    }
+    
+        .card-I{
+          scroll-snap-align: start; /* Snap cards to the start of the viewport */
+          flex: 0 0 auto;
+          width: 100%;
+          max-width: 700px; /* Limit the width of each card */
+          margin-right: 10px;
+          height: 160vh;
+          transform: translateY(-100px);
+    
+        }
+    
+        .card__image {
+          height: 400px;
+          width: 100%;
+          object-fit: cover;
+        }
+    
+    
+        .card__title {
+          margin-top: 10px;
+          font-size: 50px;
+        }
+    
+        .card__text {
+          margin-top: 5px;
+          margin-left: 15px;
+          margin-right: 10px;
+          font-size: 40px;
+        }
+        .card__announcement{
+          font-size: 40px;
+        }
+
+        .title {
+          font-size: 30px; /* Decrease the font size of the title for smaller screens */
+      }
+      .image-s {
+  
+          height: 100vh; /* Take up the full height of the screen on smaller screens */
+      }
+      .landing-container {
+          width: 800px;
+          height: 100vh; /* Take up the full height of the screen on smaller screens */
+      }
+      .special-word {
+          font-size: 35px; /* Decrease the font size of the special word for smaller screens */
+          top: -10px; /* Adjust the vertical position of the special word for smaller screens */
+      }
+      .special-word1 {
+          font-size: 40px; /* Decrease the font size of the first special word for smaller screens */
+          top: -30px; /* Adjust the vertical position of the first special word for smaller screens */
+      }
+      .special-word3 {
+          font-size: 30px; /* Decrease the font size of the third special word for smaller screens */
+          top: 20px; /* Adjust the vertical position of the third special word for smaller screens */
+      }
+
+        /* Adjust text container's width and font size */
+  .text-s {
+    width: 50%; /* Adjust as needed */
+    font-size: 30px;
+  }
+  /* Adjust slide's margin-top and height */
+  .slide{
+    margin-top: 35%;
+    height: 500px;
+  }
+  /* Set the container's width */
+  .container {
+    width: 800px;
+  }
+  /* Make the slider's width fill its container */
+  .slider {
+    width: 100%;
+  }
+  /* Make images within the slide fill its container */
+  .slide img {
+    width: 100%;
+  }
+  /* The text-card class styling for mobile devices */
+.text-card {
+  width: 100%;
+  height: auto;
+  margin-left: -20px;
+  margin-right: 0;
+  transform: none;
+  height: 80px;
+  z-index: 0;
+}
+
+/* The h2 tag styling for mobile devices */
+.title-c {
+  font-size: 50px;
+  padding-bottom: 10px;
+  margin-right: 0;
+  line-height: 50px;
+}
+
+/* The p tag styling for mobile devices */
+.text-c {
+  font-size: 40px;
+  text-align: left;
+  line-height: 60px;
+}
+
+/* The dropdown class styling for mobile devices */
+.dropdown {
+  text-align: center;
+  display: none; /* dropdown is not displayed on mobile devices */
+}
+
+/* The dropDownContent class styling for mobile devices */
+.dropDownContent {
+  width: 100%;
+  position: static;
+  display: none; /* dropdown content is not displayed on mobile devices */
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* The readmore-card class styling for mobile devices */
+.readmore-card p{
+  font-size: 25px;
+  line-height: 55px;
+  text-align: left;
+  padding-left: 10%;
+}
+
+/* The h2 tag styling inside readmore-card class for mobile devices */
+.readmore-card h2{
+  margin-left: 30px;
+  font-size: 60px;
+  line-height: 60px;
+}
+
+/* The anchor tag styling inside dropDownContent class for mobile devices */
+.dropDownContent a {
+  padding: 5px 10px;
+}
+  }
+
+
+      /* Style rules for screens with a minimum width of 768px (e.g., tablets in portrait mode) */
+@media screen and (min-width: 768px){
+  /* Adjust text container's margin-top and width */
+  .text-s{
+    margin-top: 5%;
+    width: 50%;
+  }
+  /* Set the container's width */
+  .container{
+    width: 800px;
+  }
+  /* Make the slide's width fill its container */
+  .slide{
+    width: 100%;
+  }
+}
+
+/* This media query targets devices with a screen width of 700px or more. 
+   When the screen width is 700px or more, the mobileNav element is set to display block, 
+   the header height is set to 60px, the toggle font size is set to 3rem, 
+   the nav top is set to 50px, the nav height is set to 210px, 
+   and the nav link font size is set to 25px. */
+   @media screen and (min-width: 700px){
+    .mobileNav{
+      display: block;
+    }
+    .header{
+      height: 60px;
+    }
+    .toggle{
+      font-size: 3rem;
+    }
+    nav{
+      top: 50px;
+      height: 210px;
+    }
+    nav a{
+      font-size: 25px;
+    }
+    .text-card{
+      margin-left: 0;
+      width: 400px; /* width is increased for larger devices */
+    }
+  }
+      /* This media query targets devices with a screen width of 800px or less. 
+   When the screen width is 800px or less, the mobileNav element is set to display block. */
+   @media (max-width: 800px) {
+    .desktopNav {
+      display: none;  /* Hide navbar on mobile */
+    }
+    .mobileNav {
+      display: block;
+    }
+  }
+
+  /* This media query targets devices with a screen width of 1000px or more. 
+   When the screen width is 1000px or more, the mobileNav element is set to display none, 
+   effectively hiding the mobile navigation on larger screens. */
+@media screen and (min-width: 1000px){
+  .mobileNav{
+    display: none;
+  }
+
+    /* Adjust text container's margin-top */
+    .text-s{
+      margin-top: 5%;
+    }
+    /* Set the container's width */
+    .container{
+      width: 1320px;
+    }
+    /* Make the slide's width fill its container */
+    .slide{
+      width: 100%;
+    }
+    .text-card{
+      margin-left: 0;
+      width: 500px; /* width is further increased for larger devices */
+    }
+}
+/* Style rules for screens with a minimum width of 1300px (e.g., larger laptops and desktop monitors) */
+@media screen and (min-width: 1300px){
+  /* Remove top margin from the text container */
+  .text-s{
+    margin-top: 0;
+  }
+  /* Set the container's width */
+  .container{
+    width: 1320px;
+  }
+  /* Make the slide's width fill its container */
+  .slide{
+    width: 100%;
+  }
+}
+  
+  /* Smartphone portrait and landscape */
+  @media only screen 
+    and (min-device-width : 320px) 
+    and (max-device-width : 480px) { 
+      .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .grid-item{
+        height: 400px;
+        width: 400px;
+      }
+      .grid-content {
+        margin-right: 0;
+      }
+      .grid-content ,a{
+        font-size: 30px;
+      }
+  }
+  
+  /* Tablet portrait and landscape */
+  @media only screen 
+    and (min-device-width : 768px) 
+    and (max-device-width : 1024px) { 
+      .grid-container {
+          grid-template-columns: repeat(2, 2fr); 
+      }
+      .grid-content {
+        margin-right: 10%;
+      }
+  }

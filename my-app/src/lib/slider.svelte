@@ -2,7 +2,6 @@
   // Importing necessary functions from Svelte
   import { onMount, onDestroy } from 'svelte';
   import { page } from '$app/stores';
-  
 
   // Array to store the fetched images from the API
   let images = [];
@@ -26,9 +25,6 @@
   { title: 'Console Conquerors', text: 'Rise as Console Conquerors and dominate the gaming realm. From epic RPGs to heart-pounding shooters, conquer new levels, unlock achievements, and etch your name in gaming history.' },
   { title: 'Tech Revolution', text: 'Witness the Tech Revolution sweeping the gaming industry. Experience mind-blowing advancements, from realistic graphics to immersive virtual reality, as technology continues to redefine the way we play.' }
 ];
-
-  
-
   // Function to move the slides and update the opacity of the images
   function moveSlides() {
     slide.style.transform = `translateX(-${slideIndex * 100}%)`;
@@ -72,92 +68,97 @@ onDestroy(() => {
   });
 
 </script>
+<!-- Begin the container for the slider -->
 <div class="container">
+  <!-- The slider, which will contain slides -->
   <div class="slider relative">
+    <!-- Each individual slide -->
     <div class="slide relative" bind:this={slide}>
+      <!-- Loop through each image in the 'images' array -->
       {#each images as image, index (image)}
-      <!-- Display each image in the 'images' array -->
-      <div class="text-container-s">
-        <div class="text-s absolute">
-          {#if arr[index]}
-            <h2>
-              {#each arr[index].title.split(' ') as word, i}
-                {#if i === 1}
-                  <span class="second-word">{word}</span>
-                {:else}
-                  <span class="first-word relative"> {word}</span> 
-                {/if}
-                &nbsp;
-              {/each}
-            </h2>
-            <p>{arr[index].text}</p>
-          {/if}
+        <!-- Begin text container for each slide -->
+        <div class="text-container-s">
+          <!-- Text content for each slide, positioned absolutely -->
+          <div class="text-s absolute">
+            <!-- Check if the current index exists in the 'arr' array -->
+            {#if arr[index]}
+              <!-- Display the title text, splitting into individual words -->
+              <h2>
+                {#each arr[index].title.split(' ') as word, i}
+                  <!-- If the word is the second word in the title, apply the 'second-word' class -->
+                  {#if i === 1}
+                    <span class="second-word">{word}</span>
+                  <!-- If the word is not the second word in the title, apply the 'first-word' class -->
+                  {:else}
+                    <span class="first-word relative"> {word}</span> 
+                  {/if}
+                  &nbsp;
+                {/each}
+              </h2>
+              <!-- Display the text for the slide -->
+              <p>{arr[index].text}</p>
+            {/if}
+          </div>
         </div>
-      </div>
-      <!-- svelte-ignore a11y-img-redundant-alt -->
-      <img src={image} alt="slide image" />
+        <!-- Display the image for the slide with alternative text -->
+        <!-- svelte-ignore a11y-img-redundant-alt -->
+        <img src={image} alt="slide image" />
       {/each}
     </div>
   </div>
 </div>
 
+
 <style>
-  /* CSS styles for the slider and slides */
-  @media screen and (max-width: 600px) {
-  .text-s {
-    width: 50%; /* Adjust as needed */
-    font-size: 30px;
-    
-  }
+/* CSS styles for the slider and slides */
 
-  .slide{
-    margin-top: 35%;
-    height: 500px;
-  }
-  .container {
-    width: 800px;
-  }
+/* Style rules for screens with a maximum width of 600px (e.g., small devices like phones) */
 
-  .slider {
-    width: 100%;
-  }
-
-  .slide img {
-    width: 100%;
-  }
-}
+/* Style rules for screens with a minimum width of 768px (e.g., tablets in portrait mode) */
 @media screen and (min-width: 768px){
+  /* Adjust text container's margin-top and width */
   .text-s{
     margin-top: 5%;
     width: 50%;
   }
+  /* Set the container's width */
   .container{
-    width: 800px
+    width: 800px;
   }
+  /* Make the slide's width fill its container */
   .slide{
     width: 100%;
   }
 }
+/* Style rules for screens with a minimum width of 1000px (e.g., laptops and tablets in landscape mode) */
 @media screen and (min-width: 1000px){
+  /* Adjust text container's margin-top */
   .text-s{
     margin-top: 5%;
   }
+  /* Set the container's width */
   .container{
     width: 1320px;
   }
+  /* Make the slide's width fill its container */
   .slide{
     width: 100%;
   }
 }
+/* Style rules for screens with a minimum width of 1300px (e.g., larger laptops and desktop monitors) */
 @media screen and (min-width: 1300px){
+  /* Remove top margin from the text container */
   .text-s{
     margin-top: 0;
   }
+  /* Set the container's width */
   .container{
     width: 1320px;
   }
+  /* Make the slide's width fill its container */
   .slide{
     width: 100%;
   }
 }
+
 </style>

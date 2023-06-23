@@ -1,8 +1,10 @@
 <script>
   import { page } from '$app/stores';
   import TextCard from '$lib/TextCard.svelte';
+  //images from the js file that calls the api//
+  //then splits it into an array to then be used//
   let images = ($page.data.props?.images || []).slice(0, 6);
-
+// array containing the content for the info cards//
 let cardTexts = [
   {
     textCardType: "readmore",
@@ -50,54 +52,36 @@ let cardTexts = [
 ];
 
   
+  // Mapping over the cardTexts array. For each card object in the array, a new 
+  // object is created with all the properties of the original card object and a 
+  // new property imageSrc. The value of imageSrc is taken from the images array
+  // at the corresponding index. If no image exists at that index, it defaults to null.
   cardTexts = cardTexts.map((card, index) => {
     return {
       ...card,
       imageSrc: images[index] || null
     };
   });
-  
-    
-  
+
+
   </script>
+
+  <!-- Loop over each item in the cardTexts array. For each item, a card is rendered -->
   {#each cardTexts as card }
-  <div class="card relative card-base">
-    <div class="textContainer {card.class}" >
-      <div class="text ">
-        <TextCard textCardType={card.textCardType} title={card.title} text={card.text} />
+    <!-- Card div with relative positioning and 'card-base' class -->
+    <div class="card relative card-base">
+      <!-- Text container div with class dynamically set to card's class property -->
+      <div class="textContainer {card.class}" >
+        <!-- Div for card text -->
+        <div class="text ">
+          <!-- Svelte component for displaying card text. The card's textCardType, title and text properties are passed as props -->
+          <TextCard textCardType={card.textCardType} title={card.title} text={card.text} />
+        </div>
+      </div>
+      <!-- Image container div -->
+      <div class="imageContainer">
+        <!-- Div for the image. The background image is set dynamically to the card's imageSrc property -->
+        <div class="image" style="background-image: url({card.imageSrc});"></div>
       </div>
     </div>
-    <div class="imageContainer">
-      <div class="image" style="background-image: url({card.imageSrc});"></div>
-    </div>
-  </div>
   {/each}
-  
-  
-  
-  
-  <style>
-
-
-@media only screen and (max-width: 600px) { 
-
-  .card {
-    width: 800px;
-    height: 1300px;
- 
-  }
-
-  .textContainer, .imageContainer {
-    width: 100%;
-  }
-
-  .image {
-    height: 100%;
-  }
-
-
-}
-
-  </style>
-  
-  

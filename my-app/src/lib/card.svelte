@@ -10,7 +10,8 @@
   
 // Use the function for both card arrays
 
-
+//array container for card content text card and image cards//
+// needs to be in order of text card followed by 5 image cards//
 const cards = [
     {
       type: "TextCard",
@@ -209,125 +210,158 @@ const cards = [
   }
   ];
 
-
+  // Initialize the images array
   let images = []; 
-  if ($page.data.props) {
-images = ($page.data.props?.images || []).slice(9);
 
-    
+  // Check if $page.data.props exists
+  if ($page.data.props) {
+    // Assign the images array to the value from $page.data.props
+    // Or use an empty array if the images property does not exist
+    images = ($page.data.props?.images || []).slice(9);
+
+    // Initialize the image index
     let imageIndex = 0;
+
+    // Loop over all the cards
     for (let i = 0; i < cards.length; i++) {
+        // If the card type is 'ImageCard', assign the corresponding image to it
         if (cards[i].type === 'ImageCard') {
+            // Assign the image source
             cards[i].imageSrc = images[imageIndex];
 
+            // Increase the image index
             imageIndex++;
+            // If we've used all images, loop back to the start
             if (imageIndex >= images.length) {
-                imageIndex = 0;  // Loop back to the start if we've used all images
+                imageIndex = 0;  
             }
         }
     }
-}
+  }
+
+  // Define the size of the slider
   const SLIDER_SIZE = 6;
+
+  // Initialize the slider cards and state arrays
   let sliderCards = [];
   let sliderState =[];
-// Split the cards array into multiple arrays of length SLIDER_SIZE
-$: {
-  sliderCards = [];
-  for (let i = 0; i < cards.length; i += SLIDER_SIZE) {
-    const sliderGroup = cards.slice(i, i + SLIDER_SIZE);
-    sliderCards.push(sliderGroup);
+
+  // Split the cards array into multiple arrays of length SLIDER_SIZE
+  // This will be run any time the 'cards' array changes
+  $: {
+    sliderCards = [];
+    for (let i = 0; i < cards.length; i += SLIDER_SIZE) {
+      const sliderGroup = cards.slice(i, i + SLIDER_SIZE);
+      sliderCards.push(sliderGroup);
+    }
+
+    // Initialize or update sliderState
+    sliderState = sliderCards.map((_, i) => sliderState[i] || { currentCard: 0, imageContainer: null });
   }
 
-  // Initialize or update sliderState
-  sliderState = sliderCards.map((_, i) => sliderState[i] || { currentCard: 0, imageContainer: null });
-}
-function nextCard(sliderIndex) {
-  let updatedSliderState = [...sliderState];
-
-  if (updatedSliderState[sliderIndex].currentCard < sliderCards[sliderIndex].length - 3) {
-    updatedSliderState[sliderIndex].currentCard += 1;
-
-    const cardWidth = updatedSliderState[sliderIndex].imageContainer.scrollWidth / sliderCards[sliderIndex].length;
-    updatedSliderState[sliderIndex].imageContainer.scrollTo(updatedSliderState[sliderIndex].currentCard * cardWidth, 0);
+  // Function to go to the next card in a slider
+  function nextCard(sliderIndex) {
+    // Clone the sliderState array
+    let updatedSliderState = [...sliderState];
+    // If we're not at the end of the current slider
+    if (updatedSliderState[sliderIndex].currentCard < sliderCards[sliderIndex].length - 3) {
+      // Move to the next card
+      updatedSliderState[sliderIndex].currentCard += 1;
+      // Calculate the width of each card
+      const cardWidth = updatedSliderState[sliderIndex].imageContainer.scrollWidth / sliderCards[sliderIndex].length;
+      // Scroll to the new position
+      updatedSliderState[sliderIndex].imageContainer.scrollTo(updatedSliderState[sliderIndex].currentCard * cardWidth, 0);
+    }
+    // Update the sliderState array
+    sliderState = updatedSliderState;
   }
-
-  sliderState = updatedSliderState;
-}
-
-function prevCard(sliderIndex) {
-  let updatedSliderState = [...sliderState];
-
-  if (updatedSliderState[sliderIndex].currentCard > 0) {
-    updatedSliderState[sliderIndex].currentCard -= 1;
-
-    const cardWidth = updatedSliderState[sliderIndex].imageContainer.scrollWidth / sliderCards[sliderIndex].length;
-    updatedSliderState[sliderIndex].imageContainer.scrollTo(updatedSliderState[sliderIndex].currentCard * cardWidth, 0);
+  // Function to go to the previous card in a slider
+  function prevCard(sliderIndex) {
+    // Clone the sliderState array
+    let updatedSliderState = [...sliderState];
+    // If we're not at the start of the current slider
+    if (updatedSliderState[sliderIndex].currentCard > 0) {
+      // Move to the previous card
+      updatedSliderState[sliderIndex].currentCard -= 1;
+      // Calculate the width of each card
+      const cardWidth = updatedSliderState[sliderIndex].imageContainer.scrollWidth / sliderCards[sliderIndex].length;
+      // Scroll to the new position
+      updatedSliderState[sliderIndex].imageContainer.scrollTo(updatedSliderState[sliderIndex].currentCard * cardWidth, 0);
+    }
+    // Update the sliderState array
+    sliderState = updatedSliderState;
   }
-
-  sliderState = updatedSliderState;
-}
 </script>
-
-
+<!-- This creates a slider container every 6 cards (as defined in SLIDER_SIZE). Please note, it currently needs to start with a TextCard, otherwise the format might look buggy -->
 {#each sliderCards as _, i (i)}
+  <!-- Carousel Container -->
   <div class="carousel-container relative">
+    <!-- First displays all TextCards in this group for mobile view -->
     {#each sliderCards[i] as card}
-    {#if card.type === "TextCard"}
-      <div class="text-container mobile-only {card.cardClass}">
-        <TextCard textCardType={card.textCardType} title={card.title} text={card.text} />
-      </div>
-    {/if}
-  {/each}
+      {#if card.type === "TextCard"}
+        <div class="text-container mobile-only {card.cardClass}">
+          <!-- TextCard Component -->
+          <TextCard textCardType={card.textCardType} title={card.title} text={card.text} />
+        </div>
+      {/if}
+    {/each}
+
+    <!-- Navigation Buttons -->
     <div class="nav-buttons absolute">
-      <button class="Prev"  on:click={()=>prevCard(i)}>
+      <!-- Previous Button -->
+      <button class="Prev" on:click={()=>prevCard(i)}>
+        <!-- SVG for Left Arrow -->
         <svg xmlns="http://www.w3.org/2000/svg" 
         width="24" height="24" viewBox="0 0 24 24" 
         fill="none" stroke="currentColor" stroke-width="2" 
         stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left">
-        <line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline>
-      </svg>
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
       </button>
-      <button class="Next"  on:click={()=>nextCard(i)}>
+      <!-- Next Button -->
+      <button class="Next" on:click={()=>nextCard(i)}>
+        <!-- SVG for Right Arrow -->
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
          viewBox="0 0 24 24" fill="none" 
          stroke="currentColor" stroke-width="2" 
          stroke-linecap="round" stroke-linejoin="round" 
          class="feather feather-arrow-right">
-         <line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
         </svg>
       </button>
     </div>
 
-    <!-- Mobile only TextCard -->
+    <!-- Card Container -->
     <div class="cards-container">
-      
+      <!-- Image Container -->
       <div class="image-container" bind:this={sliderState[i].imageContainer}>
+        <!-- For each card in this group -->
         {#each sliderCards[i] as card}
+          <!-- If it is a TextCard, render it for desktop view -->
           {#if card.type === "TextCard"}
-           
-          <div class="text-container {card.cardClassD}">
-            <TextCard textCardType={card.textCardType} title={card.title} text={card.text} />
-          </div>
-          
+            <div class="text-container {card.cardClassD}">
+              <!-- TextCard Component -->
+              <TextCard textCardType={card.textCardType} title={card.title} text={card.text} />
+            </div>
+          <!-- If it is not a TextCard (e.g., an ImageCard), render the ImageCard component -->
           {:else}
-          <!--
-            image src wont come through here
-          -->
+            <!-- ImageCard Component -->
             <ImageCard
-            imageSrc={card.imageSrc}
-            imageAlt={card.imageAlt}
-            announcement={card.announcement}
-            title={card.title}
-            caption={card.caption}
+              imageSrc={card.imageSrc}
+              imageAlt={card.imageAlt}
+              announcement={card.announcement}
+              title={card.title}
+              caption={card.caption}
             />
           {/if}
         {/each}
       </div>
-      
     </div>
-    
   </div>
 {/each}
+
 
 <style>
 @media only screen and (max-width: 600px) {

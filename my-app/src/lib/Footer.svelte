@@ -1,6 +1,6 @@
 <script>
       import { goto } from '$app/navigation';
-      
+      //array for all the content in and links in the footer//
   let items = [
     {
       title: "Home",
@@ -73,42 +73,6 @@
   </div>
 </footer>
   
-<style>
 
-
-
-  
-  /* Smartphone portrait and landscape */
-  @media only screen 
-    and (min-device-width : 320px) 
-    and (max-device-width : 480px) { 
-      .grid-container {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .grid-item{
-        height: 400px;
-        width: 400px;
-      }
-      .grid-content {
-        margin-right: 0;
-      }
-      .grid-content ,a{
-        font-size: 30px;
-      }
-  }
-  
-  /* Tablet portrait and landscape */
-  @media only screen 
-    and (min-device-width : 768px) 
-    and (max-device-width : 1024px) { 
-      .grid-container {
-          grid-template-columns: repeat(2, 2fr); 
-      }
-      .grid-content {
-        margin-right: 10%;
-      }
-  }
-  
-  </style>
   
 

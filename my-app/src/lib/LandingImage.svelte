@@ -16,33 +16,3 @@
       </div>
     </div>
   </div>
-  
-  <style>
-@media (max-width: 600px) {
-    .title {
-        font-size: 30px; /* Decrease the font size of the title for smaller screens */
-    }
-    .image {
-
-        height: 100vh; /* Take up the full height of the screen on smaller screens */
-    }
-    .landing-container {
-        width: 800px;
-        height: 100vh; /* Take up the full height of the screen on smaller screens */
-    }
-    .special-word {
-        font-size: 35px; /* Decrease the font size of the special word for smaller screens */
-        top: -10px; /* Adjust the vertical position of the special word for smaller screens */
-    }
-    .special-word1 {
-        font-size: 40px; /* Decrease the font size of the first special word for smaller screens */
-        top: -30px; /* Adjust the vertical position of the first special word for smaller screens */
-    }
-    .special-word3 {
-        font-size: 30px; /* Decrease the font size of the third special word for smaller screens */
-        top: 20px; /* Adjust the vertical position of the third special word for smaller screens */
-    }
-}
-
-  </style>
-  

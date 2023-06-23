@@ -1,18 +1,19 @@
 <script>
     import { goto } from '$app/navigation';
     let showNav = false;
-  
+  //array containing all the links for the phone nav bar//
     let navItems = [
       { title: "Home", link: "/", class: null },
       { title: "About", link: "/about", class: null },
       { title: "Future Consoles", link: "/", class: ".Technology" },
       { title: "In the Clouds", link: "/about", class: ".Impact" },
     ];
-  
+  //toggles the drop down state//
     function toggleNav() {
       showNav = !showNav;
     }
-  
+  //function to navigate through the site using the built in go to method call//
+  //uses the class from the array and targets it//
     async function navigate(event, link, targetClass) {
       event.preventDefault();
       showNav = false; // Close the menu when a link is clicked
@@ -27,106 +28,29 @@
       }
     }
   </script>
-  
-  <div class="mobileNav">
-    <div class="header">
-      <button class="toggle" on:click={toggleNav}>
-        ☰
-      </button>
-      {#if showNav}
-        <nav>
-          {#each navItems as item (item.title)}
-            <a href={item.link} on:click|preventDefault={(e) => navigate(e, item.link, item.class)}>
-              {item.title}
-            </a>
-          {/each}
-        </nav>
-      {/if}
-    </div>
-    
+<!-- Outermost container for the mobile navigation -->
+<div class="mobileNav">
+  <!-- The header contains the toggle button and (conditionally) the navigation links -->
+  <div class="header">
+    <!-- Toggle button, clicking on it triggers the 'toggleNav' function -->
+    <button class="toggle" on:click={toggleNav}>
+      ☰
+    </button>
+
+    <!-- If 'showNav' is true, render the navigation menu -->
+    {#if showNav}
+      <nav>
+        <!-- Iterate over 'navItems' and create a link for each one. 
+        'item.title' is used as the key for each item in the list. 
+        Clicking on the link triggers the 'navigate' function with 
+        the event, the link, and the class as parameters -->
+        {#each navItems as item (item.title)}
+          <a href={item.link} on:click|preventDefault={(e) => navigate(e, item.link, item.class)}>
+            {item.title}
+          </a>
+        {/each}
+      </nav>
+    {/if}
   </div>
+</div>
   
-  <style>
-.mobileNav {
-    display: none;
-    width: 100%;
-  }
-
-  .header {
-    display: flex;
-    top: 0;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 1rem;
-    background-color: white;
-    color: white;
-    width: 100%;
-    position: fixed;
-    z-index: 999;
-  }
-
-  .toggle {
-    font-size: 5rem;
-    background: none;
-    border: none;
-    color: black;
-  }
-
-  nav {
-    display: flex;
-    flex-direction:column;
-    background-color: white;
-    position: absolute;
-    align-items: center;
-    top: 110px;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 300px;
-    padding: 10px 0;
-    box-shadow:
-      0 1px 1px hsl(0deg 0% 0% / 0.075),
-      0 2px 2px hsl(0deg 0% 0% / 0.075),
-      0 4px 4px hsl(0deg 0% 0% / 0.075),
-      0 8px 8px hsl(0deg 0% 0% / 0.075),
-      0 16px 16px hsl(0deg 0% 0% / 0.075);
-    z-index: 999;
-  }
-
-  nav a {
-    color: black;
-    text-decoration: none;
-    padding: 10px 20px;
-    font-size: 40px;
-    display: block;
-  }
-
-  @media (max-width: 800px) {
-    .mobileNav {
-      display: block;
-    }
-  }
-  @media screen and (min-width: 700px){
-    .mobileNav{
-      display: block;
-    }
-    .header{
-      height: 60px;
-    }
-    .toggle{
-      font-size: 3rem;
-    }
-    nav{
-      top: 50px;
-      height: 210px;
-    }
-    nav a{
-      font-size: 25px;
-    }
-  }
-  @media screen and (min-width: 1000px){
-    .mobileNav{
-      display: none;
-    }
-  }
-  </style>
