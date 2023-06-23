@@ -5,8 +5,8 @@ This repository contains the assessment project for the 2023 Web Development cou
 ## Design Elements & References
 
 Here are some of the elements selected for the project:
+![image](https://github.com/seCRet-blip/web-2023/assets/77824037/65fcf82b-490b-43f1-bcbd-d741e9582f0c)
 
-![Design Elements](https://github.com/seCRet-blip/web-2023/assets/77824037/25d0ec34-ea14-48ba-b138-fbd11d82960f)
 
 Reference websites used for inspiration were:
 
